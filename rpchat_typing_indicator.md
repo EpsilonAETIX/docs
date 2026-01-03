@@ -1,115 +1,43 @@
-# Chat Typing Indicator - StateBag Integration Guide
+# Typing Indicator Setup
 
-This guide explains how to add a `chat:typing` StateBag to your `chat` script. Other scripts can read this state to know when a player is typing.
+The typing indicator feature requires a small addition to the FiveM chat resource.
 
----
+## Installation
 
-## Step 1: Initialize the State
+### 1. Locate the Chat Resource File
 
-**Where:** At the top of `cl_chat.lua`, right after your variable declarations.
+The chat resource can be located in two different places:
 
-**Find this section:**
+- **Inside Artifacts:** `artifacts/citizen/system_resources/chat/cl_chat.lua`
+- **Inside Resources:** `resources/[system]/chat/cl_chat.lua`
+
+### 2. Add the Statebag
+
+In the `cl_chat.lua` file, find the lines `chatInputActive = true` and `chatInputActive = false`.
+
+Add the following **below** each `chatInputActive = true` line:
 ```lua
-local chatInputActive = false
-local chatInputActivating = false
-local chatLoaded = false
+LocalPlayer.state:set('chat:typing', true, true)
 ```
 
-**Add this line right after:**
+Add the following **below** each `chatInputActive = false` line:
 ```lua
 LocalPlayer.state:set('chat:typing', false, true)
 ```
 
-**Result:**
+### 3. Example
+
+**Before:**
 ```lua
-local chatInputActive = false
-LocalPlayer.state:set('chat:typing', false, true)  -- ADD THIS LINE
-local chatInputActivating = false
-local chatLoaded = false
+chatInputActive = true
+chatInputActivating = true
 ```
 
----
-
-## Step 2: Set State to TRUE When Chat Opens
-
-**Where:** Inside your main thread, where `chatInputActive = true` is set.
-
-**Find this code:**
+**After:**
 ```lua
-if IsControlPressed(0, input) then
-    chatInputActive = true
-    chatInputActivating = true
+chatInputActive = true
+LocalPlayer.state:set('chat:typing', true, true)
+chatInputActivating = true
 ```
 
-**Add the state update right after `chatInputActive = true`:**
-```lua
-if IsControlPressed(0, input) then
-    chatInputActive = true
-    LocalPlayer.state:set('chat:typing', true, true)  -- ADD THIS LINE
-    chatInputActivating = true
-```
-
----
-
-## Step 3: Set State to FALSE When Chat Closes (Submit/Cancel)
-
-**Where:** Inside your `chatResult` NUI callback.
-
-**Find this code:**
-```lua
-chatInputActive = false
-chatScrollMode = false
-SetNuiFocus(false, false)
-```
-
-**Add the state update right after `chatInputActive = false`:**
-```lua
-chatInputActive = false
-LocalPlayer.state:set('chat:typing', false, true)  -- ADD THIS LINE
-chatScrollMode = false
-SetNuiFocus(false, false)
-```
-
----
-
-## Step 4: Set State to FALSE When ESC is Pressed
-
-**Where:** Inside your ESC key handler.
-
-**Find this code:**
-```lua
-if IsControlJustPressed(0, 200) then -- ESC
-    chatInputActive = false
-    chatScrollMode = false
-    SetNuiFocus(false, false)
-```
-
-**Add the state update right after `chatInputActive = false`:**
-```lua
-if IsControlJustPressed(0, 200) then -- ESC
-    chatInputActive = false
-    LocalPlayer.state:set('chat:typing', false, true)  -- ADD THIS LINE
-    chatScrollMode = false
-    SetNuiFocus(false, false)
-```
-
----
-
-## How to Read the State (For Other Scripts)
-
-### Client-Side
-
-```lua
--- Check if local player is typing
-local isTyping = LocalPlayer.state['chat:typing']
-
--- Check if another player is typing (by player ID)
-local isTargetTyping = Player(playerId).state['chat:typing']
-```
-
-### Server-Side
-
-```lua
--- Check if a specific player is typing (by source)
-local isTyping = Player(source).state['chat:typing']
-```
+## All done. If have any issued @ me on Discord server. Have a good day.
