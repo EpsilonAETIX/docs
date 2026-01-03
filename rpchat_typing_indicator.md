@@ -9,7 +9,7 @@ The typing indicator feature requires a small addition to the FiveM chat resourc
 The chat resource can be located in two different places:
 
 - **Inside Artifacts:** `artifacts/citizen/system_resources/chat/cl_chat.lua`
-- **Inside Resources:** `resources/[system]/chat/cl_chat.lua`
+- **Inside Resources:** `resources/[cfx-default]/[gameplay]/chat/cl_chat.lua`
 
 ### 2. Add the Statebag
 
