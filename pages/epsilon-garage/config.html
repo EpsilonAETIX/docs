@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Epsilon Garage - Yapilandirma</title>
+    <title>Epsilon Garage - Configuration</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -11,37 +11,37 @@
 <body>
     <div class="mobile-header">
         <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
-        <span class="mobile-title">Epsilon Scripts</span>
+        <span class="mobile-title">Aetech</span>
     </div>
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <aside class="sidebar" id="sidebar"></aside>
     <main class="main-content">
         <div class="content-wrapper doc-content">
             <div class="breadcrumb">
-                <a href="../../index.html">Ana Sayfa</a>
+                <a href="../../index.html">Home</a>
                 <span class="separator"><i class="fas fa-chevron-right"></i></span>
                 <a href="index.html">Epsilon Garage</a>
                 <span class="separator"><i class="fas fa-chevron-right"></i></span>
-                <span>Yapilandirma</span>
+                <span>Configuration</span>
             </div>
-            <h1>Epsilon Garage - Yapilandirma</h1>
-            <p class="doc-description">Garaj lokasyonlari, impound ayarlari ve kapasite limitleri.</p>
+            <h1>Epsilon Garage - Configuration</h1>
+            <p class="doc-description">Garage locations, impound settings, and capacity limits.</p>
 
-            <h2 id="genel">Genel Ayarlar</h2>
+            <h2 id="genel">General Settings</h2>
             <div class="code-block">
-                <div class="code-header"><span>config.lua</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button></div>
+                <div class="code-header"><span>config.lua</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button></div>
                 <pre><code>Config = {}
 
 Config.Framework = 'esx'
 Config.Language = 'tr'
-Config.SaveDamage = true       -- Arac hasarini kaydet
-Config.SaveFuel = true         -- Arac yakitini kaydet
-Config.MaxGarageCapacity = 10  -- Oyuncu basina maks arac</code></pre>
+Config.SaveDamage = true       -- Save vehicle damage
+Config.SaveFuel = true         -- Save vehicle fuel
+Config.MaxGarageCapacity = 10  -- Max vehicles per player</code></pre>
             </div>
 
-            <h2 id="garajlar">Garaj Lokasyonlari</h2>
+            <h2 id="garajlar">Garage Locations</h2>
             <div class="code-block">
-                <div class="code-header"><span>config.lua</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button></div>
+                <div class="code-header"><span>config.lua</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button></div>
                 <pre><code>Config.Garages = {
     ['legion'] = {
         label = 'Legion Square Garaj',
@@ -67,13 +67,13 @@ Config.MaxGarageCapacity = 10  -- Oyuncu basina maks arac</code></pre>
 }</code></pre>
             </div>
 
-            <h2 id="impound">Impound (Cekici) Ayarlari</h2>
+            <h2 id="impound">Impound (Tow) Settings</h2>
             <div class="code-block">
-                <div class="code-header"><span>config.lua</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button></div>
+                <div class="code-header"><span>config.lua</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button></div>
                 <pre><code>Config.Impound = {
     enabled = true,
-    price = 500,                -- Arac cekme ucreti
-    freeAfter = 0,              -- 0 = her zaman ucretli
+    price = 500,                -- Vehicle retrieval fee
+    freeAfter = 0,              -- 0 = always paid
     coords = vector3(409.5, -1623.0, 29.3),
     spawn = vector4(409.9, -1625.5, 29.3, 230.0),
     blip = { sprite = 68, color = 1, scale = 0.8 }
@@ -81,10 +81,10 @@ Config.MaxGarageCapacity = 10  -- Oyuncu basina maks arac</code></pre>
             </div>
 
             <div class="page-nav">
-                <a href="kurulum.html" class="page-nav-link prev"><i class="fas fa-arrow-left"></i> Kurulum</a>
+                <a href="kurulum.html" class="page-nav-link prev"><i class="fas fa-arrow-left"></i> Installation</a>
                 <a href="api.html" class="page-nav-link next">API / Exports <i class="fas fa-arrow-right"></i></a>
             </div>
-            <footer class="content-footer"><p>&copy; 2026 Epsilon Scripts.</p></footer>
+            <footer class="content-footer"><p>&copy; 2026 Aetech.</p></footer>
         </div>
     </main>
     <script src="../../assets/js/sidebar.js"></script>

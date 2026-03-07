@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 <body>
     <div class="mobile-header">
         <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
-        <span class="mobile-title">Epsilon Scripts</span>
+        <span class="mobile-title">Aetech</span>
     </div>
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <aside class="sidebar" id="sidebar"></aside>
@@ -19,7 +19,7 @@
     <main class="main-content">
         <div class="content-wrapper doc-content">
             <div class="breadcrumb">
-                <a href="../../index.html">Ana Sayfa</a>
+                <a href="../../index.html">Home</a>
                 <span class="separator"><i class="fas fa-chevron-right"></i></span>
                 <a href="index.html">Epsilon HUD</a>
                 <span class="separator"><i class="fas fa-chevron-right"></i></span>
@@ -27,48 +27,48 @@
             </div>
 
             <h1>Epsilon HUD - API / Exports</h1>
-            <p class="doc-description">Diger scriptlerden HUD'i kontrol etmek icin kullanabileceginiz export ve event listesi.</p>
+            <p class="doc-description">A list of exports and events you can use to control the HUD from other scripts.</p>
 
             <h2 id="client-exports">Client Exports</h2>
 
-            <h3>HUD Gorunurluk</h3>
+            <h3>HUD Visibility</h3>
             <div class="code-block">
                 <div class="code-header">
                     <span>Client - Lua</span>
-                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                 </div>
-                <pre><code>-- HUD'i gizle
+                <pre><code>-- Hide HUD
 exports['epsilon-hud']:hideHUD(true)
 
--- HUD'i goster
+-- Show HUD
 exports['epsilon-hud']:hideHUD(false)</code></pre>
             </div>
 
-            <h3>Bar Guncelleme</h3>
+            <h3>Bar Update</h3>
             <div class="code-block">
                 <div class="code-header">
                     <span>Client - Lua</span>
-                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                 </div>
-                <pre><code>-- Belirli bir barin degerini guncelle
+                <pre><code>-- Update the value of a specific bar
 exports['epsilon-hud']:updateBar('stress', 75)
 
--- Parametreler:
+-- Parameters:
 -- barName: 'health', 'armor', 'hunger', 'thirst', 'stress', 'oxygen'
--- value: 0-100 arasi deger</code></pre>
+-- value: 0-100 range</code></pre>
             </div>
 
-            <h3>Bildirim</h3>
+            <h3>Notification</h3>
             <div class="code-block">
                 <div class="code-header">
                     <span>Client - Lua</span>
-                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                 </div>
                 <pre><code>exports['epsilon-hud']:showNotification({
-    title = 'Baslik',
-    message = 'Mesaj icerigi',
+    title = 'Title',
+    message = 'Message content',
     type = 'success',    -- 'success', 'error', 'warning', 'info'
-    duration = 5000      -- milisaniye
+    duration = 5000      -- milliseconds
 })</code></pre>
             </div>
 
@@ -78,43 +78,43 @@ exports['epsilon-hud']:updateBar('stress', 75)
             <div class="code-block">
                 <div class="code-header">
                     <span>Server - Lua</span>
-                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                 </div>
-                <pre><code>-- HUD durumunu degistir
+                <pre><code>-- Toggle HUD state
 TriggerClientEvent('epsilon-hud:toggleHUD', source, false)
 
--- Ozel bar ekle
+-- Add custom bar
 TriggerClientEvent('epsilon-hud:addCustomBar', source, {
     name = 'stamina',
-    label = 'Dayaniklilik',
+    label = 'Stamina',
     color = '#bc8cff',
     value = 100
 })
 
--- Ozel bari kaldir
+-- Remove custom bar
 TriggerClientEvent('epsilon-hud:removeCustomBar', source, 'stamina')</code></pre>
             </div>
 
-            <h2 id="export-tablosu">Export Referans Tablosu</h2>
+            <h2 id="export-tablosu">Export Reference Table</h2>
             <table class="config-table">
                 <thead>
-                    <tr><th>Export</th><th>Taraf</th><th>Parametreler</th><th>Aciklama</th></tr>
+                    <tr><th>Export</th><th>Side</th><th>Parameters</th><th>Description</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td><code>hideHUD</code></td><td>Client</td><td><code>boolean</code></td><td>HUD'i gizle/goster</td></tr>
-                    <tr><td><code>updateBar</code></td><td>Client</td><td><code>string, number</code></td><td>Bar degerini guncelle</td></tr>
-                    <tr><td><code>showNotification</code></td><td>Client</td><td><code>table</code></td><td>Bildirim goster</td></tr>
-                    <tr><td><code>isHUDVisible</code></td><td>Client</td><td>-</td><td>HUD gorunur mu kontrol</td></tr>
+                    <tr><td><code>hideHUD</code></td><td>Client</td><td><code>boolean</code></td><td>Hide/show HUD</td></tr>
+                    <tr><td><code>updateBar</code></td><td>Client</td><td><code>string, number</code></td><td>Update bar value</td></tr>
+                    <tr><td><code>showNotification</code></td><td>Client</td><td><code>table</code></td><td>Show notification</td></tr>
+                    <tr><td><code>isHUDVisible</code></td><td>Client</td><td>-</td><td>Check if HUD is visible</td></tr>
                 </tbody>
             </table>
 
             <div class="page-nav">
-                <a href="config.html" class="page-nav-link prev"><i class="fas fa-arrow-left"></i> Yapilandirma</a>
+                <a href="config.html" class="page-nav-link prev"><i class="fas fa-arrow-left"></i> Configuration</a>
                 <a href="../epsilon-inventory/index.html" class="page-nav-link next">Epsilon Inventory <i class="fas fa-arrow-right"></i></a>
             </div>
 
             <footer class="content-footer">
-                <p>&copy; 2026 Epsilon Scripts. Tum haklari saklidir.</p>
+                <p>&copy; 2026 Aetech. All rights reserved.</p>
             </footer>
         </div>
     </main>

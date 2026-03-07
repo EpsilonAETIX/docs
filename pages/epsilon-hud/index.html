@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Epsilon HUD - Genel Bakis</title>
+    <title>Epsilon HUD - Overview</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
 <body>
     <div class="mobile-header">
         <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
-        <span class="mobile-title">Epsilon Scripts</span>
+        <span class="mobile-title">Aetech</span>
     </div>
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <aside class="sidebar" id="sidebar"></aside>
@@ -19,64 +19,64 @@
     <main class="main-content">
         <div class="content-wrapper doc-content">
             <div class="breadcrumb">
-                <a href="../../index.html">Ana Sayfa</a>
+                <a href="../../index.html">Home</a>
                 <span class="separator"><i class="fas fa-chevron-right"></i></span>
                 <span>Epsilon HUD</span>
             </div>
 
             <h1>Epsilon HUD</h1>
-            <p class="doc-description">Tamamen ozellestirilebilir, modern ve performansli HUD sistemi. Saglik, zirh, aclik, susuzluk, stres, oksijen ve arac gostergeleri.</p>
+            <p class="doc-description">A fully customizable, modern, and high-performance HUD system. Health, armor, hunger, thirst, stress, oxygen, and vehicle indicators.</p>
 
             <div class="info-box info">
                 <i class="fas fa-info-circle"></i>
                 <div>
-                    <strong>Versiyon:</strong> 2.1.0 &nbsp;|&nbsp;
+                    <strong>Version:</strong> 2.1.0 &nbsp;|&nbsp;
                     <strong>Resmon:</strong> 0.01ms &nbsp;|&nbsp;
                     <strong>Framework:</strong> ESX / QBCore &nbsp;|&nbsp;
-                    <strong>Fiyat:</strong> Ucretsiz
+                    <strong>Price:</strong> Free
                 </div>
             </div>
 
-            <h2 id="ozellikler">Ozellikler</h2>
+            <h2 id="ozellikler">Features</h2>
             <ul>
-                <li>Saglik, zirh, aclik, susuzluk gostergeleri</li>
-                <li>Stres ve oksijen barlari</li>
-                <li>Arac hiz gostergesi (km/h veya mph)</li>
-                <li>Arac yakit gostergesi</li>
-                <li>Arac hasar gostergesi (motor, govde)</li>
-                <li>Emniyet kemeri durumu</li>
-                <li>Minimap ozellestirme (daire/kare)</li>
-                <li>NUI ile kullanici ayarlari paneli</li>
-                <li>Tamamen responsive tasarim</li>
-                <li>0.01ms resmon degeri</li>
+                <li>Health, armor, hunger, thirst indicators</li>
+                <li>Stress and oxygen bars</li>
+                <li>Vehicle speedometer (km/h or mph)</li>
+                <li>Vehicle fuel gauge</li>
+                <li>Vehicle damage indicator (engine, body)</li>
+                <li>Seatbelt status</li>
+                <li>Minimap customization (circle/square)</li>
+                <li>NUI user settings panel</li>
+                <li>Fully responsive design</li>
+                <li>0.01ms resmon value</li>
             </ul>
 
-            <h2 id="bagimliliklar">Bagimliliklar</h2>
+            <h2 id="bagimliliklar">Dependencies</h2>
             <table>
                 <thead>
-                    <tr><th>Kaynak</th><th>Zorunlu</th><th>Aciklama</th></tr>
+                    <tr><th>Resource</th><th>Required</th><th>Description</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td>ESX Legacy veya QBCore</td><td>Evet</td><td>Framework</td></tr>
-                    <tr><td>ox_lib</td><td>Opsiyonel</td><td>Bildirim sistemi icin</td></tr>
+                    <tr><td>ESX Legacy or QBCore</td><td>Yes</td><td>Framework</td></tr>
+                    <tr><td>ox_lib</td><td>Optional</td><td>For notification system</td></tr>
                 </tbody>
             </table>
 
-            <h2 id="sayfalar">Dokuman Sayfalari</h2>
+            <h2 id="sayfalar">Documentation Pages</h2>
             <div class="scripts-grid">
                 <a href="kurulum.html" class="script-card">
                     <div class="script-icon"><i class="fas fa-download"></i></div>
                     <div class="script-info">
-                        <h3>Kurulum</h3>
-                        <p>Adim adim kurulum rehberi, SQL import ve server.cfg ayarlari.</p>
+                        <h3>Installation</h3>
+                        <p>Step-by-step installation guide, SQL import, and server.cfg settings.</p>
                     </div>
                     <i class="fas fa-chevron-right script-arrow"></i>
                 </a>
                 <a href="config.html" class="script-card">
                     <div class="script-icon"><i class="fas fa-sliders-h"></i></div>
                     <div class="script-info">
-                        <h3>Yapilandirma</h3>
-                        <p>config.lua ayarlari, bar ozellestirme, arac HUD ve tema secenekleri.</p>
+                        <h3>Configuration</h3>
+                        <p>config.lua settings, bar customization, vehicle HUD, and theme options.</p>
                     </div>
                     <i class="fas fa-chevron-right script-arrow"></i>
                 </a>
@@ -84,14 +84,14 @@
                     <div class="script-icon"><i class="fas fa-plug"></i></div>
                     <div class="script-info">
                         <h3>API / Exports</h3>
-                        <p>Exports, events ve diger scriptlerle entegrasyon.</p>
+                        <p>Exports, events, and integration with other scripts.</p>
                     </div>
                     <i class="fas fa-chevron-right script-arrow"></i>
                 </a>
             </div>
 
             <footer class="content-footer">
-                <p>&copy; 2026 Epsilon Scripts. Tum haklari saklidir.</p>
+                <p>&copy; 2026 Aetech. All rights reserved.</p>
             </footer>
         </div>
     </main>

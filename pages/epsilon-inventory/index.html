@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Epsilon Inventory - Genel Bakis</title>
+    <title>Epsilon Inventory - Overview</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
 <body>
     <div class="mobile-header">
         <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
-        <span class="mobile-title">Epsilon Scripts</span>
+        <span class="mobile-title">Aetech</span>
     </div>
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <aside class="sidebar" id="sidebar"></aside>
@@ -19,76 +19,76 @@
     <main class="main-content">
         <div class="content-wrapper doc-content">
             <div class="breadcrumb">
-                <a href="../../index.html">Ana Sayfa</a>
+                <a href="../../index.html">Home</a>
                 <span class="separator"><i class="fas fa-chevron-right"></i></span>
                 <span>Epsilon Inventory</span>
             </div>
 
             <h1>Epsilon Inventory</h1>
-            <p class="doc-description">Surukle-birak destekli, modern arayuzlu gelismis envanter sistemi. Crafting, hotbar, silah eklentileri ve daha fazlasi.</p>
+            <p class="doc-description">Advanced inventory system with drag-and-drop support and modern UI. Crafting, hotbar, weapon attachments and more.</p>
 
             <div class="info-box info">
                 <i class="fas fa-info-circle"></i>
                 <div>
-                    <strong>Versiyon:</strong> 3.0.0 &nbsp;|&nbsp;
+                    <strong>Version:</strong> 3.0.0 &nbsp;|&nbsp;
                     <strong>Resmon:</strong> 0.02ms &nbsp;|&nbsp;
                     <strong>Framework:</strong> ESX / QBCore &nbsp;|&nbsp;
-                    <strong>Fiyat:</strong> Premium
+                    <strong>Price:</strong> Premium
                 </div>
             </div>
 
-            <h2 id="ozellikler">Ozellikler</h2>
+            <h2 id="ozellikler">Features</h2>
             <ul>
-                <li>Surukle-birak item tasima</li>
-                <li>Agirlik tabanli envanter sistemi</li>
-                <li>Hotbar (1-5 tuslari ile hizli erisim)</li>
-                <li>Silah eklentileri (silencer, scope, grip vb.)</li>
-                <li>Crafting sistemi</li>
-                <li>Magaza, arac bagaji, stash entegrasyonu</li>
-                <li>Item meta data destegi (seri no, durability)</li>
-                <li>Ozellestirilebilir item gorselleri</li>
-                <li>Context menu (sag tik)</li>
-                <li>Yere item birakma (3D props)</li>
+                <li>Drag-and-drop item movement</li>
+                <li>Weight-based inventory system</li>
+                <li>Hotbar (quick access with keys 1-5)</li>
+                <li>Weapon attachments (silencer, scope, grip, etc.)</li>
+                <li>Crafting system</li>
+                <li>Shop, vehicle trunk, stash integration</li>
+                <li>Item meta data support (serial number, durability)</li>
+                <li>Customizable item images</li>
+                <li>Context menu (right click)</li>
+                <li>Drop items on ground (3D props)</li>
             </ul>
 
-            <h2 id="bagimliliklar">Bagimliliklar</h2>
+            <h2 id="bagimliliklar">Dependencies</h2>
             <table>
                 <thead>
-                    <tr><th>Kaynak</th><th>Zorunlu</th><th>Aciklama</th></tr>
+                    <tr><th>Resource</th><th>Required</th><th>Description</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td>ESX Legacy veya QBCore</td><td>Evet</td><td>Framework</td></tr>
-                    <tr><td>oxmysql</td><td>Evet</td><td>Veritabani</td></tr>
-                    <tr><td>ox_lib</td><td>Evet</td><td>UI kutuphanesi</td></tr>
+                    <tr><td>ESX Legacy or QBCore</td><td>Yes</td><td>Framework</td></tr>
+                    <tr><td>oxmysql</td><td>Yes</td><td>Database</td></tr>
+                    <tr><td>ox_lib</td><td>Yes</td><td>UI library</td></tr>
                 </tbody>
             </table>
 
-            <h2 id="sayfalar">Dokuman Sayfalari</h2>
+            <h2 id="sayfalar">Documentation Pages</h2>
             <div class="scripts-grid">
                 <a href="kurulum.html" class="script-card">
                     <div class="script-icon"><i class="fas fa-download"></i></div>
-                    <div class="script-info"><h3>Kurulum</h3><p>SQL import, server.cfg ve ilk calistirma.</p></div>
+                    <div class="script-info"><h3>Installation</h3><p>SQL import, server.cfg and first launch.</p></div>
                     <i class="fas fa-chevron-right script-arrow"></i>
                 </a>
                 <a href="config.html" class="script-card">
                     <div class="script-icon"><i class="fas fa-sliders-h"></i></div>
-                    <div class="script-info"><h3>Yapilandirma</h3><p>Slot, agirlik, crafting, magaza ayarlari.</p></div>
+                    <div class="script-info"><h3>Configuration</h3><p>Slot, weight, crafting, shop settings.</p></div>
                     <i class="fas fa-chevron-right script-arrow"></i>
                 </a>
                 <a href="api.html" class="script-card">
                     <div class="script-icon"><i class="fas fa-plug"></i></div>
-                    <div class="script-info"><h3>API / Exports</h3><p>addItem, removeItem, openStash ve diger exportlar.</p></div>
+                    <div class="script-info"><h3>API / Exports</h3><p>addItem, removeItem, openStash and other exports.</p></div>
                     <i class="fas fa-chevron-right script-arrow"></i>
                 </a>
                 <a href="items.html" class="script-card">
                     <div class="script-icon"><i class="fas fa-cube"></i></div>
-                    <div class="script-info"><h3>Item Yonetimi</h3><p>Yeni item ekleme, gorsel ekleme, meta data kullanimi.</p></div>
+                    <div class="script-info"><h3>Item Management</h3><p>Adding new items, images, and meta data usage.</p></div>
                     <i class="fas fa-chevron-right script-arrow"></i>
                 </a>
             </div>
 
             <footer class="content-footer">
-                <p>&copy; 2026 Epsilon Scripts. Tum haklari saklidir.</p>
+                <p>&copy; 2026 Aetech. All rights reserved.</p>
             </footer>
         </div>
     </main>

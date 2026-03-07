@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kurulum Rehberi - Epsilon Scripts</title>
+    <title>Installation Guide - Aetech</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -11,63 +11,63 @@
 <body>
     <div class="mobile-header">
         <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
-        <span class="mobile-title">Epsilon Scripts</span>
+        <span class="mobile-title">Aetech</span>
     </div>
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <aside class="sidebar" id="sidebar"></aside>
     <main class="main-content">
         <div class="content-wrapper doc-content">
             <div class="breadcrumb">
-                <a href="../index.html">Ana Sayfa</a>
+                <a href="../index.html">Home</a>
                 <span class="separator"><i class="fas fa-chevron-right"></i></span>
-                <span>Kurulum Rehberi</span>
+                <span>Installation Guide</span>
             </div>
 
-            <h1>Kurulum Rehberi</h1>
-            <p class="doc-description">Epsilon scriptlerini FiveM sunucunuza nasil kuracaginizi adim adim ogrenin.</p>
+            <h1>Installation Guide</h1>
+            <p class="doc-description">Learn how to install Aetech scripts on your FiveM server step by step.</p>
 
-            <h2 id="gereksinimler">Gereksinimler</h2>
+            <h2 id="gereksinimler">Requirements</h2>
             <ul>
-                <li><strong>FiveM Server</strong> - Son surum artifact (6000+)</li>
-                <li><strong>Framework</strong> - ESX Legacy veya QBCore</li>
-                <li><strong>oxmysql</strong> - Veritabani baglantisi icin</li>
-                <li><strong>ox_lib</strong> - Genel kutuphane (bazi scriptler icin)</li>
+                <li><strong>FiveM Server</strong> - Latest artifact version (6000+)</li>
+                <li><strong>Framework</strong> - ESX Legacy or QBCore</li>
+                <li><strong>oxmysql</strong> - For database connection</li>
+                <li><strong>ox_lib</strong> - General library (required for some scripts)</li>
             </ul>
 
             <div class="info-box info">
                 <i class="fas fa-info-circle"></i>
-                <div>Her scriptin kendine ozel bagimliliklari olabilir. Lutfen ilgili scriptin dokumanina goz atin.</div>
+                <div>Each script may have its own specific dependencies. Please refer to the documentation of the relevant script.</div>
             </div>
 
-            <h2 id="indirme">Indirme</h2>
-            <h3>Git ile Indirme</h3>
+            <h2 id="indirme">Download</h2>
+            <h3>Download via Git</h3>
             <div class="code-block">
-                <div class="code-header"><span>Terminal</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button></div>
+                <div class="code-header"><span>Terminal</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button></div>
                 <pre><code>cd /sunucu-klasoru/resources/[epsilon]
 git clone https://github.com/EpsilonAETIX/epsilon-hud.git</code></pre>
             </div>
 
-            <h3>Manuel Indirme</h3>
+            <h3>Manual Download</h3>
             <ol>
-                <li>Ilgili scriptin GitHub sayfasina gidin</li>
-                <li><strong>Code - Download ZIP</strong> butonuna tiklayin</li>
-                <li>ZIP dosyasini <code>resources/[epsilon]</code> klasorune cikarin</li>
-                <li>Klasor adindaki <code>-main</code> veya <code>-master</code> ekini silin</li>
+                <li>Go to the GitHub page of the relevant script</li>
+                <li>Click the <strong>Code - Download ZIP</strong> button</li>
+                <li>Extract the ZIP file to the <code>resources/[epsilon]</code> folder</li>
+                <li>Remove the <code>-main</code> or <code>-master</code> suffix from the folder name</li>
             </ol>
 
-            <h2 id="veritabani">Veritabani Kurulumu</h2>
-            <p>Her scriptin kendi klasorunde bir <code>sql</code> dosyasi bulunur. Bu dosyalari veritabaniniza import edin.</p>
+            <h2 id="veritabani">Database Setup</h2>
+            <p>Each script contains an <code>sql</code> file in its own folder. Import these files into your database.</p>
             <div class="info-box warning">
                 <i class="fas fa-exclamation-triangle"></i>
-                <div><strong>Dikkat:</strong> SQL dosyalarini import etmeden once mevcut veritabaninizin yedegini almayi unutmayin.</div>
+                <div><strong>Warning:</strong> Make sure to back up your existing database before importing the SQL files.</div>
             </div>
 
-            <h2 id="yapilandirma">Yapilandirma</h2>
-            <p>Her scriptin kendi <code>config.lua</code> dosyasi vardir. Scripti baslatmadan once yapilandirmanizi tamamlayin. Detaylar icin her scriptin kendi yapilandirma sayfasina bakin.</p>
+            <h2 id="yapilandirma">Configuration</h2>
+            <p>Each script has its own <code>config.lua</code> file. Complete the configuration before starting the script. Refer to each script's configuration page for details.</p>
 
-            <h2 id="baslat">Scripti Baslatma</h2>
+            <h2 id="baslat">Starting the Script</h2>
             <div class="code-block">
-                <div class="code-header"><span>server.cfg</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button></div>
+                <div class="code-header"><span>server.cfg</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button></div>
                 <pre><code># Bagimliliklar (once bunlar yuklenmelidir)
 ensure oxmysql
 ensure ox_lib
@@ -81,10 +81,10 @@ ensure epsilon-garage</code></pre>
 
             <div class="info-box success">
                 <i class="fas fa-check-circle"></i>
-                <div>Sunucunuzu yeniden baslattiginizda scriptler aktif olacaktir. Herhangi bir sorunla karsilastiginizda Discord sunucumuza katilin.</div>
+                <div>The scripts will be active when you restart your server. If you encounter any issues, join our Discord server.</div>
             </div>
 
-            <footer class="content-footer"><p>&copy; 2026 Epsilon Scripts. Tum haklari saklidir.</p></footer>
+            <footer class="content-footer"><p>&copy; 2026 Aetech. All rights reserved.</p></footer>
         </div>
     </main>
     <script src="../assets/js/sidebar.js"></script>

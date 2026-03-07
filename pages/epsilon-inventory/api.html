@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 <body>
     <div class="mobile-header">
         <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
-        <span class="mobile-title">Epsilon Scripts</span>
+        <span class="mobile-title">Aetech</span>
     </div>
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <aside class="sidebar" id="sidebar"></aside>
@@ -19,7 +19,7 @@
     <main class="main-content">
         <div class="content-wrapper doc-content">
             <div class="breadcrumb">
-                <a href="../../index.html">Ana Sayfa</a>
+                <a href="../../index.html">Home</a>
                 <span class="separator"><i class="fas fa-chevron-right"></i></span>
                 <a href="index.html">Epsilon Inventory</a>
                 <span class="separator"><i class="fas fa-chevron-right"></i></span>
@@ -27,77 +27,77 @@
             </div>
 
             <h1>Epsilon Inventory - API / Exports</h1>
-            <p class="doc-description">Envanter sistemiyle entegrasyon icin kullanabileceginiz export ve event listesi.</p>
+            <p class="doc-description">List of exports and events you can use to integrate with the inventory system.</p>
 
             <h2 id="client-exports">Client Exports</h2>
 
-            <h3>Envanter Ac/Kapat</h3>
+            <h3>Open/Close Inventory</h3>
             <div class="code-block">
                 <div class="code-header">
                     <span>Client - Lua</span>
-                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                 </div>
-                <pre><code>-- Oyuncu envanterini ac
+                <pre><code>-- Open player inventory
 exports['epsilon-inventory']:openInventory()
 
--- Belirli bir stash'i ac
+-- Open a specific stash
 exports['epsilon-inventory']:openStash('police_evidence', {
-    label = 'Polis Delil Deposu',
+    label = 'Police Evidence Locker',
     slots = 100,
     weight = 500000
 })
 
--- Arac bagajini ac
+-- Open vehicle trunk
 exports['epsilon-inventory']:openTrunk(plate)</code></pre>
             </div>
 
             <h2 id="server-exports">Server Exports</h2>
 
-            <h3>Item Islemleri</h3>
+            <h3>Item Operations</h3>
             <div class="code-block">
                 <div class="code-header">
                     <span>Server - Lua</span>
-                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                 </div>
-                <pre><code>-- Item ekle
+                <pre><code>-- Add item
 exports['epsilon-inventory']:addItem(source, 'bread', 5)
 
--- Item cikar
+-- Remove item
 exports['epsilon-inventory']:removeItem(source, 'bread', 2)
 
--- Item kontrol
+-- Check item
 local hasItem = exports['epsilon-inventory']:hasItem(source, 'bread', 1)
 
--- Tum itemleri getir
+-- Get all items
 local items = exports['epsilon-inventory']:getItems(source)
 
--- Item sayisini getir
+-- Get item count
 local count = exports['epsilon-inventory']:getItemCount(source, 'bread')</code></pre>
             </div>
 
-            <h3>Stash Islemleri</h3>
+            <h3>Stash Operations</h3>
             <div class="code-block">
                 <div class="code-header">
                     <span>Server - Lua</span>
-                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                 </div>
-                <pre><code>-- Stash'a item ekle
+                <pre><code>-- Add item to stash
 exports['epsilon-inventory']:addItemToStash('stash_id', 'bread', 3)
 
--- Stash'tan item cikar
+-- Remove item from stash
 exports['epsilon-inventory']:removeItemFromStash('stash_id', 'bread', 1)
 
--- Stash icerigini getir
+-- Get stash contents
 local stashItems = exports['epsilon-inventory']:getStashItems('stash_id')
 
--- Stash'i temizle
+-- Clear stash
 exports['epsilon-inventory']:clearStash('stash_id')</code></pre>
             </div>
 
-            <h2 id="export-tablosu">Export Referans Tablosu</h2>
+            <h2 id="export-tablosu">Export Reference Table</h2>
             <table class="config-table">
                 <thead>
-                    <tr><th>Export</th><th>Taraf</th><th>Parametreler</th><th>Donus</th></tr>
+                    <tr><th>Export</th><th>Side</th><th>Parameters</th><th>Return</th></tr>
                 </thead>
                 <tbody>
                     <tr><td><code>openInventory</code></td><td>Client</td><td>-</td><td>-</td></tr>
@@ -112,12 +112,12 @@ exports['epsilon-inventory']:clearStash('stash_id')</code></pre>
             </table>
 
             <div class="page-nav">
-                <a href="config.html" class="page-nav-link prev"><i class="fas fa-arrow-left"></i> Yapilandirma</a>
-                <a href="items.html" class="page-nav-link next">Item Yonetimi <i class="fas fa-arrow-right"></i></a>
+                <a href="config.html" class="page-nav-link prev"><i class="fas fa-arrow-left"></i> Configuration</a>
+                <a href="items.html" class="page-nav-link next">Item Management <i class="fas fa-arrow-right"></i></a>
             </div>
 
             <footer class="content-footer">
-                <p>&copy; 2026 Epsilon Scripts. Tum haklari saklidir.</p>
+                <p>&copy; 2026 Aetech. All rights reserved.</p>
             </footer>
         </div>
     </main>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Epsilon HUD - Kurulum</title>
+    <title>Epsilon HUD - Installation</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
 <body>
     <div class="mobile-header">
         <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
-        <span class="mobile-title">Epsilon Scripts</span>
+        <span class="mobile-title">Aetech</span>
     </div>
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <aside class="sidebar" id="sidebar"></aside>
@@ -19,73 +19,73 @@
     <main class="main-content">
         <div class="content-wrapper doc-content">
             <div class="breadcrumb">
-                <a href="../../index.html">Ana Sayfa</a>
+                <a href="../../index.html">Home</a>
                 <span class="separator"><i class="fas fa-chevron-right"></i></span>
                 <a href="index.html">Epsilon HUD</a>
                 <span class="separator"><i class="fas fa-chevron-right"></i></span>
-                <span>Kurulum</span>
+                <span>Installation</span>
             </div>
 
-            <h1>Epsilon HUD - Kurulum</h1>
-            <p class="doc-description">Epsilon HUD scriptini sunucunuza kurmak icin asagidaki adimlari takip edin.</p>
+            <h1>Epsilon HUD - Installation</h1>
+            <p class="doc-description">Follow the steps below to install the Epsilon HUD script on your server.</p>
 
-            <h2 id="gereksinimler">Gereksinimler</h2>
+            <h2 id="gereksinimler">Requirements</h2>
             <ul>
-                <li><strong>FiveM Server</strong> - Son surum artifact (6000+)</li>
-                <li><strong>Framework</strong> - ESX Legacy veya QBCore</li>
+                <li><strong>FiveM Server</strong> - Latest artifact version (6000+)</li>
+                <li><strong>Framework</strong> - ESX Legacy or QBCore</li>
             </ul>
 
-            <h2 id="indirme">Adim 1: Indirme</h2>
+            <h2 id="indirme">Step 1: Download</h2>
 
-            <h3>Git ile</h3>
+            <h3>Via Git</h3>
             <div class="code-block">
                 <div class="code-header">
                     <span>Terminal</span>
-                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                 </div>
-                <pre><code>cd /sunucu-klasoru/resources/[epsilon]
+                <pre><code>cd /server-folder/resources/[epsilon]
 git clone https://github.com/EpsilonAETIX/epsilon-hud.git</code></pre>
             </div>
 
-            <h3>Manuel</h3>
+            <h3>Manual</h3>
             <ol>
-                <li>GitHub sayfasindan <strong>Code - Download ZIP</strong> ile indirin</li>
-                <li>ZIP dosyasini <code>resources/[epsilon]</code> klasorune cikarin</li>
-                <li>Klasor adindaki <code>-main</code> ekini silin</li>
+                <li>Download from the GitHub page using <strong>Code - Download ZIP</strong></li>
+                <li>Extract the ZIP file to the <code>resources/[epsilon]</code> folder</li>
+                <li>Remove the <code>-main</code> suffix from the folder name</li>
             </ol>
 
-            <h2 id="server-cfg">Adim 2: server.cfg</h2>
+            <h2 id="server-cfg">Step 2: server.cfg</h2>
             <div class="code-block">
                 <div class="code-header">
                     <span>server.cfg</span>
-                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                 </div>
-                <pre><code># Bagimliliklar
-ensure es_extended  # veya qb-core
+                <pre><code># Dependencies
+ensure es_extended  # or qb-core
 
 # HUD
 ensure epsilon-hud</code></pre>
             </div>
 
-            <h2 id="dogrulama">Adim 3: Dogrulama</h2>
-            <p>Sunucuyu yeniden baslatin ve F8 konsolunda hata olup olmadigini kontrol edin. Basarili kurulumda su mesaji goreceksiniz:</p>
+            <h2 id="dogrulama">Step 3: Verification</h2>
+            <p>Restart the server and check the F8 console for errors. On successful installation, you will see the following message:</p>
             <div class="code-block">
-                <div class="code-header"><span>Konsol</span></div>
-                <pre><code>[epsilon-hud] Script basariyla yuklendi - v2.1.0</code></pre>
+                <div class="code-header"><span>Console</span></div>
+                <pre><code>[epsilon-hud] Script successfully loaded - v2.1.0</code></pre>
             </div>
 
             <div class="info-box success">
                 <i class="fas fa-check-circle"></i>
-                <div>Kurulum tamamlandi. Simdi <a href="config.html">Yapilandirma</a> sayfasina giderek ayarlari yapabilirsiniz.</div>
+                <div>Installation complete. You can now go to the <a href="config.html">Configuration</a> page to adjust the settings.</div>
             </div>
 
             <div class="page-nav">
-                <a href="index.html" class="page-nav-link prev"><i class="fas fa-arrow-left"></i> Genel Bakis</a>
-                <a href="config.html" class="page-nav-link next">Yapilandirma <i class="fas fa-arrow-right"></i></a>
+                <a href="index.html" class="page-nav-link prev"><i class="fas fa-arrow-left"></i> Overview</a>
+                <a href="config.html" class="page-nav-link next">Configuration <i class="fas fa-arrow-right"></i></a>
             </div>
 
             <footer class="content-footer">
-                <p>&copy; 2026 Epsilon Scripts. Tum haklari saklidir.</p>
+                <p>&copy; 2026 Aetech. All rights reserved.</p>
             </footer>
         </div>
     </main>

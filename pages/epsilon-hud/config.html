@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Epsilon HUD - Yapilandirma</title>
+    <title>Epsilon HUD - Configuration</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
 <body>
     <div class="mobile-header">
         <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
-        <span class="mobile-title">Epsilon Scripts</span>
+        <span class="mobile-title">Aetech</span>
     </div>
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <aside class="sidebar" id="sidebar"></aside>
@@ -19,53 +19,53 @@
     <main class="main-content">
         <div class="content-wrapper doc-content">
             <div class="breadcrumb">
-                <a href="../../index.html">Ana Sayfa</a>
+                <a href="../../index.html">Home</a>
                 <span class="separator"><i class="fas fa-chevron-right"></i></span>
                 <a href="index.html">Epsilon HUD</a>
                 <span class="separator"><i class="fas fa-chevron-right"></i></span>
-                <span>Yapilandirma</span>
+                <span>Configuration</span>
             </div>
 
-            <h1>Epsilon HUD - Yapilandirma</h1>
-            <p class="doc-description">Tum ayarlar config.lua dosyasindan yapilir. Asagida her ayarin detayli aciklamasi bulunmaktadir.</p>
+            <h1>Epsilon HUD - Configuration</h1>
+            <p class="doc-description">All settings are configured in the config.lua file. Below you will find a detailed description of each setting.</p>
 
-            <h2 id="genel">Genel Ayarlar</h2>
+            <h2 id="genel">General Settings</h2>
             <div class="code-block">
                 <div class="code-header">
                     <span>config.lua</span>
-                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                 </div>
                 <pre><code>Config = {}
 
-Config.Framework = 'esx'         -- 'esx' veya 'qbcore'
-Config.DefaultTheme = 'dark'     -- 'dark' veya 'light'
-Config.SpeedUnit = 'kmh'         -- 'kmh' veya 'mph'
-Config.MinimapShape = 'circle'   -- 'circle' veya 'square'
-Config.ShowStreetName = true     -- Sokak adi gosterimi
-Config.ShowCompass = true        -- Pusula gosterimi</code></pre>
+Config.Framework = 'esx'         -- 'esx' or 'qbcore'
+Config.DefaultTheme = 'dark'     -- 'dark' or 'light'
+Config.SpeedUnit = 'kmh'         -- 'kmh' or 'mph'
+Config.MinimapShape = 'circle'   -- 'circle' or 'square'
+Config.ShowStreetName = true     -- Street name display
+Config.ShowCompass = true        -- Compass display</code></pre>
             </div>
 
-            <h2 id="config-tablosu">Ayar Tablosu</h2>
+            <h2 id="config-tablosu">Settings Table</h2>
             <table class="config-table">
                 <thead>
-                    <tr><th>Ayar</th><th>Tip</th><th>Varsayilan</th><th>Aciklama</th></tr>
+                    <tr><th>Setting</th><th>Type</th><th>Default</th><th>Description</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td><code>Config.Framework</code></td><td>string</td><td><code>'esx'</code></td><td>Kullanilacak framework</td></tr>
-                    <tr><td><code>Config.DefaultTheme</code></td><td>string</td><td><code>'dark'</code></td><td>Varsayilan tema</td></tr>
-                    <tr><td><code>Config.SpeedUnit</code></td><td>string</td><td><code>'kmh'</code></td><td>Hiz birimi</td></tr>
-                    <tr><td><code>Config.MinimapShape</code></td><td>string</td><td><code>'circle'</code></td><td>Minimap sekli</td></tr>
-                    <tr><td><code>Config.ShowStreetName</code></td><td>boolean</td><td><code>true</code></td><td>Sokak adi goster/gizle</td></tr>
-                    <tr><td><code>Config.ShowCompass</code></td><td>boolean</td><td><code>true</code></td><td>Pusula goster/gizle</td></tr>
+                    <tr><td><code>Config.Framework</code></td><td>string</td><td><code>'esx'</code></td><td>Framework to use</td></tr>
+                    <tr><td><code>Config.DefaultTheme</code></td><td>string</td><td><code>'dark'</code></td><td>Default theme</td></tr>
+                    <tr><td><code>Config.SpeedUnit</code></td><td>string</td><td><code>'kmh'</code></td><td>Speed unit</td></tr>
+                    <tr><td><code>Config.MinimapShape</code></td><td>string</td><td><code>'circle'</code></td><td>Minimap shape</td></tr>
+                    <tr><td><code>Config.ShowStreetName</code></td><td>boolean</td><td><code>true</code></td><td>Show/hide street name</td></tr>
+                    <tr><td><code>Config.ShowCompass</code></td><td>boolean</td><td><code>true</code></td><td>Show/hide compass</td></tr>
                 </tbody>
             </table>
 
-            <h2 id="barlar">Bar Ayarlari</h2>
-            <p>Her barin gorunurlugu ve rengini ayarlayabilirsiniz:</p>
+            <h2 id="barlar">Bar Settings</h2>
+            <p>You can configure the visibility and color of each bar:</p>
             <div class="code-block">
                 <div class="code-header">
                     <span>config.lua</span>
-                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                 </div>
                 <pre><code>Config.Bars = {
     health = { show = true, color = '#3fb950' },
@@ -77,33 +77,33 @@ Config.ShowCompass = true        -- Pusula gosterimi</code></pre>
 }</code></pre>
             </div>
 
-            <h2 id="arac-hud">Arac HUD Ayarlari</h2>
+            <h2 id="arac-hud">Vehicle HUD Settings</h2>
             <div class="code-block">
                 <div class="code-header">
                     <span>config.lua</span>
-                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                 </div>
                 <pre><code>Config.VehicleHUD = {
     showSpeed = true,
     showFuel = true,
     showDamage = true,
     showSeatbelt = true,
-    fuelScript = 'LegacyFuel'   -- Yakit scripti adi
+    fuelScript = 'LegacyFuel'   -- Fuel script name
 }</code></pre>
             </div>
 
             <div class="info-box warning">
                 <i class="fas fa-exclamation-triangle"></i>
-                <div><strong>Dikkat:</strong> fuelScript degerini kullandiginiz yakit scriptinin resource adina gore degistirin. Ornegin ox_fuel, LegacyFuel vb.</div>
+                <div><strong>Warning:</strong> Change the fuelScript value according to the resource name of the fuel script you are using. For example, ox_fuel, LegacyFuel, etc.</div>
             </div>
 
             <div class="page-nav">
-                <a href="kurulum.html" class="page-nav-link prev"><i class="fas fa-arrow-left"></i> Kurulum</a>
+                <a href="kurulum.html" class="page-nav-link prev"><i class="fas fa-arrow-left"></i> Installation</a>
                 <a href="api.html" class="page-nav-link next">API / Exports <i class="fas fa-arrow-right"></i></a>
             </div>
 
             <footer class="content-footer">
-                <p>&copy; 2026 Epsilon Scripts. Tum haklari saklidir.</p>
+                <p>&copy; 2026 Aetech. All rights reserved.</p>
             </footer>
         </div>
     </main>

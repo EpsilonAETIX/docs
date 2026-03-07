@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genel Ayarlar - Epsilon Scripts</title>
+    <title>General Settings - Aetech</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -11,30 +11,30 @@
 <body>
     <div class="mobile-header">
         <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
-        <span class="mobile-title">Epsilon Scripts</span>
+        <span class="mobile-title">Aetech</span>
     </div>
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <aside class="sidebar" id="sidebar"></aside>
     <main class="main-content">
         <div class="content-wrapper doc-content">
             <div class="breadcrumb">
-                <a href="../index.html">Ana Sayfa</a>
+                <a href="../index.html">Home</a>
                 <span class="separator"><i class="fas fa-chevron-right"></i></span>
-                <span>Genel Ayarlar</span>
+                <span>General Settings</span>
             </div>
-            <h1>Genel Ayarlar</h1>
-            <p class="doc-description">Tum Epsilon scriptlerinde ortak olan genel ayarlar ve yapilandirma secenekleri.</p>
+            <h1>General Settings</h1>
+            <p class="doc-description">Common general settings and configuration options shared across all Aetech scripts.</p>
 
-            <h2 id="framework">Framework Secimi</h2>
+            <h2 id="framework">Framework Selection</h2>
             <div class="code-block">
-                <div class="code-header"><span>config.lua</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button></div>
+                <div class="code-header"><span>config.lua</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button></div>
                 <pre><code>Config.Framework = 'esx'     -- 'esx' veya 'qbcore'</code></pre>
             </div>
 
-            <h2 id="dil">Dil Ayarlari</h2>
-            <p>Scriptler coklu dil destegine sahiptir. Dil dosyalari <code>locales/</code> klasorunde bulunur:</p>
+            <h2 id="dil">Language Settings</h2>
+            <p>Scripts support multiple languages. Language files are located in the <code>locales/</code> folder:</p>
             <div class="code-block">
-                <div class="code-header"><span>locales/tr.lua</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button></div>
+                <div class="code-header"><span>locales/tr.lua</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button></div>
                 <pre><code>Locales['tr'] = {
     ['inventory_full'] = 'Envanteriniz dolu!',
     ['not_enough_money'] = 'Yeterli paraniz yok!',
@@ -43,23 +43,23 @@
 }</code></pre>
             </div>
 
-            <h2 id="debug">Debug Modu</h2>
+            <h2 id="debug">Debug Mode</h2>
             <div class="code-block">
-                <div class="code-header"><span>config.lua</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button></div>
-                <pre><code>Config.Debug = true  -- Konsola detayli log yazdirir</code></pre>
+                <div class="code-header"><span>config.lua</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button></div>
+                <pre><code>Config.Debug = true  -- Prints detailed logs to the console</code></pre>
             </div>
             <div class="info-box warning">
                 <i class="fas fa-exclamation-triangle"></i>
-                <div><strong>Dikkat:</strong> Debug modunu production sunucunuzda kapali tutun. Performans kaybina neden olabilir.</div>
+                <div><strong>Warning:</strong> Keep debug mode disabled on your production server. It may cause performance issues.</div>
             </div>
 
-            <h2 id="veritabani">Veritabani Ayarlari</h2>
+            <h2 id="veritabani">Database Settings</h2>
             <div class="code-block">
-                <div class="code-header"><span>server.cfg</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button></div>
+                <div class="code-header"><span>server.cfg</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button></div>
                 <pre><code>set mysql_connection_string "mysql://root:password@localhost/fivem?charset=utf8mb4"</code></pre>
             </div>
 
-            <footer class="content-footer"><p>&copy; 2026 Epsilon Scripts. Tum haklari saklidir.</p></footer>
+            <footer class="content-footer"><p>&copy; 2026 Aetech. All rights reserved.</p></footer>
         </div>
     </main>
     <script src="../assets/js/sidebar.js"></script>

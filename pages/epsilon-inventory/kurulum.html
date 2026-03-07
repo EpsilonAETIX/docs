@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Epsilon Inventory - Kurulum</title>
+    <title>Epsilon Inventory - Installation</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
 <body>
     <div class="mobile-header">
         <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
-        <span class="mobile-title">Epsilon Scripts</span>
+        <span class="mobile-title">Aetech</span>
     </div>
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <aside class="sidebar" id="sidebar"></aside>
@@ -19,22 +19,22 @@
     <main class="main-content">
         <div class="content-wrapper doc-content">
             <div class="breadcrumb">
-                <a href="../../index.html">Ana Sayfa</a>
+                <a href="../../index.html">Home</a>
                 <span class="separator"><i class="fas fa-chevron-right"></i></span>
                 <a href="index.html">Epsilon Inventory</a>
                 <span class="separator"><i class="fas fa-chevron-right"></i></span>
-                <span>Kurulum</span>
+                <span>Installation</span>
             </div>
 
-            <h1>Epsilon Inventory - Kurulum</h1>
-            <p class="doc-description">Envanter scriptini sunucunuza kurmak icin asagidaki adimlari takip edin.</p>
+            <h1>Epsilon Inventory - Installation</h1>
+            <p class="doc-description">Follow the steps below to install the inventory script on your server.</p>
 
-            <h2 id="sql">Adim 1: SQL Import</h2>
-            <p>Asagidaki SQL dosyasini veritabaniniza import edin:</p>
+            <h2 id="sql">Step 1: SQL Import</h2>
+            <p>Import the following SQL file into your database:</p>
             <div class="code-block">
                 <div class="code-header">
                     <span>install.sql</span>
-                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                 </div>
                 <pre><code>CREATE TABLE IF NOT EXISTS `epsilon_inventory` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
@@ -57,47 +57,47 @@ CREATE TABLE IF NOT EXISTS `epsilon_inventory_stash` (
 
             <div class="info-box warning">
                 <i class="fas fa-exclamation-triangle"></i>
-                <div><strong>Dikkat:</strong> SQL dosyasini import etmeden once mevcut veritabaninizin yedegini almayi unutmayin.</div>
+                <div><strong>Warning:</strong> Make sure to back up your existing database before importing the SQL file.</div>
             </div>
 
-            <h2 id="dosyalar">Adim 2: Dosyalari Yerlestirme</h2>
+            <h2 id="dosyalar">Step 2: Placing Files</h2>
             <ol>
-                <li>Scripti indirin ve <code>resources/[epsilon]/epsilon-inventory</code> klasorune koyun</li>
-                <li><code>config.lua</code> dosyasini duzenleyin (<a href="config.html">Yapilandirma</a> sayfasina bakin)</li>
+                <li>Download the script and place it in the <code>resources/[epsilon]/epsilon-inventory</code> folder</li>
+                <li>Edit the <code>config.lua</code> file (see the <a href="config.html">Configuration</a> page)</li>
             </ol>
 
-            <h2 id="server-cfg">Adim 3: server.cfg</h2>
+            <h2 id="server-cfg">Step 3: server.cfg</h2>
             <div class="code-block">
                 <div class="code-header">
                     <span>server.cfg</span>
-                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                 </div>
-                <pre><code># Bagimliliklar (once bunlar yuklenmelidir)
+                <pre><code># Dependencies (these must be loaded first)
 ensure oxmysql
 ensure ox_lib
-ensure es_extended  # veya qb-core
+ensure es_extended  # or qb-core
 
-# Envanter
+# Inventory
 ensure epsilon-inventory</code></pre>
             </div>
 
             <div class="info-box info">
                 <i class="fas fa-info-circle"></i>
-                <div><strong>Onemli:</strong> Eger baska bir envanter scripti kullaniyorsaniz (ox_inventory, qs-inventory vb.), onu server.cfg'den kaldirin veya yorum satirina alin.</div>
+                <div><strong>Important:</strong> If you are using another inventory script (ox_inventory, qs-inventory, etc.), remove it from server.cfg or comment it out.</div>
             </div>
 
             <div class="info-box success">
                 <i class="fas fa-check-circle"></i>
-                <div>Kurulum tamamlandi. Simdi <a href="config.html">Yapilandirma</a> sayfasina giderek ayarlari yapabilirsiniz.</div>
+                <div>Installation complete. You can now go to the <a href="config.html">Configuration</a> page to configure settings.</div>
             </div>
 
             <div class="page-nav">
-                <a href="index.html" class="page-nav-link prev"><i class="fas fa-arrow-left"></i> Genel Bakis</a>
-                <a href="config.html" class="page-nav-link next">Yapilandirma <i class="fas fa-arrow-right"></i></a>
+                <a href="index.html" class="page-nav-link prev"><i class="fas fa-arrow-left"></i> Overview</a>
+                <a href="config.html" class="page-nav-link next">Configuration <i class="fas fa-arrow-right"></i></a>
             </div>
 
             <footer class="content-footer">
-                <p>&copy; 2026 Epsilon Scripts. Tum haklari saklidir.</p>
+                <p>&copy; 2026 Aetech. All rights reserved.</p>
             </footer>
         </div>
     </main>

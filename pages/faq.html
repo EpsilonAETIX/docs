@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SSS - Epsilon Scripts</title>
+    <title>FAQ - Aetech</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -11,60 +11,60 @@
 <body>
     <div class="mobile-header">
         <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
-        <span class="mobile-title">Epsilon Scripts</span>
+        <span class="mobile-title">Aetech</span>
     </div>
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <aside class="sidebar" id="sidebar"></aside>
     <main class="main-content">
         <div class="content-wrapper doc-content">
             <div class="breadcrumb">
-                <a href="../index.html">Ana Sayfa</a>
+                <a href="../index.html">Home</a>
                 <span class="separator"><i class="fas fa-chevron-right"></i></span>
-                <span>SSS</span>
+                <span>FAQ</span>
             </div>
-            <h1>Sikca Sorulan Sorular</h1>
-            <p class="doc-description">En sik sorulan sorularin cevaplari.</p>
+            <h1>Frequently Asked Questions</h1>
+            <p class="doc-description">Answers to the most commonly asked questions.</p>
 
-            <h2 id="genel">Genel</h2>
+            <h2 id="genel">General</h2>
 
-            <h3>Hangi framework'leri destekliyorsunuz?</h3>
-            <p>Tum scriptlerimiz ESX Legacy ve QBCore framework'lerini destekler. Bazi scriptler standalone modda da calisabilir.</p>
+            <h3>Which frameworks do you support?</h3>
+            <p>All of our scripts support ESX Legacy and QBCore frameworks. Some scripts can also run in standalone mode.</p>
 
-            <h3>Scriptler ucretsiz mi?</h3>
-            <p>Bazi scriptlerimiz tamamen ucretsiz ve acik kaynaktir. Premium scriptler icin Discord sunucumuzu ziyaret edin.</p>
+            <h3>Are the scripts free?</h3>
+            <p>Some of our scripts are completely free and open source. For premium scripts, please visit our Discord server.</p>
 
-            <h3>OneSync gerekli mi?</h3>
-            <p>Evet, tum scriptlerimiz OneSync (Legacy veya Infinity) gerektirir.</p>
+            <h3>Is OneSync required?</h3>
+            <p>Yes, all of our scripts require OneSync (Legacy or Infinity).</p>
 
-            <h2 id="sorun-giderme">Sorun Giderme</h2>
+            <h2 id="sorun-giderme">Troubleshooting</h2>
 
-            <h3>Script baslatildiginda hata veriyor</h3>
-            <p>F8 konsolundaki hata mesajini kontrol edin. En yaygin sorunlar:</p>
+            <h3>The script throws an error on startup</h3>
+            <p>Check the error message in the F8 console. The most common issues are:</p>
             <ul>
-                <li>Eksik bagimlilik - gerekli scriptlerin yuklenmis oldugundan emin olun</li>
-                <li>Yanlis framework ayari - config.lua'daki framework degerini kontrol edin</li>
-                <li>SQL tablolari eksik - SQL dosyalarini import ettiginizden emin olun</li>
+                <li>Missing dependency – make sure all required scripts are installed</li>
+                <li>Wrong framework setting – check the framework value in config.lua</li>
+                <li>Missing SQL tables – make sure you have imported the SQL files</li>
             </ul>
 
-            <h3>NUI (arayuz) acilmiyor</h3>
+            <h3>NUI (interface) is not opening</h3>
             <ul>
-                <li>Tarayici onbellegini temizleyin: F8 konsolunda <code>nui_devtools</code> yazin</li>
-                <li><code>fxmanifest.lua</code> dosyasindaki UI dosyalarinin dogru oldugunu kontrol edin</li>
+                <li>Clear the browser cache: type <code>nui_devtools</code> in the F8 console</li>
+                <li>Make sure the UI files listed in <code>fxmanifest.lua</code> are correct</li>
             </ul>
 
-            <h3>Veritabani hatasi aliyorum</h3>
+            <h3>I am getting a database error</h3>
             <ul>
-                <li><code>oxmysql</code> scriptinin yuklendiginden emin olun</li>
-                <li>server.cfg'deki mysql_connection_string degerini kontrol edin</li>
-                <li>SQL tablolarinin olusturulmus oldugundan emin olun</li>
+                <li>Make sure the <code>oxmysql</code> script is installed</li>
+                <li>Check the mysql_connection_string value in server.cfg</li>
+                <li>Make sure the SQL tables have been created</li>
             </ul>
 
             <div class="info-box info">
                 <i class="fas fa-info-circle"></i>
-                <div>Cozum bulamadiysaniz <a href="https://discord.gg/epsilon" target="_blank">Discord sunucumuza</a> katilarak destek alabilirsiniz.</div>
+                <div>If you couldn't find a solution, you can get support by joining our <a href="https://discord.gg/epsilon" target="_blank">Discord server</a>.</div>
             </div>
 
-            <footer class="content-footer"><p>&copy; 2026 Epsilon Scripts. Tum haklari saklidir.</p></footer>
+            <footer class="content-footer"><p>&copy; 2026 Aetech. All rights reserved.</p></footer>
         </div>
     </main>
     <script src="../assets/js/sidebar.js"></script>

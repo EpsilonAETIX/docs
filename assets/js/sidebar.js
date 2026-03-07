@@ -1,49 +1,55 @@
 // ===== Sidebar Navigation Data =====
-// Yeni script eklemek icin sadece bu dosyayi duzenle
-const NAV_DATA = [
+// To add a new script, just add a new entry to SCRIPTS array
+const NAV_LINKS = [
+    { label: 'Home', icon: 'fa-home', href: '/index.html' },
+    { label: 'Installation', icon: 'fa-download', href: '/pages/kurulum.html' },
+    { label: 'General Settings', icon: 'fa-cog', href: '/pages/genel-ayarlar.html' },
+];
+
+const SCRIPTS = [
     {
-        title: 'Baslangic',
+        name: 'Epsilon HUD',
+        icon: 'fa-desktop',
         items: [
-            { label: 'Ana Sayfa', icon: 'fa-home', href: '/index.html' },
-            { label: 'Kurulum Rehberi', icon: 'fa-download', href: '/pages/kurulum.html' },
-            { label: 'Genel Ayarlar', icon: 'fa-cog', href: '/pages/genel-ayarlar.html' },
+            { label: 'Overview', href: '/pages/epsilon-hud/index.html' },
+            { label: 'Installation', href: '/pages/epsilon-hud/kurulum.html' },
+            { label: 'Configuration', href: '/pages/epsilon-hud/config.html' },
+            { label: 'API / Exports', href: '/pages/epsilon-hud/api.html' },
         ]
     },
     {
-        title: 'Epsilon HUD',
+        name: 'Epsilon Inventory',
+        icon: 'fa-box-open',
         items: [
-            { label: 'Genel Bakis', icon: 'fa-desktop', href: '/pages/epsilon-hud/index.html' },
-            { label: 'Kurulum', icon: 'fa-download', href: '/pages/epsilon-hud/kurulum.html' },
-            { label: 'Yapilandirma', icon: 'fa-sliders-h', href: '/pages/epsilon-hud/config.html' },
-            { label: 'API / Exports', icon: 'fa-plug', href: '/pages/epsilon-hud/api.html' },
+            { label: 'Overview', href: '/pages/epsilon-inventory/index.html' },
+            { label: 'Installation', href: '/pages/epsilon-inventory/kurulum.html' },
+            { label: 'Configuration', href: '/pages/epsilon-inventory/config.html' },
+            { label: 'API / Exports', href: '/pages/epsilon-inventory/api.html' },
+            { label: 'Item Management', href: '/pages/epsilon-inventory/items.html' },
         ]
     },
     {
-        title: 'Epsilon Inventory',
+        name: 'Epsilon Garage',
+        icon: 'fa-car',
         items: [
-            { label: 'Genel Bakis', icon: 'fa-box-open', href: '/pages/epsilon-inventory/index.html' },
-            { label: 'Kurulum', icon: 'fa-download', href: '/pages/epsilon-inventory/kurulum.html' },
-            { label: 'Yapilandirma', icon: 'fa-sliders-h', href: '/pages/epsilon-inventory/config.html' },
-            { label: 'API / Exports', icon: 'fa-plug', href: '/pages/epsilon-inventory/api.html' },
-            { label: 'Item Yonetimi', icon: 'fa-cube', href: '/pages/epsilon-inventory/items.html' },
-        ]
-    },
-    {
-        title: 'Epsilon Garage',
-        items: [
-            { label: 'Genel Bakis', icon: 'fa-car', href: '/pages/epsilon-garage/index.html' },
-            { label: 'Kurulum', icon: 'fa-download', href: '/pages/epsilon-garage/kurulum.html' },
-            { label: 'Yapilandirma', icon: 'fa-sliders-h', href: '/pages/epsilon-garage/config.html' },
-            { label: 'API / Exports', icon: 'fa-plug', href: '/pages/epsilon-garage/api.html' },
-        ]
-    },
-    {
-        title: 'Destek',
-        items: [
-            { label: 'SSS', icon: 'fa-question-circle', href: '/pages/faq.html' },
-            { label: 'Degisiklik Gunlugu', icon: 'fa-history', href: '/pages/changelog.html' },
+            { label: 'Overview', href: '/pages/epsilon-garage/index.html' },
+            { label: 'Installation', href: '/pages/epsilon-garage/kurulum.html' },
+            { label: 'Configuration', href: '/pages/epsilon-garage/config.html' },
+            { label: 'API / Exports', href: '/pages/epsilon-garage/api.html' },
         ]
     }
+];
+
+const SUPPORT_LINKS = [
+    { label: 'FAQ', icon: 'fa-question-circle', href: '/pages/faq.html' },
+    { label: 'Changelog', icon: 'fa-history', href: '/pages/changelog.html' },
+];
+
+const SOCIAL_LINKS = [
+    { label: 'Discord', icon: 'fab fa-discord', href: 'https://discord.gg/aetech', color: '#5865F2' },
+    { label: 'Shop', icon: 'fas fa-shopping-cart', href: 'https://aetech.tebex.io', color: '#3fb950' },
+    { label: 'YouTube', icon: 'fab fa-youtube', href: 'https://youtube.com/@aetech', color: '#FF0000' },
+    { label: 'GitHub', icon: 'fab fa-github', href: 'https://github.com/EpsilonAETIX', color: '#8b949e' },
 ];
 
 // ===== Base Path Detection =====
@@ -65,39 +71,76 @@ function renderSidebar() {
     const basePath = getBasePath();
     const currentPath = window.location.pathname;
 
+    const isActive = (href) => currentPath === basePath + href || currentPath.endsWith(href);
+    const link = (href, icon, label, extraClass = '') => {
+        const active = isActive(href) ? ' active' : '';
+        return `<a href="${basePath}${href}" class="nav-link${active}${extraClass ? ' ' + extraClass : ''}" data-search="${label.toLowerCase()}">
+            <i class="fas ${icon}"></i> ${label}
+        </a>`;
+    };
+
     let html = `
         <div class="sidebar-header">
-            <div class="logo"><i class="fas fa-bolt"></i><span>Epsilon Scripts</span></div>
+            <div class="logo"><i class="fas fa-bolt"></i><span>Aetech</span></div>
             <span class="version-badge">v1.0</span>
         </div>
         <div class="search-box">
             <i class="fas fa-search"></i>
-            <input type="text" id="searchInput" placeholder="Dokuman ara...">
+            <input type="text" id="searchInput" placeholder="Search docs...">
         </div>
         <nav class="sidebar-nav">
     `;
 
-    NAV_DATA.forEach(section => {
-        html += `<div class="nav-section"><div class="nav-section-title">${section.title}</div>`;
-        section.items.forEach(item => {
-            const fullHref = basePath + item.href;
-            const isActive = currentPath === fullHref || currentPath.endsWith(item.href);
-            html += `<a href="${fullHref}" class="nav-link${isActive ? ' active' : ''}" data-search="${item.label.toLowerCase()}">
-                <i class="fas ${item.icon}"></i> ${item.label}
-            </a>`;
-        });
-        html += `</div>`;
+    // Top links
+    NAV_LINKS.forEach(item => {
+        html += link(item.href, item.icon, item.label);
     });
 
-    html += `
-        </nav>
-        <div class="sidebar-footer">
-            <a href="https://github.com/EpsilonAETIX" target="_blank" class="footer-link"><i class="fab fa-github"></i> GitHub</a>
-            <a href="https://discord.gg/epsilon" target="_blank" class="footer-link"><i class="fab fa-discord"></i> Discord</a>
-        </div>
-    `;
+    // Script dropdowns
+    html += `<div class="nav-section-title" style="margin-top:18px;">Scripts</div>`;
+    SCRIPTS.forEach(script => {
+        const anyActive = script.items.some(i => isActive(i.href));
+        html += `<div class="nav-dropdown${anyActive ? ' open' : ''}">`;
+        html += `<div class="nav-dropdown-toggle${anyActive ? ' active' : ''}" data-search="${script.name.toLowerCase()}">
+            <span><i class="fas ${script.icon}"></i> ${script.name}</span>
+            <i class="fas fa-chevron-down dropdown-arrow"></i>
+        </div>`;
+        html += `<div class="nav-dropdown-content"${anyActive ? ' style="display:block"' : ''}>`;
+        script.items.forEach(item => {
+            const active = isActive(item.href) ? ' active' : '';
+            html += `<a href="${basePath}${item.href}" class="nav-link dropdown-link${active}" data-search="${item.label.toLowerCase()} ${script.name.toLowerCase()}">
+                ${item.label}
+            </a>`;
+        });
+        html += `</div></div>`;
+    });
+
+    // Support links
+    html += `<div class="nav-section-title" style="margin-top:18px;">Support</div>`;
+    SUPPORT_LINKS.forEach(item => {
+        html += link(item.href, item.icon, item.label);
+    });
+
+    html += `</nav>`;
+
+    // Social footer
+    html += `<div class="sidebar-footer">`;
+    SOCIAL_LINKS.forEach(s => {
+        html += `<a href="${s.href}" target="_blank" class="footer-link" style="color:${s.color}" title="${s.label}"><i class="${s.icon}"></i></a>`;
+    });
+    html += `</div>`;
 
     sidebar.innerHTML = html;
+
+    // Init dropdown toggles
+    sidebar.querySelectorAll('.nav-dropdown-toggle').forEach(toggle => {
+        toggle.addEventListener('click', () => {
+            const dropdown = toggle.closest('.nav-dropdown');
+            dropdown.classList.toggle('open');
+            const content = dropdown.querySelector('.nav-dropdown-content');
+            content.style.display = dropdown.classList.contains('open') ? 'block' : 'none';
+        });
+    });
 
     // Init search after render
     initSidebarSearch();

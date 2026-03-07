@@ -64,7 +64,7 @@ function copyCode(button) {
 
     navigator.clipboard.writeText(code).then(() => {
         const originalHTML = button.innerHTML;
-        button.innerHTML = '<i class="fas fa-check"></i> Kopyalandı!';
+        button.innerHTML = '<i class="fas fa-check"></i> Copied!';
         button.style.color = '#3fb950';
         setTimeout(() => {
             button.innerHTML = originalHTML;
@@ -80,7 +80,7 @@ function copyCode(button) {
         document.body.removeChild(textarea);
 
         const originalHTML = button.innerHTML;
-        button.innerHTML = '<i class="fas fa-check"></i> Kopyalandı!';
+        button.innerHTML = '<i class="fas fa-check"></i> Copied!';
         button.style.color = '#3fb950';
         setTimeout(() => {
             button.innerHTML = originalHTML;

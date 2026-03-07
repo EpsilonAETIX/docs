@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,44 +11,44 @@
 <body>
     <div class="mobile-header">
         <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
-        <span class="mobile-title">Epsilon Scripts</span>
+        <span class="mobile-title">Aetech</span>
     </div>
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <aside class="sidebar" id="sidebar"></aside>
     <main class="main-content">
         <div class="content-wrapper doc-content">
             <div class="breadcrumb">
-                <a href="../../index.html">Ana Sayfa</a>
+                <a href="../../index.html">Home</a>
                 <span class="separator"><i class="fas fa-chevron-right"></i></span>
                 <a href="index.html">Epsilon Garage</a>
                 <span class="separator"><i class="fas fa-chevron-right"></i></span>
                 <span>API / Exports</span>
             </div>
             <h1>Epsilon Garage - API / Exports</h1>
-            <p class="doc-description">Garaj sistemiyle entegrasyon icin kullanabileceginiz export ve event listesi.</p>
+            <p class="doc-description">List of exports and events you can use to integrate with the garage system.</p>
 
             <h2 id="server-exports">Server Exports</h2>
 
-            <h3>Arac Islemleri</h3>
+            <h3>Vehicle Operations</h3>
             <div class="code-block">
-                <div class="code-header"><span>Server - Lua</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button></div>
-                <pre><code>-- Oyuncunun araclarini getir
+                <div class="code-header"><span>Server - Lua</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button></div>
+                <pre><code>-- Get player's vehicles
 local vehicles = exports['epsilon-garage']:getPlayerVehicles(source)
 
--- Araci garaja gonder
+-- Store vehicle in garage
 exports['epsilon-garage']:storeVehicle(source, plate, 'legion')
 
--- Araci impound'a gonder
+-- Send vehicle to impound
 exports['epsilon-garage']:impoundVehicle(plate, 'Yanlis park')
 
--- Araci impound'dan cikar
+-- Release vehicle from impound
 exports['epsilon-garage']:releaseFromImpound(source, plate)</code></pre>
             </div>
 
-            <h3>Garaj Yonetimi</h3>
+            <h3>Garage Management</h3>
             <div class="code-block">
-                <div class="code-header"><span>Server - Lua</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button></div>
-                <pre><code>-- Yeni garaj ekle (runtime)
+                <div class="code-header"><span>Server - Lua</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button></div>
+                <pre><code>-- Add new garage (runtime)
 exports['epsilon-garage']:addGarage('custom_garage', {
     label = 'Ozel Garaj',
     type = 'car',
@@ -56,24 +56,24 @@ exports['epsilon-garage']:addGarage('custom_garage', {
     spawn = vector4(101.0, 201.0, 30.0, 90.0)
 })
 
--- Garaji kaldir
+-- Remove garage
 exports['epsilon-garage']:removeGarage('custom_garage')</code></pre>
             </div>
 
             <h2 id="client-exports">Client Exports</h2>
             <div class="code-block">
-                <div class="code-header"><span>Client - Lua</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button></div>
-                <pre><code>-- Garaj menusunu ac
+                <div class="code-header"><span>Client - Lua</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button></div>
+                <pre><code>-- Open garage menu
 exports['epsilon-garage']:openGarageMenu('legion')
 
--- Arac bilgi panelini goster
+-- Show vehicle info panel
 exports['epsilon-garage']:showVehicleInfo(plate)</code></pre>
             </div>
 
-            <h2 id="export-tablosu">Export Referans Tablosu</h2>
+            <h2 id="export-tablosu">Export Reference Table</h2>
             <table class="config-table">
                 <thead>
-                    <tr><th>Export</th><th>Taraf</th><th>Parametreler</th><th>Donus</th></tr>
+                    <tr><th>Export</th><th>Side</th><th>Parameters</th><th>Return</th></tr>
                 </thead>
                 <tbody>
                     <tr><td><code>getPlayerVehicles</code></td><td>Server</td><td><code>source</code></td><td><code>table</code></td></tr>
@@ -86,10 +86,10 @@ exports['epsilon-garage']:showVehicleInfo(plate)</code></pre>
             </table>
 
             <div class="page-nav">
-                <a href="config.html" class="page-nav-link prev"><i class="fas fa-arrow-left"></i> Yapilandirma</a>
-                <a href="../../index.html" class="page-nav-link next">Ana Sayfa <i class="fas fa-arrow-right"></i></a>
+                <a href="config.html" class="page-nav-link prev"><i class="fas fa-arrow-left"></i> Configuration</a>
+                <a href="../../index.html" class="page-nav-link next">Home <i class="fas fa-arrow-right"></i></a>
             </div>
-            <footer class="content-footer"><p>&copy; 2026 Epsilon Scripts.</p></footer>
+            <footer class="content-footer"><p>&copy; 2026 Aetech.</p></footer>
         </div>
     </main>
     <script src="../../assets/js/sidebar.js"></script>

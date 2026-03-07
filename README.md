@@ -1,12 +1,12 @@
-# Epsilon Scripts - FiveM Dokumanlar
+# Aetech - FiveM Documentation
 
-FiveM sunuculari icin gelismis, optimize edilmis ve kolay kullanilabilir scriptlerin dokuman sitesi.
+Advanced, optimized, and easy-to-use script documentation site for FiveM servers.
 
-## Canli Site
+## Live Site
 
 https://epsilonaetix.github.io/docs/
 
-## Yapi
+## Structure
 
 ```
 epsilon/
@@ -17,23 +17,23 @@ epsilon/
 │   ├── css/style.css
 │   └── js/
 │       ├── main.js
-│       └── sidebar.js          ← Sidebar verileri (tek dosyadan yonetim)
+│       └── sidebar.js          ← Sidebar data (managed from a single file)
 └── pages/
     ├── kurulum.html
     ├── genel-ayarlar.html
     ├── faq.html
     ├── changelog.html
     ├── epsilon-hud/
-    │   ├── index.html          (genel bakis)
-    │   ├── kurulum.html        (kurulum)
-    │   ├── config.html         (yapilandirma)
+    │   ├── index.html          (overview)
+    │   ├── kurulum.html        (installation)
+    │   ├── config.html         (configuration)
     │   └── api.html            (exports & events)
     ├── epsilon-inventory/
     │   ├── index.html
     │   ├── kurulum.html
     │   ├── config.html
     │   ├── api.html
-    │   └── items.html          (item yonetimi)
+    │   └── items.html          (item management)
     └── epsilon-garage/
         ├── index.html
         ├── kurulum.html
@@ -41,13 +41,13 @@ epsilon/
         └── api.html
 ```
 
-## Yeni Script Dokumani Ekleme
+## Adding New Script Documentation
 
-1. `pages/` altinda yeni bir klasor olustur (orn: `epsilon-phone/`)
-2. Mevcut bir scriptin dosyalarini sablon olarak kopyala
-3. `assets/js/sidebar.js` dosyasindaki `NAV_DATA` dizisine yeni bolumu ekle
-4. Commit & push yap
+1. Create a new folder under `pages/` (e.g., `epsilon-phone/`)
+2. Copy files from an existing script as a template
+3. Add the new section to the `SCRIPTS` array in `assets/js/sidebar.js`
+4. Commit & push
 
-## Lisans
+## License
 
 MIT License
