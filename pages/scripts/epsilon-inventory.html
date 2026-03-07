@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epsilon Inventory - Epsilon Scripts</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="mobile-header">
+        <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+        <span class="mobile-title">Epsilon Scripts</span>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo"><i class="fas fa-bolt"></i><span>Epsilon Scripts</span></div>
+            <span class="version-badge">v1.0</span>
+        </div>
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Döküman ara...">
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <div class="nav-section-title">Başlangıç</div>
+                <a href="../../index.html" class="nav-link"><i class="fas fa-home"></i> Ana Sayfa</a>
+                <a href="../kurulum.html" class="nav-link"><i class="fas fa-download"></i> Kurulum Rehberi</a>
+                <a href="../genel-ayarlar.html" class="nav-link"><i class="fas fa-cog"></i> Genel Ayarlar</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Scriptler</div>
+                <a href="epsilon-hud.html" class="nav-link"><i class="fas fa-desktop"></i> Epsilon HUD</a>
+                <a href="epsilon-inventory.html" class="nav-link active"><i class="fas fa-box-open"></i> Epsilon Inventory</a>
+                <a href="epsilon-phone.html" class="nav-link"><i class="fas fa-mobile-alt"></i> Epsilon Phone</a>
+                <a href="epsilon-garage.html" class="nav-link"><i class="fas fa-car"></i> Epsilon Garage</a>
+                <a href="epsilon-housing.html" class="nav-link"><i class="fas fa-house-user"></i> Epsilon Housing</a>
+                <a href="epsilon-job.html" class="nav-link"><i class="fas fa-briefcase"></i> Epsilon Job System</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">API & Geliştirici</div>
+                <a href="../api/exports.html" class="nav-link"><i class="fas fa-plug"></i> Exports</a>
+                <a href="../api/events.html" class="nav-link"><i class="fas fa-bolt"></i> Events</a>
+                <a href="../api/callbacks.html" class="nav-link"><i class="fas fa-exchange-alt"></i> Callbacks</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Destek</div>
+                <a href="../faq.html" class="nav-link"><i class="fas fa-question-circle"></i> SSS</a>
+                <a href="../changelog.html" class="nav-link"><i class="fas fa-history"></i> Değişiklik Günlüğü</a>
+            </div>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="https://github.com/epsilon-scripts" target="_blank" class="footer-link"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://discord.gg/epsilon" target="_blank" class="footer-link"><i class="fab fa-discord"></i> Discord</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="content-wrapper doc-content">
+            <div class="breadcrumb">
+                <a href="../../index.html">Ana Sayfa</a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <a href="#">Scriptler</a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <span>Epsilon Inventory</span>
+            </div>
+
+            <h1>📦 Epsilon Inventory</h1>
+            <p class="doc-description">Sürükle-bırak destekli, modern arayüzlü gelişmiş envanter sistemi. Crafting, hotbar, silah eklentileri ve daha fazlası.</p>
+
+            <div class="info-box info">
+                <i class="fas fa-info-circle"></i>
+                <div>
+                    <strong>Versiyon:</strong> 3.0.0 &nbsp;|&nbsp;
+                    <strong>Resmon:</strong> 0.02ms &nbsp;|&nbsp;
+                    <strong>Framework:</strong> ESX / QBCore &nbsp;|&nbsp;
+                    <strong>Fiyat:</strong> Premium
+                </div>
+            </div>
+
+            <h2 id="ozellikler">Özellikler</h2>
+            <ul>
+                <li>✅ Sürükle-bırak item taşıma</li>
+                <li>✅ Ağırlık tabanlı envanter sistemi</li>
+                <li>✅ Hotbar (1-5 tuşları ile hızlı erişim)</li>
+                <li>✅ Silah eklentileri (silencer, scope, grip vb.)</li>
+                <li>✅ Crafting sistemi</li>
+                <li>✅ Mağaza, araç bagajı, stash entegrasyonu</li>
+                <li>✅ Item meta data desteği (seri no, durability)</li>
+                <li>✅ Özelleştirilebilir item görselleri</li>
+                <li>✅ Context menü (sağ tık)</li>
+                <li>✅ Yere item bırakma (3D props)</li>
+            </ul>
+
+            <h2 id="bagimliliklar">Bağımlılıklar</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kaynak</th>
+                        <th>Zorunlu</th>
+                        <th>Açıklama</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ESX Legacy veya QBCore</td>
+                        <td>✅ Evet</td>
+                        <td>Framework</td>
+                    </tr>
+                    <tr>
+                        <td>oxmysql</td>
+                        <td>✅ Evet</td>
+                        <td>Veritabanı</td>
+                    </tr>
+                    <tr>
+                        <td>ox_lib</td>
+                        <td>✅ Evet</td>
+                        <td>UI kütüphanesi</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="kurulum">Kurulum</h2>
+
+            <h3>1. SQL Dosyasını Import Edin</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>install.sql</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
+                </div>
+                <pre><code>CREATE TABLE IF NOT EXISTS `epsilon_inventory` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `owner` VARCHAR(60) NOT NULL,
+    `name` VARCHAR(50) NOT NULL,
+    `type` VARCHAR(20) DEFAULT 'player',
+    `slots` INT DEFAULT 50,
+    `weight` INT DEFAULT 120000,
+    `items` LONGTEXT,
+    UNIQUE KEY `owner_name` (`owner`, `name`)
+);
+
+CREATE TABLE IF NOT EXISTS `epsilon_inventory_stash` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `stash_id` VARCHAR(100) NOT NULL UNIQUE,
+    `items` LONGTEXT,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);</code></pre>
+            </div>
+
+            <h3>2. server.cfg'ye Ekleyin</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>server.cfg</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
+                </div>
+                <pre><code>ensure oxmysql
+ensure ox_lib
+ensure es_extended
+
+ensure epsilon-inventory</code></pre>
+            </div>
+
+            <h2 id="config">Yapılandırma</h2>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span>config.lua</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
+                </div>
+                <pre><code>Config = {}
+
+Config.Framework = 'esx'
+Config.Language = 'tr'
+
+-- Envanter Ayarları
+Config.MaxSlots = 50           -- Maksimum slot sayısı
+Config.MaxWeight = 120000      -- Maksimum ağırlık (gram)
+Config.HotbarSlots = 5         -- Hotbar slot sayısı
+
+-- Özellikler
+Config.EnableCrafting = true   -- Crafting sistemi
+Config.EnableHotbar = true     -- Hotbar sistemi
+Config.EnableDrop = true       -- Yere bırakma
+Config.DropDespawnTime = 300   -- Yerdeki item silinme süresi (saniye)
+
+-- Silah Eklentileri
+Config.WeaponAttachments = true
+Config.WeaponDurability = true -- Silah dayanıklılık sistemi
+
+-- Mağaza Ayarları
+Config.Shops = {
+    ['market_1'] = {
+        label = '24/7 Market',
+        coords = vector3(25.7, -1347.3, 29.5),
+        items = {
+            { name = 'bread',  price = 5,  label = 'Ekmek' },
+            { name = 'water',  price = 3,  label = 'Su' },
+            { name = 'burger', price = 10, label = 'Hamburger' },
+        }
+    }
+}</code></pre>
+            </div>
+
+            <h2 id="exports">Exports</h2>
+
+            <h3>Envanter Aç/Kapat</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>Client - Lua</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
+                </div>
+                <pre><code>-- Oyuncu envanterini aç
+exports['epsilon-inventory']:openInventory()
+
+-- Belirli bir stash'ı aç
+exports['epsilon-inventory']:openStash('police_evidence', {
+    label = 'Polis Delil Deposu',
+    slots = 100,
+    weight = 500000
+})
+
+-- Araç bagajını aç
+exports['epsilon-inventory']:openTrunk(plate)</code></pre>
+            </div>
+
+            <h3>Item İşlemleri (Server)</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>Server - Lua</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
+                </div>
+                <pre><code>-- Item ekle
+exports['epsilon-inventory']:addItem(source, 'bread', 5)
+
+-- Item çıkar
+exports['epsilon-inventory']:removeItem(source, 'bread', 2)
+
+-- Item kontrol
+local hasItem = exports['epsilon-inventory']:hasItem(source, 'bread', 1)
+
+-- Tüm itemleri getir
+local items = exports['epsilon-inventory']:getItems(source)
+
+-- Item sayısını getir
+local count = exports['epsilon-inventory']:getItemCount(source, 'bread')</code></pre>
+            </div>
+
+            <h2 id="item-ekleme">Yeni Item Ekleme</h2>
+            <p>Yeni item eklemek için <code>items.lua</code> dosyasını düzenleyin:</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span>items.lua</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
+                </div>
+                <pre><code>Items = {
+    ['bread'] = {
+        label = 'Ekmek',
+        weight = 200,
+        stackable = true,
+        description = 'Taze ekmek, açlığı giderir.',
+        usable = true,
+        image = 'bread.png'  -- html/images/ klasöründe olmalı
+    },
+    ['lockpick'] = {
+        label = 'Maymuncuk',
+        weight = 300,
+        stackable = true,
+        description = 'Araç kapısını açmak için kullanılır.',
+        usable = true,
+        image = 'lockpick.png'
+    }
+}</code></pre>
+            </div>
+
+            <div class="info-box success">
+                <i class="fas fa-check-circle"></i>
+                <div>Item görselleri <code>html/images/</code> klasörüne PNG formatında eklenmeli. Önerilen boyut: <strong>128x128px</strong>.</div>
+            </div>
+
+            <footer class="content-footer">
+                <p>© 2026 Epsilon Scripts. Tüm hakları saklıdır.</p>
+            </footer>
+        </div>
+    </main>
+
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html>
