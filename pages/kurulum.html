@@ -6,7 +6,7 @@
     <title>Kurulum Rehberi - Epsilon Scripts</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="mobile-header">
@@ -14,50 +14,7 @@
         <span class="mobile-title">Epsilon Scripts</span>
     </div>
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <div class="logo"><i class="fas fa-bolt"></i><span>Epsilon Scripts</span></div>
-            <span class="version-badge">v1.0</span>
-        </div>
-        <div class="search-box">
-            <i class="fas fa-search"></i>
-            <input type="text" id="searchInput" placeholder="Döküman ara...">
-        </div>
-        <nav class="sidebar-nav">
-            <div class="nav-section">
-                <div class="nav-section-title">Başlangıç</div>
-                <a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Ana Sayfa</a>
-                <a href="kurulum.html" class="nav-link active"><i class="fas fa-download"></i> Kurulum Rehberi</a>
-                <a href="genel-ayarlar.html" class="nav-link"><i class="fas fa-cog"></i> Genel Ayarlar</a>
-            </div>
-            <div class="nav-section">
-                <div class="nav-section-title">Scriptler</div>
-                <a href="scripts/epsilon-hud.html" class="nav-link"><i class="fas fa-desktop"></i> Epsilon HUD</a>
-                <a href="scripts/epsilon-inventory.html" class="nav-link"><i class="fas fa-box-open"></i> Epsilon Inventory</a>
-                <a href="scripts/epsilon-phone.html" class="nav-link"><i class="fas fa-mobile-alt"></i> Epsilon Phone</a>
-                <a href="scripts/epsilon-garage.html" class="nav-link"><i class="fas fa-car"></i> Epsilon Garage</a>
-                <a href="scripts/epsilon-housing.html" class="nav-link"><i class="fas fa-house-user"></i> Epsilon Housing</a>
-                <a href="scripts/epsilon-job.html" class="nav-link"><i class="fas fa-briefcase"></i> Epsilon Job System</a>
-            </div>
-            <div class="nav-section">
-                <div class="nav-section-title">API & Geliştirici</div>
-                <a href="api/exports.html" class="nav-link"><i class="fas fa-plug"></i> Exports</a>
-                <a href="api/events.html" class="nav-link"><i class="fas fa-bolt"></i> Events</a>
-                <a href="api/callbacks.html" class="nav-link"><i class="fas fa-exchange-alt"></i> Callbacks</a>
-            </div>
-            <div class="nav-section">
-                <div class="nav-section-title">Destek</div>
-                <a href="faq.html" class="nav-link"><i class="fas fa-question-circle"></i> SSS</a>
-                <a href="changelog.html" class="nav-link"><i class="fas fa-history"></i> Değişiklik Günlüğü</a>
-            </div>
-        </nav>
-        <div class="sidebar-footer">
-            <a href="https://github.com/epsilon-scripts" target="_blank" class="footer-link"><i class="fab fa-github"></i> GitHub</a>
-            <a href="https://discord.gg/epsilon" target="_blank" class="footer-link"><i class="fab fa-discord"></i> Discord</a>
-        </div>
-    </aside>
-
+    <aside class="sidebar" id="sidebar"></aside>
     <main class="main-content">
         <div class="content-wrapper doc-content">
             <div class="breadcrumb">
@@ -67,89 +24,51 @@
             </div>
 
             <h1>Kurulum Rehberi</h1>
-            <p class="doc-description">Epsilon scriptlerini FiveM sunucunuza nasıl kuracağınızı adım adım öğrenin.</p>
+            <p class="doc-description">Epsilon scriptlerini FiveM sunucunuza nasil kuracaginizi adim adim ogrenin.</p>
 
             <h2 id="gereksinimler">Gereksinimler</h2>
-            <p>Scriptleri kullanabilmek için aşağıdaki gereksinimlerin karşılanması gerekmektedir:</p>
             <ul>
-                <li><strong>FiveM Server</strong> - Son sürüm artifact (6000+)</li>
+                <li><strong>FiveM Server</strong> - Son surum artifact (6000+)</li>
                 <li><strong>Framework</strong> - ESX Legacy veya QBCore</li>
-                <li><strong>oxmysql</strong> - Veritabanı bağlantısı için</li>
-                <li><strong>ox_lib</strong> - Genel kütüphane (bazı scriptler için)</li>
+                <li><strong>oxmysql</strong> - Veritabani baglantisi icin</li>
+                <li><strong>ox_lib</strong> - Genel kutuphane (bazi scriptler icin)</li>
             </ul>
 
             <div class="info-box info">
                 <i class="fas fa-info-circle"></i>
-                <div>Her scriptin kendine özel bağımlılıkları olabilir. Lütfen ilgili scriptin dökümanına göz atın.</div>
+                <div>Her scriptin kendine ozel bagimliliklari olabilir. Lutfen ilgili scriptin dokumanina goz atin.</div>
             </div>
 
-            <h2 id="indirme">İndirme</h2>
-            <p>Scriptleri GitHub üzerinden indirebilirsiniz:</p>
-
-            <h3>Git ile İndirme</h3>
+            <h2 id="indirme">Indirme</h2>
+            <h3>Git ile Indirme</h3>
             <div class="code-block">
-                <div class="code-header">
-                    <span>Terminal</span>
-                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
-                </div>
+                <div class="code-header"><span>Terminal</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button></div>
                 <pre><code>cd /sunucu-klasoru/resources/[epsilon]
-git clone https://github.com/epsilon-scripts/epsilon-hud.git</code></pre>
+git clone https://github.com/EpsilonAETIX/epsilon-hud.git</code></pre>
             </div>
 
-            <h3>Manuel İndirme</h3>
+            <h3>Manuel Indirme</h3>
             <ol>
-                <li>İlgili scriptin GitHub sayfasına gidin</li>
-                <li><strong>Code → Download ZIP</strong> butonuna tıklayın</li>
-                <li>ZIP dosyasını <code>resources/[epsilon]</code> klasörüne çıkarın</li>
-                <li>Klasör adındaki <code>-main</code> veya <code>-master</code> ekini silin</li>
+                <li>Ilgili scriptin GitHub sayfasina gidin</li>
+                <li><strong>Code - Download ZIP</strong> butonuna tiklayin</li>
+                <li>ZIP dosyasini <code>resources/[epsilon]</code> klasorune cikarin</li>
+                <li>Klasor adindaki <code>-main</code> veya <code>-master</code> ekini silin</li>
             </ol>
 
-            <h2 id="veritabani">Veritabanı Kurulumu</h2>
-            <p>Her scriptin kendi klasöründe bir <code>sql</code> dosyası bulunur. Bu dosyaları veritabanınıza import edin:</p>
-
-            <div class="code-block">
-                <div class="code-header">
-                    <span>SQL</span>
-                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
-                </div>
-                <pre><code>-- HeidiSQL veya phpMyAdmin üzerinden import edin:
--- resources/[epsilon]/epsilon-hud/sql/install.sql
--- resources/[epsilon]/epsilon-inventory/sql/install.sql
--- ...</code></pre>
-            </div>
-
+            <h2 id="veritabani">Veritabani Kurulumu</h2>
+            <p>Her scriptin kendi klasorunde bir <code>sql</code> dosyasi bulunur. Bu dosyalari veritabaniniza import edin.</p>
             <div class="info-box warning">
                 <i class="fas fa-exclamation-triangle"></i>
-                <div><strong>Dikkat:</strong> SQL dosyalarını import etmeden önce mevcut veritabanınızın yedeğini almayı unutmayın!</div>
+                <div><strong>Dikkat:</strong> SQL dosyalarini import etmeden once mevcut veritabaninizin yedegini almayi unutmayin.</div>
             </div>
 
-            <h2 id="yapilandirma">Yapılandırma</h2>
-            <p>Her scriptin kendi <code>config.lua</code> dosyası vardır. Scripti başlatmadan önce yapılandırmanızı tamamlayın:</p>
+            <h2 id="yapilandirma">Yapilandirma</h2>
+            <p>Her scriptin kendi <code>config.lua</code> dosyasi vardir. Scripti baslatmadan once yapilandirmanizi tamamlayin. Detaylar icin her scriptin kendi yapilandirma sayfasina bakin.</p>
 
+            <h2 id="baslat">Scripti Baslatma</h2>
             <div class="code-block">
-                <div class="code-header">
-                    <span>config.lua</span>
-                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
-                </div>
-                <pre><code>Config = {}
-
-Config.Framework = 'esx' -- 'esx' veya 'qbcore'
-Config.Language = 'tr'    -- Dil seçimi
-Config.Debug = false      -- Debug modu
-
--- Diğer ayarlar scripte göre değişir
--- Her scriptin dökümanında detaylı açıklamalar mevcuttur</code></pre>
-            </div>
-
-            <h2 id="baslat">Scripti Başlatma</h2>
-            <p><code>server.cfg</code> dosyanıza aşağıdaki satırları ekleyin:</p>
-
-            <div class="code-block">
-                <div class="code-header">
-                    <span>server.cfg</span>
-                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
-                </div>
-                <pre><code># Bağımlılıklar (önce bunlar yüklenmeli)
+                <div class="code-header"><span>server.cfg</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button></div>
+                <pre><code># Bagimliliklar (once bunlar yuklenmelidir)
 ensure oxmysql
 ensure ox_lib
 ensure es_extended  # veya qb-core
@@ -157,20 +76,18 @@ ensure es_extended  # veya qb-core
 # Epsilon Scriptler
 ensure epsilon-hud
 ensure epsilon-inventory
-ensure epsilon-phone</code></pre>
+ensure epsilon-garage</code></pre>
             </div>
 
             <div class="info-box success">
                 <i class="fas fa-check-circle"></i>
-                <div><strong>Tebrikler!</strong> Sunucunuzu yeniden başlattığınızda scriptler aktif olacaktır. Herhangi bir sorunla karşılaşırsanız, Discord sunucumuza katılın.</div>
+                <div>Sunucunuzu yeniden baslattiginizda scriptler aktif olacaktir. Herhangi bir sorunla karsilastiginizda Discord sunucumuza katilin.</div>
             </div>
 
-            <footer class="content-footer">
-                <p>© 2026 Epsilon Scripts. Tüm hakları saklıdır.</p>
-            </footer>
+            <footer class="content-footer"><p>&copy; 2026 Epsilon Scripts. Tum haklari saklidir.</p></footer>
         </div>
     </main>
-
+    <script src="../assets/js/sidebar.js"></script>
     <script src="../assets/js/main.js"></script>
 </body>
 </html>

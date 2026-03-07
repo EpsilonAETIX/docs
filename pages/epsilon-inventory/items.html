@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epsilon Inventory - Item Yonetimi</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="mobile-header">
+        <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+        <span class="mobile-title">Epsilon Scripts</span>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <main class="main-content">
+        <div class="content-wrapper doc-content">
+            <div class="breadcrumb">
+                <a href="../../index.html">Ana Sayfa</a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <a href="index.html">Epsilon Inventory</a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <span>Item Yonetimi</span>
+            </div>
+
+            <h1>Epsilon Inventory - Item Yonetimi</h1>
+            <p class="doc-description">Envantere yeni item ekleme, gorsel ayarlari ve meta data kullanimi.</p>
+
+            <h2 id="yeni-item">Yeni Item Ekleme</h2>
+            <p><code>items.lua</code> dosyasina yeni item tanimlayin:</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span>items.lua</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
+                </div>
+                <pre><code>Items = {
+    ['bread'] = {
+        label = 'Ekmek',
+        weight = 200,
+        stackable = true,
+        description = 'Taze ekmek, acligi giderir.',
+        usable = true,
+        image = 'bread.png'
+    },
+    ['lockpick'] = {
+        label = 'Maymuncuk',
+        weight = 300,
+        stackable = true,
+        description = 'Arac kapisini acmak icin kullanilir.',
+        usable = true,
+        image = 'lockpick.png'
+    },
+    ['radio'] = {
+        label = 'Telsiz',
+        weight = 500,
+        stackable = false,
+        description = 'Iletisim icin kullanilir.',
+        usable = true,
+        image = 'radio.png',
+        unique = true
+    }
+}</code></pre>
+            </div>
+
+            <h2 id="item-ozellikleri">Item Ozellikleri</h2>
+            <table class="config-table">
+                <thead>
+                    <tr><th>Ozellik</th><th>Tip</th><th>Zorunlu</th><th>Aciklama</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>label</code></td><td>string</td><td>Evet</td><td>Itemin gorunen adi</td></tr>
+                    <tr><td><code>weight</code></td><td>number</td><td>Evet</td><td>Agirlik (gram)</td></tr>
+                    <tr><td><code>stackable</code></td><td>boolean</td><td>Evet</td><td>Ust uste yigilabilir mi</td></tr>
+                    <tr><td><code>description</code></td><td>string</td><td>Hayir</td><td>Item aciklamasi</td></tr>
+                    <tr><td><code>usable</code></td><td>boolean</td><td>Hayir</td><td>Kullanilabilir mi</td></tr>
+                    <tr><td><code>image</code></td><td>string</td><td>Hayir</td><td>Gorsel dosya adi</td></tr>
+                    <tr><td><code>unique</code></td><td>boolean</td><td>Hayir</td><td>Benzersiz mi (meta data icin)</td></tr>
+                </tbody>
+            </table>
+
+            <h2 id="gorseller">Item Gorselleri</h2>
+            <p>Item gorselleri <code>html/images/</code> klasorune PNG formatinda eklenir.</p>
+            <ul>
+                <li>Onerilen boyut: <strong>128x128px</strong></li>
+                <li>Format: <strong>PNG</strong> (seffaf arka plan)</li>
+                <li>Dosya adi, item adinin aynisi olmali (orn: <code>bread.png</code>)</li>
+            </ul>
+
+            <h2 id="meta-data">Meta Data Kullanimi</h2>
+            <p>Benzersiz itemlere ek bilgi eklemek icin meta data kullanilir:</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span>Server - Lua</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
+                </div>
+                <pre><code>-- Meta data ile item ekle
+exports['epsilon-inventory']:addItem(source, 'weapon_pistol', 1, {
+    serial = 'EPS-' .. math.random(100000, 999999),
+    durability = 100,
+    ammo = 30
+})
+
+-- Meta data oku
+local items = exports['epsilon-inventory']:getItems(source)
+for _, item in pairs(items) do
+    if item.name == 'weapon_pistol' then
+        print('Seri No:', item.metadata.serial)
+        print('Dayaniklilik:', item.metadata.durability)
+    end
+end</code></pre>
+            </div>
+
+            <h2 id="usable-item">Kullanilabilir Item Kaydi</h2>
+            <p>Bir itemi kullanilabilir yapmak icin server tarafinda kayit edin:</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span>Server - Lua</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
+                </div>
+                <pre><code>exports['epsilon-inventory']:registerUsableItem('bread', function(source, item)
+    local xPlayer = ESX.GetPlayerFromId(source)
+
+    -- Itemi cikar
+    exports['epsilon-inventory']:removeItem(source, 'bread', 1)
+
+    -- Aclik degerini artir
+    TriggerClientEvent('esx_status:add', source, 'hunger', 200000)
+
+    -- Bildirim
+    xPlayer.showNotification('Ekmek yediniz.')
+end)</code></pre>
+            </div>
+
+            <div class="page-nav">
+                <a href="api.html" class="page-nav-link prev"><i class="fas fa-arrow-left"></i> API / Exports</a>
+                <a href="../epsilon-garage/index.html" class="page-nav-link next">Epsilon Garage <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <footer class="content-footer">
+                <p>&copy; 2026 Epsilon Scripts. Tum haklari saklidir.</p>
+            </footer>
+        </div>
+    </main>
+    <script src="../../assets/js/sidebar.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html>

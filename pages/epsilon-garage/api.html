@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epsilon Garage - API / Exports</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="mobile-header">
+        <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+        <span class="mobile-title">Epsilon Scripts</span>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="main-content">
+        <div class="content-wrapper doc-content">
+            <div class="breadcrumb">
+                <a href="../../index.html">Ana Sayfa</a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <a href="index.html">Epsilon Garage</a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <span>API / Exports</span>
+            </div>
+            <h1>Epsilon Garage - API / Exports</h1>
+            <p class="doc-description">Garaj sistemiyle entegrasyon icin kullanabileceginiz export ve event listesi.</p>
+
+            <h2 id="server-exports">Server Exports</h2>
+
+            <h3>Arac Islemleri</h3>
+            <div class="code-block">
+                <div class="code-header"><span>Server - Lua</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button></div>
+                <pre><code>-- Oyuncunun araclarini getir
+local vehicles = exports['epsilon-garage']:getPlayerVehicles(source)
+
+-- Araci garaja gonder
+exports['epsilon-garage']:storeVehicle(source, plate, 'legion')
+
+-- Araci impound'a gonder
+exports['epsilon-garage']:impoundVehicle(plate, 'Yanlis park')
+
+-- Araci impound'dan cikar
+exports['epsilon-garage']:releaseFromImpound(source, plate)</code></pre>
+            </div>
+
+            <h3>Garaj Yonetimi</h3>
+            <div class="code-block">
+                <div class="code-header"><span>Server - Lua</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button></div>
+                <pre><code>-- Yeni garaj ekle (runtime)
+exports['epsilon-garage']:addGarage('custom_garage', {
+    label = 'Ozel Garaj',
+    type = 'car',
+    coords = vector3(100.0, 200.0, 30.0),
+    spawn = vector4(101.0, 201.0, 30.0, 90.0)
+})
+
+-- Garaji kaldir
+exports['epsilon-garage']:removeGarage('custom_garage')</code></pre>
+            </div>
+
+            <h2 id="client-exports">Client Exports</h2>
+            <div class="code-block">
+                <div class="code-header"><span>Client - Lua</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button></div>
+                <pre><code>-- Garaj menusunu ac
+exports['epsilon-garage']:openGarageMenu('legion')
+
+-- Arac bilgi panelini goster
+exports['epsilon-garage']:showVehicleInfo(plate)</code></pre>
+            </div>
+
+            <h2 id="export-tablosu">Export Referans Tablosu</h2>
+            <table class="config-table">
+                <thead>
+                    <tr><th>Export</th><th>Taraf</th><th>Parametreler</th><th>Donus</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>getPlayerVehicles</code></td><td>Server</td><td><code>source</code></td><td><code>table</code></td></tr>
+                    <tr><td><code>storeVehicle</code></td><td>Server</td><td><code>source, plate, garage</code></td><td><code>boolean</code></td></tr>
+                    <tr><td><code>impoundVehicle</code></td><td>Server</td><td><code>plate, reason</code></td><td><code>boolean</code></td></tr>
+                    <tr><td><code>releaseFromImpound</code></td><td>Server</td><td><code>source, plate</code></td><td><code>boolean</code></td></tr>
+                    <tr><td><code>openGarageMenu</code></td><td>Client</td><td><code>garageName</code></td><td>-</td></tr>
+                    <tr><td><code>showVehicleInfo</code></td><td>Client</td><td><code>plate</code></td><td>-</td></tr>
+                </tbody>
+            </table>
+
+            <div class="page-nav">
+                <a href="config.html" class="page-nav-link prev"><i class="fas fa-arrow-left"></i> Yapilandirma</a>
+                <a href="../../index.html" class="page-nav-link next">Ana Sayfa <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <footer class="content-footer"><p>&copy; 2026 Epsilon Scripts.</p></footer>
+        </div>
+    </main>
+    <script src="../../assets/js/sidebar.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html>

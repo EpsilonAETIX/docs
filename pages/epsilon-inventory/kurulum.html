@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epsilon Inventory - Kurulum</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="mobile-header">
+        <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+        <span class="mobile-title">Epsilon Scripts</span>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <main class="main-content">
+        <div class="content-wrapper doc-content">
+            <div class="breadcrumb">
+                <a href="../../index.html">Ana Sayfa</a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <a href="index.html">Epsilon Inventory</a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <span>Kurulum</span>
+            </div>
+
+            <h1>Epsilon Inventory - Kurulum</h1>
+            <p class="doc-description">Envanter scriptini sunucunuza kurmak icin asagidaki adimlari takip edin.</p>
+
+            <h2 id="sql">Adim 1: SQL Import</h2>
+            <p>Asagidaki SQL dosyasini veritabaniniza import edin:</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>install.sql</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
+                </div>
+                <pre><code>CREATE TABLE IF NOT EXISTS `epsilon_inventory` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `owner` VARCHAR(60) NOT NULL,
+    `name` VARCHAR(50) NOT NULL,
+    `type` VARCHAR(20) DEFAULT 'player',
+    `slots` INT DEFAULT 50,
+    `weight` INT DEFAULT 120000,
+    `items` LONGTEXT,
+    UNIQUE KEY `owner_name` (`owner`, `name`)
+);
+
+CREATE TABLE IF NOT EXISTS `epsilon_inventory_stash` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `stash_id` VARCHAR(100) NOT NULL UNIQUE,
+    `items` LONGTEXT,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);</code></pre>
+            </div>
+
+            <div class="info-box warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div><strong>Dikkat:</strong> SQL dosyasini import etmeden once mevcut veritabaninizin yedegini almayi unutmayin.</div>
+            </div>
+
+            <h2 id="dosyalar">Adim 2: Dosyalari Yerlestirme</h2>
+            <ol>
+                <li>Scripti indirin ve <code>resources/[epsilon]/epsilon-inventory</code> klasorune koyun</li>
+                <li><code>config.lua</code> dosyasini duzenleyin (<a href="config.html">Yapilandirma</a> sayfasina bakin)</li>
+            </ol>
+
+            <h2 id="server-cfg">Adim 3: server.cfg</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>server.cfg</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
+                </div>
+                <pre><code># Bagimliliklar (once bunlar yuklenmelidir)
+ensure oxmysql
+ensure ox_lib
+ensure es_extended  # veya qb-core
+
+# Envanter
+ensure epsilon-inventory</code></pre>
+            </div>
+
+            <div class="info-box info">
+                <i class="fas fa-info-circle"></i>
+                <div><strong>Onemli:</strong> Eger baska bir envanter scripti kullaniyorsaniz (ox_inventory, qs-inventory vb.), onu server.cfg'den kaldirin veya yorum satirina alin.</div>
+            </div>
+
+            <div class="info-box success">
+                <i class="fas fa-check-circle"></i>
+                <div>Kurulum tamamlandi. Simdi <a href="config.html">Yapilandirma</a> sayfasina giderek ayarlari yapabilirsiniz.</div>
+            </div>
+
+            <div class="page-nav">
+                <a href="index.html" class="page-nav-link prev"><i class="fas fa-arrow-left"></i> Genel Bakis</a>
+                <a href="config.html" class="page-nav-link next">Yapilandirma <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <footer class="content-footer">
+                <p>&copy; 2026 Epsilon Scripts. Tum haklari saklidir.</p>
+            </footer>
+        </div>
+    </main>
+    <script src="../../assets/js/sidebar.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html>

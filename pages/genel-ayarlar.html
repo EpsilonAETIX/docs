@@ -6,7 +6,7 @@
     <title>Genel Ayarlar - Epsilon Scripts</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="mobile-header">
@@ -14,46 +14,7 @@
         <span class="mobile-title">Epsilon Scripts</span>
     </div>
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <div class="logo"><i class="fas fa-bolt"></i><span>Epsilon Scripts</span></div>
-            <span class="version-badge">v1.0</span>
-        </div>
-        <div class="search-box"><i class="fas fa-search"></i><input type="text" id="searchInput" placeholder="Döküman ara..."></div>
-        <nav class="sidebar-nav">
-            <div class="nav-section">
-                <div class="nav-section-title">Başlangıç</div>
-                <a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Ana Sayfa</a>
-                <a href="kurulum.html" class="nav-link"><i class="fas fa-download"></i> Kurulum Rehberi</a>
-                <a href="genel-ayarlar.html" class="nav-link active"><i class="fas fa-cog"></i> Genel Ayarlar</a>
-            </div>
-            <div class="nav-section">
-                <div class="nav-section-title">Scriptler</div>
-                <a href="scripts/epsilon-hud.html" class="nav-link"><i class="fas fa-desktop"></i> Epsilon HUD</a>
-                <a href="scripts/epsilon-inventory.html" class="nav-link"><i class="fas fa-box-open"></i> Epsilon Inventory</a>
-                <a href="scripts/epsilon-phone.html" class="nav-link"><i class="fas fa-mobile-alt"></i> Epsilon Phone</a>
-                <a href="scripts/epsilon-garage.html" class="nav-link"><i class="fas fa-car"></i> Epsilon Garage</a>
-                <a href="scripts/epsilon-housing.html" class="nav-link"><i class="fas fa-house-user"></i> Epsilon Housing</a>
-                <a href="scripts/epsilon-job.html" class="nav-link"><i class="fas fa-briefcase"></i> Epsilon Job System</a>
-            </div>
-            <div class="nav-section">
-                <div class="nav-section-title">API & Geliştirici</div>
-                <a href="api/exports.html" class="nav-link"><i class="fas fa-plug"></i> Exports</a>
-                <a href="api/events.html" class="nav-link"><i class="fas fa-bolt"></i> Events</a>
-                <a href="api/callbacks.html" class="nav-link"><i class="fas fa-exchange-alt"></i> Callbacks</a>
-            </div>
-            <div class="nav-section">
-                <div class="nav-section-title">Destek</div>
-                <a href="faq.html" class="nav-link"><i class="fas fa-question-circle"></i> SSS</a>
-                <a href="changelog.html" class="nav-link"><i class="fas fa-history"></i> Değişiklik Günlüğü</a>
-            </div>
-        </nav>
-        <div class="sidebar-footer">
-            <a href="https://github.com/epsilon-scripts" target="_blank" class="footer-link"><i class="fab fa-github"></i> GitHub</a>
-            <a href="https://discord.gg/epsilon" target="_blank" class="footer-link"><i class="fab fa-discord"></i> Discord</a>
-        </div>
-    </aside>
-
+    <aside class="sidebar" id="sidebar"></aside>
     <main class="main-content">
         <div class="content-wrapper doc-content">
             <div class="breadcrumb">
@@ -61,73 +22,47 @@
                 <span class="separator"><i class="fas fa-chevron-right"></i></span>
                 <span>Genel Ayarlar</span>
             </div>
-
             <h1>Genel Ayarlar</h1>
-            <p class="doc-description">Tüm Epsilon scriptlerinde ortak olan genel ayarlar ve yapılandırma seçenekleri.</p>
+            <p class="doc-description">Tum Epsilon scriptlerinde ortak olan genel ayarlar ve yapilandirma secenekleri.</p>
 
-            <h2 id="framework">Framework Seçimi</h2>
-            <p>Tüm Epsilon scriptleri ESX Legacy ve QBCore framework'lerini destekler. Framework ayarı her scriptin <code>config.lua</code> dosyasında yapılır:</p>
-
+            <h2 id="framework">Framework Secimi</h2>
             <div class="code-block">
-                <div class="code-header">
-                    <span>config.lua</span>
-                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
-                </div>
-                <pre><code>-- ESX için
-Config.Framework = 'esx'
-
--- QBCore için
-Config.Framework = 'qbcore'</code></pre>
+                <div class="code-header"><span>config.lua</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button></div>
+                <pre><code>Config.Framework = 'esx'     -- 'esx' veya 'qbcore'</code></pre>
             </div>
 
-            <h2 id="dil">Dil Ayarları</h2>
-            <p>Scriptler çoklu dil desteğine sahiptir. Dil dosyaları <code>locales/</code> klasöründe bulunur:</p>
-
+            <h2 id="dil">Dil Ayarlari</h2>
+            <p>Scriptler coklu dil destegine sahiptir. Dil dosyalari <code>locales/</code> klasorunde bulunur:</p>
             <div class="code-block">
-                <div class="code-header">
-                    <span>locales/tr.lua</span>
-                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
-                </div>
+                <div class="code-header"><span>locales/tr.lua</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button></div>
                 <pre><code>Locales['tr'] = {
     ['inventory_full'] = 'Envanteriniz dolu!',
-    ['not_enough_money'] = 'Yeterli paranız yok!',
-    ['item_used'] = '%s kullanıldı.',
-    ['item_received'] = '%s x%d alındı.',
+    ['not_enough_money'] = 'Yeterli paraniz yok!',
+    ['item_used'] = '%s kullanildi.',
+    ['item_received'] = '%s x%d alindi.',
 }</code></pre>
             </div>
 
             <h2 id="debug">Debug Modu</h2>
-            <p>Sorun giderme için debug modunu aktifleştirebilirsiniz:</p>
-
             <div class="code-block">
-                <div class="code-header">
-                    <span>config.lua</span>
-                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
-                </div>
-                <pre><code>Config.Debug = true  -- Konsola detaylı log yazdırır</code></pre>
+                <div class="code-header"><span>config.lua</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button></div>
+                <pre><code>Config.Debug = true  -- Konsola detayli log yazdirir</code></pre>
             </div>
-
             <div class="info-box warning">
                 <i class="fas fa-exclamation-triangle"></i>
-                <div><strong>Dikkat:</strong> Debug modunu production sunucunuzda kapalı tutun. Performans kaybına neden olabilir.</div>
+                <div><strong>Dikkat:</strong> Debug modunu production sunucunuzda kapali tutun. Performans kaybina neden olabilir.</div>
             </div>
 
-            <h2 id="veritabani">Veritabanı Ayarları</h2>
-            <p>Tüm scriptler <strong>oxmysql</strong> kullanır. <code>server.cfg</code> dosyanızda bağlantı stringinin doğru olduğundan emin olun:</p>
-
+            <h2 id="veritabani">Veritabani Ayarlari</h2>
             <div class="code-block">
-                <div class="code-header">
-                    <span>server.cfg</span>
-                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
-                </div>
+                <div class="code-header"><span>server.cfg</span><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button></div>
                 <pre><code>set mysql_connection_string "mysql://root:password@localhost/fivem?charset=utf8mb4"</code></pre>
             </div>
 
-            <footer class="content-footer">
-                <p>© 2026 Epsilon Scripts. Tüm hakları saklıdır.</p>
-            </footer>
+            <footer class="content-footer"><p>&copy; 2026 Epsilon Scripts. Tum haklari saklidir.</p></footer>
         </div>
     </main>
+    <script src="../assets/js/sidebar.js"></script>
     <script src="../assets/js/main.js"></script>
 </body>
 </html>

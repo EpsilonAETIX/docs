@@ -3,177 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Epsilon Scripts - FiveM Dökümanlar</title>
+    <title>Epsilon Scripts - FiveM Dokumanlar</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Mobile Header -->
     <div class="mobile-header">
-        <button class="sidebar-toggle" id="sidebarToggle">
-            <i class="fas fa-bars"></i>
-        </button>
+        <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
         <span class="mobile-title">Epsilon Scripts</span>
     </div>
-
-    <!-- Sidebar Overlay -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar"></aside>
 
-    <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <div class="logo">
-                <i class="fas fa-bolt"></i>
-                <span>Epsilon Scripts</span>
-            </div>
-            <span class="version-badge">v1.0</span>
-        </div>
-
-        <div class="search-box">
-            <i class="fas fa-search"></i>
-            <input type="text" id="searchInput" placeholder="Döküman ara...">
-        </div>
-
-        <nav class="sidebar-nav">
-            <div class="nav-section">
-                <div class="nav-section-title">Başlangıç</div>
-                <a href="index.html" class="nav-link active" data-page="home">
-                    <i class="fas fa-home"></i> Ana Sayfa
-                </a>
-                <a href="pages/kurulum.html" class="nav-link" data-page="kurulum">
-                    <i class="fas fa-download"></i> Kurulum Rehberi
-                </a>
-                <a href="pages/genel-ayarlar.html" class="nav-link" data-page="genel-ayarlar">
-                    <i class="fas fa-cog"></i> Genel Ayarlar
-                </a>
-            </div>
-
-            <div class="nav-section">
-                <div class="nav-section-title">Scriptler</div>
-                <a href="pages/scripts/epsilon-hud.html" class="nav-link" data-page="epsilon-hud">
-                    <i class="fas fa-desktop"></i> Epsilon HUD
-                </a>
-                <a href="pages/scripts/epsilon-inventory.html" class="nav-link" data-page="epsilon-inventory">
-                    <i class="fas fa-box-open"></i> Epsilon Inventory
-                </a>
-                <a href="pages/scripts/epsilon-phone.html" class="nav-link" data-page="epsilon-phone">
-                    <i class="fas fa-mobile-alt"></i> Epsilon Phone
-                </a>
-                <a href="pages/scripts/epsilon-garage.html" class="nav-link" data-page="epsilon-garage">
-                    <i class="fas fa-car"></i> Epsilon Garage
-                </a>
-                <a href="pages/scripts/epsilon-housing.html" class="nav-link" data-page="epsilon-housing">
-                    <i class="fas fa-house-user"></i> Epsilon Housing
-                </a>
-                <a href="pages/scripts/epsilon-job.html" class="nav-link" data-page="epsilon-job">
-                    <i class="fas fa-briefcase"></i> Epsilon Job System
-                </a>
-            </div>
-
-            <div class="nav-section">
-                <div class="nav-section-title">API & Geliştirici</div>
-                <a href="pages/api/exports.html" class="nav-link" data-page="exports">
-                    <i class="fas fa-plug"></i> Exports
-                </a>
-                <a href="pages/api/events.html" class="nav-link" data-page="events">
-                    <i class="fas fa-bolt"></i> Events
-                </a>
-                <a href="pages/api/callbacks.html" class="nav-link" data-page="callbacks">
-                    <i class="fas fa-exchange-alt"></i> Callbacks
-                </a>
-            </div>
-
-            <div class="nav-section">
-                <div class="nav-section-title">Destek</div>
-                <a href="pages/faq.html" class="nav-link" data-page="faq">
-                    <i class="fas fa-question-circle"></i> SSS
-                </a>
-                <a href="pages/changelog.html" class="nav-link" data-page="changelog">
-                    <i class="fas fa-history"></i> Değişiklik Günlüğü
-                </a>
-            </div>
-        </nav>
-
-        <div class="sidebar-footer">
-            <a href="https://github.com/epsilon-scripts" target="_blank" class="footer-link">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-            <a href="https://discord.gg/epsilon" target="_blank" class="footer-link">
-                <i class="fab fa-discord"></i> Discord
-            </a>
-        </div>
-    </aside>
-
-    <!-- Main Content -->
     <main class="main-content">
         <div class="content-wrapper">
-            <!-- Hero Section -->
             <div class="hero">
-                <div class="hero-badge">FiveM Script Dökümanları</div>
+                <div class="hero-badge">FiveM Script Dokumanlari</div>
                 <h1>Epsilon Scripts</h1>
-                <p>FiveM sunucunuz için gelişmiş, optimize edilmiş ve kolay kullanılabilir scriptler. Tüm dökümanları bu sayfadan takip edebilirsiniz.</p>
+                <p>FiveM sunucunuz icin gelismis, optimize edilmis ve kolay kullanilabilir scriptler. Tum dokumanlari bu sayfadan takip edebilirsiniz.</p>
                 <div class="hero-actions">
-                    <a href="pages/kurulum.html" class="btn btn-primary">
-                        <i class="fas fa-rocket"></i> Başlangıç Rehberi
-                    </a>
-                    <a href="https://github.com/epsilon-scripts" target="_blank" class="btn btn-secondary">
-                        <i class="fab fa-github"></i> GitHub
-                    </a>
+                    <a href="pages/kurulum.html" class="btn btn-primary"><i class="fas fa-rocket"></i> Baslangic Rehberi</a>
+                    <a href="https://github.com/EpsilonAETIX" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> GitHub</a>
                 </div>
             </div>
 
-            <!-- Features Grid -->
-            <div class="section-title">
-                <i class="fas fa-star"></i> Öne Çıkanlar
-            </div>
+            <div class="section-title"><i class="fas fa-star"></i> One Cikanlar</div>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    <h3>Yüksek Performans</h3>
-                    <p>Tüm scriptler 0.00ms - 0.02ms arası resmon değerleriyle optimize edilmiştir.</p>
+                    <h3>Yuksek Performans</h3>
+                    <p>Tum scriptler 0.00ms - 0.02ms arasi resmon degerleriyle optimize edilmistir.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-code-branch"></i></div>
-                    <h3>Açık Kaynak</h3>
-                    <p>Escrow koruması olmadan, tamamen açık kaynak kodlu scriptler.</p>
+                    <h3>Acik Kaynak</h3>
+                    <p>Escrow korumasi olmadan, tamamen acik kaynak kodlu scriptler.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-puzzle-piece"></i></div>
                     <h3>Kolay Entegrasyon</h3>
-                    <p>ESX, QBCore ve standalone framework desteği ile kolay kurulum.</p>
+                    <p>ESX, QBCore ve standalone framework destegi ile kolay kurulum.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-headset"></i></div>
                     <h3>7/24 Destek</h3>
-                    <p>Discord üzerinden aktif destek ve topluluk.</p>
+                    <p>Discord uzerinden aktif destek ve topluluk.</p>
                 </div>
             </div>
 
-            <!-- Scripts Grid -->
-            <div class="section-title">
-                <i class="fas fa-cubes"></i> Scriptler
-            </div>
+            <div class="section-title"><i class="fas fa-cubes"></i> Scriptler</div>
             <div class="scripts-grid">
-                <a href="pages/scripts/epsilon-hud.html" class="script-card">
+                <a href="pages/epsilon-hud/index.html" class="script-card">
                     <div class="script-icon"><i class="fas fa-desktop"></i></div>
                     <div class="script-info">
                         <h3>Epsilon HUD</h3>
-                        <p>Özelleştirilebilir HUD sistemi - sağlık, zırh, açlık, susuzluk ve daha fazlası.</p>
+                        <p>Ozellestirilebilir HUD sistemi - saglik, zirh, aclik, susuzluk ve daha fazlasi.</p>
                         <div class="script-tags">
-                            <span class="tag tag-free">Ücretsiz</span>
+                            <span class="tag tag-free">Ucretsiz</span>
                             <span class="tag tag-framework">ESX / QBCore</span>
                         </div>
                     </div>
                     <i class="fas fa-chevron-right script-arrow"></i>
                 </a>
-
-                <a href="pages/scripts/epsilon-inventory.html" class="script-card">
+                <a href="pages/epsilon-inventory/index.html" class="script-card">
                     <div class="script-icon"><i class="fas fa-box-open"></i></div>
                     <div class="script-info">
                         <h3>Epsilon Inventory</h3>
-                        <p>Gelişmiş envanter sistemi - sürükle bırak, crafting, hotbar desteği.</p>
+                        <p>Gelismis envanter sistemi - surukle birak, crafting, hotbar destegi.</p>
                         <div class="script-tags">
                             <span class="tag tag-premium">Premium</span>
                             <span class="tag tag-framework">ESX / QBCore</span>
@@ -181,53 +78,13 @@
                     </div>
                     <i class="fas fa-chevron-right script-arrow"></i>
                 </a>
-
-                <a href="pages/scripts/epsilon-phone.html" class="script-card">
-                    <div class="script-icon"><i class="fas fa-mobile-alt"></i></div>
-                    <div class="script-info">
-                        <h3>Epsilon Phone</h3>
-                        <p>Modern telefon sistemi - mesajlar, arama, Twitter, banka ve uygulama mağazası.</p>
-                        <div class="script-tags">
-                            <span class="tag tag-premium">Premium</span>
-                            <span class="tag tag-framework">ESX / QBCore</span>
-                        </div>
-                    </div>
-                    <i class="fas fa-chevron-right script-arrow"></i>
-                </a>
-
-                <a href="pages/scripts/epsilon-garage.html" class="script-card">
+                <a href="pages/epsilon-garage/index.html" class="script-card">
                     <div class="script-icon"><i class="fas fa-car"></i></div>
                     <div class="script-info">
                         <h3>Epsilon Garage</h3>
-                        <p>Gelişmiş garaj sistemi - çoklu garaj, impound, paylaşım.</p>
+                        <p>Gelismis garaj sistemi - coklu garaj, impound, paylasim.</p>
                         <div class="script-tags">
-                            <span class="tag tag-free">Ücretsiz</span>
-                            <span class="tag tag-framework">ESX / QBCore</span>
-                        </div>
-                    </div>
-                    <i class="fas fa-chevron-right script-arrow"></i>
-                </a>
-
-                <a href="pages/scripts/epsilon-housing.html" class="script-card">
-                    <div class="script-icon"><i class="fas fa-house-user"></i></div>
-                    <div class="script-info">
-                        <h3>Epsilon Housing</h3>
-                        <p>Ev sistemi - mobilya yerleştirme, kilit, paylaşım, depolama.</p>
-                        <div class="script-tags">
-                            <span class="tag tag-premium">Premium</span>
-                            <span class="tag tag-framework">Standalone</span>
-                        </div>
-                    </div>
-                    <i class="fas fa-chevron-right script-arrow"></i>
-                </a>
-
-                <a href="pages/scripts/epsilon-job.html" class="script-card">
-                    <div class="script-icon"><i class="fas fa-briefcase"></i></div>
-                    <div class="script-info">
-                        <h3>Epsilon Job System</h3>
-                        <p>Meslek sistemi - polis, ambulans, mekanik, taksici ve daha fazlası.</p>
-                        <div class="script-tags">
-                            <span class="tag tag-free">Ücretsiz</span>
+                            <span class="tag tag-free">Ucretsiz</span>
                             <span class="tag tag-framework">ESX / QBCore</span>
                         </div>
                     </div>
@@ -235,34 +92,25 @@
                 </a>
             </div>
 
-            <!-- Quick Start -->
-            <div class="section-title">
-                <i class="fas fa-terminal"></i> Hızlı Başlangıç
-            </div>
+            <div class="section-title"><i class="fas fa-terminal"></i> Hizli Baslangic</div>
             <div class="code-block">
                 <div class="code-header">
                     <span>server.cfg</span>
-                    <button class="copy-btn" onclick="copyCode(this)">
-                        <i class="fas fa-copy"></i> Kopyala
-                    </button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Kopyala</button>
                 </div>
                 <pre><code># Epsilon Scripts
 ensure epsilon-hud
 ensure epsilon-inventory
-ensure epsilon-phone
-ensure epsilon-garage
-ensure epsilon-housing
-ensure epsilon-job</code></pre>
+ensure epsilon-garage</code></pre>
             </div>
 
-            <!-- Footer -->
             <footer class="content-footer">
-                <p>© 2026 Epsilon Scripts. Tüm hakları saklıdır.</p>
-                <p>Bu döküman <a href="https://pages.github.com" target="_blank">GitHub Pages</a> ile barındırılmaktadır.</p>
+                <p>&copy; 2026 Epsilon Scripts. Tum haklari saklidir.</p>
+                <p>Bu dokuman <a href="https://pages.github.com" target="_blank">GitHub Pages</a> ile barindirilmaktadir.</p>
             </footer>
         </div>
     </main>
-
+    <script src="assets/js/sidebar.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>

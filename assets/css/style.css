@@ -769,6 +769,41 @@ a:hover {
     border: 1px solid var(--border-color);
 }
 
+/* ===== PAGE NAVIGATION ===== */
+.page-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-color);
+}
+
+.page-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all var(--transition);
+}
+
+.page-nav-link:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    transform: translateY(-1px);
+}
+
+.page-nav-link.next {
+    margin-left: auto;
+}
+
 /* ===== SIDEBAR OVERLAY ===== */
 .sidebar-overlay {
     display: none;
