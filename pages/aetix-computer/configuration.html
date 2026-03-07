@@ -1,0 +1,470 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aetix Computer - Configuration</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="mobile-header">
+        <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+        <span class="mobile-title">Aetech</span>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="main-content">
+        <div class="content-wrapper doc-content">
+            <div class="breadcrumb">
+                <a href="../../index.html">Home</a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <a href="index.html">Aetix Computer</a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <span>Configuration</span>
+            </div>
+            <h1>Configuration</h1>
+            <p class="doc-description">Aetix Computer uses 8 separate configuration files in <code>shared/config/</code>. This page documents every setting.</p>
+
+            <!-- TABLE OF CONTENTS -->
+            <div class="info-box info">
+                <i class="fas fa-list"></i>
+                <div>
+                    <strong>Configuration Files</strong><br>
+                    <a href="#config-lua">config.lua</a> &bull;
+                    <a href="#config-factions">config_factions.lua</a> &bull;
+                    <a href="#config-computers">config_computers.lua</a> &bull;
+                    <a href="#config-dispatch">config_dispatch.lua</a> &bull;
+                    <a href="#config-charges">config_charges.lua</a> &bull;
+                    <a href="#config-vehicles">config_vehicles.lua</a> &bull;
+                    <a href="#config-flags">config_flags.lua</a> &bull;
+                    <a href="#config-warrants">config_warrants.lua</a>
+                </div>
+            </div>
+
+            <!-- ===== config.lua ===== -->
+            <h2 id="config-lua">config.lua</h2>
+            <p>Main configuration file containing general settings, NUI behavior, controls, unit systems, and hospital locations.</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>shared/config/config.lua</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                </div>
+                <pre><code>Config = {}
+
+Config.Debug = false           -- Enable debug prints in console
+Config.Locale = 'en'           -- Language file (locales/)
+Config.UseTarget = true        -- Use ox_target for computer interaction
+
+-- NUI (Frontend) Settings
+Config.NUI = {
+    closeKey = 'Escape',       -- Key to close the MDT
+    openVolume = 0.3,          -- Startup sound volume (0.0 - 1.0)
+    closeVolume = 0.2,         -- Close sound volume
+    enableSounds = true,       -- Enable/disable all NUI sounds
+    maxSearchResults = 50,     -- Max results per search query
+}
+
+-- Controls
+Config.Controls = {
+    openKey = 'F5',            -- Keybind to open MDT (when near computer)
+}
+
+-- Unit System
+Config.UnitSystem = {
+    speed = 'mph',             -- 'mph' or 'kmh'
+    distance = 'mi',           -- 'mi' or 'km'
+}
+
+-- Hospitals (for auto-dispatch on player death)
+Config.Hospitals = {
+    { name = 'Pillbox Hill Medical Center',  coords = vector3(311.2, -590.1, 43.3) },
+    { name = 'Mount Zonah Medical Center',   coords = vector3(-449.7, -340.5, 34.5) },
+    { name = 'Central Los Santos Medical',   coords = vector3(356.1, -596.6, 28.8) },
+    { name = 'St. Fiacre Hospital',          coords = vector3(1839.6, 3672.9, 34.3) },
+    { name = 'Sandy Shores Medical Center',  coords = vector3(1839.6, 3672.9, 34.3) },
+    { name = 'Paleto Bay Medical Center',    coords = vector3(-247.8, 6331.5, 32.4) },
+}</code></pre>
+            </div>
+            <table class="config-table">
+                <thead><tr><th>Setting</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td>Config.Debug</td><td>boolean</td><td>false</td><td>Enable debug prints in server/client console</td></tr>
+                    <tr><td>Config.Locale</td><td>string</td><td>'en'</td><td>Language file to use from locales/ folder</td></tr>
+                    <tr><td>Config.UseTarget</td><td>boolean</td><td>true</td><td>Use ox_target for computer interaction</td></tr>
+                    <tr><td>Config.NUI.closeKey</td><td>string</td><td>'Escape'</td><td>Keyboard key to close the MDT UI</td></tr>
+                    <tr><td>Config.NUI.openVolume</td><td>number</td><td>0.3</td><td>Volume of the MDT open sound (0.0 - 1.0)</td></tr>
+                    <tr><td>Config.NUI.closeVolume</td><td>number</td><td>0.2</td><td>Volume of the MDT close sound</td></tr>
+                    <tr><td>Config.NUI.enableSounds</td><td>boolean</td><td>true</td><td>Toggle all NUI sounds on/off</td></tr>
+                    <tr><td>Config.NUI.maxSearchResults</td><td>number</td><td>50</td><td>Maximum results returned per search</td></tr>
+                    <tr><td>Config.UnitSystem.speed</td><td>string</td><td>'mph'</td><td>'mph' or 'kmh' for speed display</td></tr>
+                    <tr><td>Config.UnitSystem.distance</td><td>string</td><td>'mi'</td><td>'mi' or 'km' for distance display</td></tr>
+                    <tr><td>Config.Hospitals</td><td>table[]</td><td>6 entries</td><td>Hospital locations for auto-dispatch on player death</td></tr>
+                </tbody>
+            </table>
+
+            <!-- ===== config_factions.lua ===== -->
+            <h2 id="config-factions">config_factions.lua</h2>
+            <p>Defines all factions (agencies), their associated jobs, role hierarchy, module access, and per-role permissions.</p>
+            <div class="info-box info">
+                <i class="fas fa-info-circle"></i>
+                <div>See the <a href="permissions.html">Permissions</a> page for a detailed breakdown of factions, roles, and permission matrices.</div>
+            </div>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>shared/config/config_factions.lua</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                </div>
+                <pre><code>Config.Factions = {
+    {
+        id       = 'lspd',
+        label    = 'Los Santos Police Department',
+        agency   = 'LSPD',
+        jobs     = { 'police' },
+        modules  = {
+            'dashboard', 'dispatch', 'persons', 'vehicles',
+            'warrants', 'bolos', 'reports', 'citations',
+            'gangintel', 'messages', 'incidents', 'units'
+        },
+        roles = {
+            { id = 'PATROL',    label = 'Patrol',    grades = { 0, 1, 2, 3, 4, 5, 6 } },
+            { id = 'DETECTIVE', label = 'Detective', grades = { 7, 8, 9, 10, 11 } },
+            { id = 'COMMAND',   label = 'Command',   grades = { 12, 13, 14, 15 } },
+        },
+        permissions = {
+            PATROL = {
+                canSearch         = true,
+                canViewProfiles   = true,
+                canAddNotes       = true,
+                canCreateBolo     = true,
+                canCreateReport   = false,
+                canManageWarrants = false,
+                canFlagPerson     = false,
+                canFlagVehicle    = true,
+                canApproveReport  = false,
+                canManageGangs    = false,
+                canManageUnits    = false,
+                canViewAllCalls   = true,
+                canIssueCitations = true,
+                canSendMessages   = true,
+                canViewIncidents  = true,
+                canManageSMT      = false,
+            },
+            DETECTIVE = {
+                canSearch         = true,
+                canViewProfiles   = true,
+                canAddNotes       = true,
+                canCreateBolo     = true,
+                canCreateReport   = true,
+                canManageWarrants = true,
+                canFlagPerson     = true,
+                canFlagVehicle    = true,
+                canApproveReport  = false,
+                canManageGangs    = true,
+                canManageUnits    = false,
+                canViewAllCalls   = true,
+                canIssueCitations = true,
+                canSendMessages   = true,
+                canViewIncidents  = true,
+                canManageSMT      = true,
+            },
+            COMMAND = {
+                canSearch         = true,
+                canViewProfiles   = true,
+                canAddNotes       = true,
+                canCreateBolo     = true,
+                canCreateReport   = true,
+                canManageWarrants = true,
+                canFlagPerson     = true,
+                canFlagVehicle    = true,
+                canApproveReport  = true,
+                canManageGangs    = true,
+                canManageUnits    = true,
+                canViewAllCalls   = true,
+                canIssueCitations = true,
+                canSendMessages   = true,
+                canViewIncidents  = true,
+                canManageSMT      = true,
+            },
+        },
+    },
+    -- Additional factions: bcso, sasp, sasd, sahp, doc, safd
+    -- See full config file for complete list
+}</code></pre>
+            </div>
+            <h3>Available Factions (Default)</h3>
+            <table class="config-table">
+                <thead><tr><th>ID</th><th>Agency</th><th>Jobs</th><th>Modules</th></tr></thead>
+                <tbody>
+                    <tr><td>lspd</td><td>LSPD</td><td>police</td><td>All 12 modules</td></tr>
+                    <tr><td>bcso</td><td>BCSO</td><td>bcso</td><td>All 12 modules</td></tr>
+                    <tr><td>sasp</td><td>SASP</td><td>sasp</td><td>All 12 modules</td></tr>
+                    <tr><td>sasd</td><td>SASD</td><td>sasd</td><td>All 12 modules</td></tr>
+                    <tr><td>sahp</td><td>SAHP</td><td>sahp</td><td>All 12 modules</td></tr>
+                    <tr><td>doc</td><td>DOC</td><td>doc</td><td>dashboard, dispatch, persons, vehicles, bolos, messages, units</td></tr>
+                    <tr><td>safd</td><td>SAFD</td><td>ambulance</td><td>dashboard, dispatch, persons, vehicles, messages, units</td></tr>
+                </tbody>
+            </table>
+
+            <!-- ===== config_computers.lua ===== -->
+            <h2 id="config-computers">config_computers.lua</h2>
+            <p>Defines the physical computer locations in the world where officers can interact to open the MDT.</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>shared/config/config_computers.lua</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                </div>
+                <pre><code>Config.Computers = {
+    -- Each entry defines a computer location:
+    {
+        coords  = vector3(441.79, -982.05, 30.69),
+        heading = 356.0,
+        model   = 'prop_laptop_01a',   -- Prop model (optional)
+        radius  = 1.5,                 -- Interaction radius
+        jobs    = { 'police' },        -- Which jobs can use this computer
+        label   = 'LSPD MDT Terminal', -- Label shown on ox_target
+    },
+    -- Add more computer locations as needed
+}</code></pre>
+            </div>
+            <table class="config-table">
+                <thead><tr><th>Property</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td>coords</td><td>vector3</td><td>Yes</td><td>World position of the computer</td></tr>
+                    <tr><td>heading</td><td>number</td><td>No</td><td>Entity heading (rotation)</td></tr>
+                    <tr><td>model</td><td>string</td><td>No</td><td>Prop model name to spawn</td></tr>
+                    <tr><td>radius</td><td>number</td><td>No</td><td>Interaction radius (default: 1.5)</td></tr>
+                    <tr><td>jobs</td><td>table</td><td>Yes</td><td>Array of job names that can use this terminal</td></tr>
+                    <tr><td>label</td><td>string</td><td>No</td><td>Label shown on the target interaction</td></tr>
+                </tbody>
+            </table>
+
+            <!-- ===== config_dispatch.lua ===== -->
+            <h2 id="config-dispatch">config_dispatch.lua</h2>
+            <p>Dispatch codes, AI mode, sound settings, and blip configuration for the CAD/Dispatch system.</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>shared/config/config_dispatch.lua</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                </div>
+                <pre><code>Config.Dispatch = {
+    -- AI Dispatch Mode
+    aiDispatch = {
+        enabled = false,       -- Enable AI-generated dispatch calls
+        interval = 120,        -- Seconds between AI dispatch cycles
+        maxActiveCalls = 10,   -- Max concurrent AI calls
+    },
+
+    -- Sound Settings
+    sounds = {
+        newCall    = 'dispatch_new',     -- Sound for new call
+        priority   = 'dispatch_urgent',  -- Sound for priority calls
+        volume     = 0.5,               -- Sound volume (0.0 - 1.0)
+    },
+
+    -- Blip Settings
+    blips = {
+        enabled      = true,   -- Show dispatch blips on map
+        duration     = 60,     -- Blip duration in seconds (0 = permanent)
+        defaultColor = 1,      -- Default blip color (red)
+        defaultAlpha = 200,    -- Default blip alpha (0-255)
+    },
+
+    -- Dispatch Codes (30 codes)
+    codes = {
+        { code = '10-10',  label = 'Fight In Progress',         priority = 2, blip = 58  },
+        { code = '10-11',  label = 'Dog Case',                  priority = 1, blip = 442 },
+        { code = '10-13',  label = 'Officer Needs Assistance',  priority = 3, blip = 526 },
+        { code = '10-14',  label = 'Prowler Report',            priority = 1, blip = 58  },
+        { code = '10-15',  label = 'Civil Disturbance',         priority = 2, blip = 58  },
+        { code = '10-16',  label = 'Domestic Problem',          priority = 2, blip = 40  },
+        { code = '10-17',  label = 'Meet Complainant',          priority = 1, blip = 280 },
+        { code = '10-20',  label = 'Location',                  priority = 1, blip = 1   },
+        { code = '10-21',  label = 'Phone Call',                priority = 1, blip = 1   },
+        { code = '10-25',  label = 'Report To Location',        priority = 1, blip = 1   },
+        { code = '10-26',  label = 'Detaining Suspect',         priority = 2, blip = 58  },
+        { code = '10-29',  label = 'Check For Wanted',          priority = 2, blip = 58  },
+        { code = '10-31',  label = 'Crime In Progress',         priority = 3, blip = 58  },
+        { code = '10-32',  label = 'Person With Gun',           priority = 3, blip = 119 },
+        { code = '10-33',  label = 'Emergency',                 priority = 3, blip = 526 },
+        { code = '10-35',  label = 'Major Crime Alert',         priority = 3, blip = 58  },
+        { code = '10-40',  label = 'Silent Run',                priority = 2, blip = 1   },
+        { code = '10-47',  label = 'Emergency Road Repairs',    priority = 1, blip = 1   },
+        { code = '10-50',  label = 'Traffic Accident',          priority = 2, blip = 326 },
+        { code = '10-51',  label = 'Tow Truck Needed',          priority = 1, blip = 68  },
+        { code = '10-52',  label = 'Ambulance Needed',          priority = 3, blip = 153 },
+        { code = '10-53',  label = 'Road Blocked',              priority = 1, blip = 1   },
+        { code = '10-54',  label = 'Livestock On Highway',      priority = 1, blip = 1   },
+        { code = '10-55',  label = 'Intoxicated Driver',        priority = 2, blip = 326 },
+        { code = '10-56',  label = 'Intoxicated Pedestrian',    priority = 1, blip = 58  },
+        { code = '10-57',  label = 'Hit And Run',               priority = 2, blip = 326 },
+        { code = '10-80',  label = 'Pursuit In Progress',       priority = 3, blip = 326 },
+        { code = '10-90',  label = 'Bank Alarm',                priority = 3, blip = 500 },
+        { code = '10-99',  label = 'Officer Needs Help',        priority = 3, blip = 526 },
+        { code = '11-99',  label = 'Officer Down',              priority = 3, blip = 526 },
+    },
+}</code></pre>
+            </div>
+
+            <!-- ===== config_charges.lua ===== -->
+            <h2 id="config-charges">config_charges.lua</h2>
+            <p>Penal code definitions used in the Citations module. Organized into 8 categories with 73 total charges.</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>shared/config/config_charges.lua</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                </div>
+                <pre><code>Config.Charges = {
+    ['TITLE 1 - OFFENSES AGAINST PERSONS'] = {
+        { id = 101, title = 'Simple Assault',          type = 'Misdemeanor', fine = 500,   time = 5  },
+        { id = 102, title = 'Aggravated Assault',      type = 'Felony',      fine = 2500,  time = 15 },
+        { id = 103, title = 'Assault with Deadly Weapon', type = 'Felony',   fine = 5000,  time = 25 },
+        { id = 104, title = 'Battery',                 type = 'Misdemeanor', fine = 750,   time = 7  },
+        { id = 105, title = 'Domestic Battery',        type = 'Misdemeanor', fine = 1000,  time = 10 },
+        { id = 106, title = 'Manslaughter',            type = 'Felony',      fine = 10000, time = 40 },
+        { id = 107, title = 'Attempted Murder',        type = 'Felony',      fine = 15000, time = 50 },
+        { id = 108, title = 'First Degree Murder',     type = 'Felony',      fine = 25000, time = 75 },
+        { id = 109, title = 'Second Degree Murder',    type = 'Felony',      fine = 20000, time = 60 },
+        { id = 110, title = 'Kidnapping',              type = 'Felony',      fine = 7500,  time = 30 },
+        { id = 111, title = 'Hostage Taking',          type = 'Felony',      fine = 10000, time = 35 },
+        { id = 112, title = 'Unlawful Imprisonment',   type = 'Felony',      fine = 3000,  time = 15 },
+        { id = 113, title = 'Torture',                 type = 'Felony',      fine = 15000, time = 50 },
+        { id = 114, title = 'Criminal Threats',        type = 'Misdemeanor', fine = 750,   time = 5  },
+    },
+    ['TITLE 2 - OFFENSES AGAINST PROPERTY'] = {
+        { id = 201, title = 'Petty Theft',             type = 'Infraction',  fine = 250,   time = 0  },
+        -- ... (12 charges)
+    },
+    -- TITLE 3 through TITLE 8...
+    -- See full config for all 73 charges
+}</code></pre>
+            </div>
+            <h3>Charge Categories</h3>
+            <table class="config-table">
+                <thead><tr><th>Category</th><th>Count</th><th>Types</th></tr></thead>
+                <tbody>
+                    <tr><td>TITLE 1 - Offenses Against Persons</td><td>14</td><td>Misdemeanor, Felony</td></tr>
+                    <tr><td>TITLE 2 - Offenses Against Property</td><td>12</td><td>Infraction, Misdemeanor, Felony</td></tr>
+                    <tr><td>TITLE 3 - Offenses Against Public Order</td><td>8</td><td>Infraction, Misdemeanor, Felony</td></tr>
+                    <tr><td>TITLE 4 - Offenses Against Justice</td><td>9</td><td>Misdemeanor, Felony</td></tr>
+                    <tr><td>TITLE 5 - Traffic Offenses</td><td>10</td><td>Infraction, Misdemeanor, Felony</td></tr>
+                    <tr><td>TITLE 6 - Weapons Offenses</td><td>8</td><td>Misdemeanor, Felony</td></tr>
+                    <tr><td>TITLE 7 - Drug Offenses</td><td>7</td><td>Infraction, Misdemeanor, Felony</td></tr>
+                    <tr><td>TITLE 8 - Government Offenses</td><td>5</td><td>Misdemeanor, Felony</td></tr>
+                </tbody>
+            </table>
+            <h3>Charge Properties</h3>
+            <table class="config-table">
+                <thead><tr><th>Property</th><th>Type</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td>id</td><td>number</td><td>Unique charge identifier (e.g., 101, 201)</td></tr>
+                    <tr><td>title</td><td>string</td><td>Name of the charge</td></tr>
+                    <tr><td>type</td><td>string</td><td>'Infraction', 'Misdemeanor', or 'Felony'</td></tr>
+                    <tr><td>fine</td><td>number</td><td>Fine amount in dollars</td></tr>
+                    <tr><td>time</td><td>number</td><td>Jail time in months (0 = no jail)</td></tr>
+                </tbody>
+            </table>
+
+            <!-- ===== config_vehicles.lua ===== -->
+            <h2 id="config-vehicles">config_vehicles.lua</h2>
+            <p>Vehicle MDT settings including keybind, allowed jobs, and vehicle class names.</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>shared/config/config_vehicles.lua</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                </div>
+                <pre><code>Config.VehicleMDT = {
+    enabled  = true,
+    key      = 'F6',          -- Keybind for vehicle-mounted MDT
+    allowedJobs = {
+        'police', 'bcso', 'sasp', 'sasd', 'sahp'
+    },
+    vehicleClasses = {
+        [18] = 'Emergency',    -- Emergency vehicles
+        [15] = 'Helicopter',   -- Helicopters
+        [16] = 'Plane',        -- Planes
+        [19] = 'Military',     -- Military
+        [14] = 'Boat',         -- Boats
+    },
+}</code></pre>
+            </div>
+
+            <!-- ===== config_flags.lua ===== -->
+            <h2 id="config-flags">config_flags.lua</h2>
+            <p>Defines person flags that can be attached to citizen profiles. Officers use these to mark individuals with important warnings or statuses.</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>shared/config/config_flags.lua</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                </div>
+                <pre><code>Config.PersonFlags = {
+    { id = 'wanted',           label = 'Wanted',                color = '#ef4444' },
+    { id = 'armed_dangerous',  label = 'Armed & Dangerous',     color = '#dc2626' },
+    { id = 'flight_risk',      label = 'Flight Risk',           color = '#f97316' },
+    { id = 'mental_health',    label = 'Mental Health',         color = '#eab308' },
+    { id = 'gang_member',      label = 'Gang Member',           color = '#a855f7' },
+    { id = 'felon',            label = 'Felon',                 color = '#ec4899' },
+    { id = 'parole',           label = 'On Parole',             color = '#f59e0b' },
+    { id = 'probation',        label = 'On Probation',          color = '#f59e0b' },
+    { id = 'sex_offender',     label = 'Sex Offender',          color = '#dc2626' },
+    { id = 'informant',        label = 'Confidential Informant',color = '#3b82f6' },
+}</code></pre>
+            </div>
+            <table class="config-table">
+                <thead><tr><th>Property</th><th>Type</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td>id</td><td>string</td><td>Unique flag identifier (used in database)</td></tr>
+                    <tr><td>label</td><td>string</td><td>Display name shown in the MDT</td></tr>
+                    <tr><td>color</td><td>string</td><td>Hex color for the flag badge in the UI</td></tr>
+                </tbody>
+            </table>
+            <div class="info-box info">
+                <i class="fas fa-info-circle"></i>
+                <div>You can add custom flags by simply adding new entries to the table. The system handles them automatically.</div>
+            </div>
+
+            <!-- ===== config_warrants.lua ===== -->
+            <h2 id="config-warrants">config_warrants.lua</h2>
+            <p>Warrant type definitions and judge approval workflow settings.</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>shared/config/config_warrants.lua</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                </div>
+                <pre><code>Config.Warrants = {
+    requireJudgeApproval = true,  -- Require judge approval for warrants
+    judgeApprovalRoles = { 'COMMAND' }, -- Roles that can act as judge
+
+    types = {
+        { id = 'arrest',    label = 'Arrest Warrant',    icon = 'handcuffs',    requiresApproval = true  },
+        { id = 'search',    label = 'Search Warrant',    icon = 'magnifying-glass', requiresApproval = true },
+        { id = 'bench',     label = 'Bench Warrant',     icon = 'gavel',        requiresApproval = false },
+        { id = 'wiretap',   label = 'Wiretap Warrant',   icon = 'phone',        requiresApproval = true  },
+        { id = 'seizure',   label = 'Seizure Warrant',   icon = 'box-archive',  requiresApproval = true  },
+    },
+}</code></pre>
+            </div>
+            <table class="config-table">
+                <thead><tr><th>Setting</th><th>Type</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td>requireJudgeApproval</td><td>boolean</td><td>Global toggle for the judge approval system</td></tr>
+                    <tr><td>judgeApprovalRoles</td><td>table</td><td>Which roles can approve warrants (default: COMMAND)</td></tr>
+                    <tr><td>types[].id</td><td>string</td><td>Unique warrant type identifier</td></tr>
+                    <tr><td>types[].label</td><td>string</td><td>Display name of the warrant type</td></tr>
+                    <tr><td>types[].icon</td><td>string</td><td>Font Awesome icon name (without fa- prefix)</td></tr>
+                    <tr><td>types[].requiresApproval</td><td>boolean</td><td>Whether this type needs judge approval before becoming active</td></tr>
+                </tbody>
+            </table>
+
+            <div class="page-nav">
+                <a href="installation.html" class="page-nav-link prev"><i class="fas fa-arrow-left"></i> Installation</a>
+                <a href="permissions.html" class="page-nav-link next">Permissions <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <footer class="content-footer"><p>&copy; 2026 Aetech. All rights reserved.</p></footer>
+        </div>
+    </main>
+    <script src="../../assets/js/sidebar.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html>

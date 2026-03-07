@@ -1,4 +1,4 @@
-// ===== Sidebar Navigation Data =====
+﻿// ===== Sidebar Navigation Data =====
 // To add a new script, just add a new entry to SCRIPTS array
 const NAV_LINKS = [
     { label: 'Home', icon: 'fa-home', href: '/index.html' },
@@ -36,6 +36,19 @@ const SCRIPTS = [
             { label: 'Installation', href: '/pages/epsilon-garage/kurulum.html' },
             { label: 'Configuration', href: '/pages/epsilon-garage/config.html' },
             { label: 'API / Exports', href: '/pages/epsilon-garage/api.html' },
+        ]
+    },
+    {
+        name: 'Aetix Computer',
+        icon: 'fa-laptop-code',
+        items: [
+            { label: 'Overview', href: '/pages/aetix-computer/index.html' },
+            { label: 'Installation', href: '/pages/aetix-computer/installation.html' },
+            { label: 'Configuration', href: '/pages/aetix-computer/configuration.html' },
+            { label: 'Permissions', href: '/pages/aetix-computer/permissions.html' },
+            { label: 'Modules', href: '/pages/aetix-computer/modules.html' },
+            { label: 'Bridge / API', href: '/pages/aetix-computer/bridge.html' },
+            { label: 'Database', href: '/pages/aetix-computer/database.html' },
         ]
     }
 ];

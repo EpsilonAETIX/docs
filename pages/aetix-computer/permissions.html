@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aetix Computer - Permissions</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="mobile-header">
+        <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+        <span class="mobile-title">Aetech</span>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="main-content">
+        <div class="content-wrapper doc-content">
+            <div class="breadcrumb">
+                <a href="../../index.html">Home</a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <a href="index.html">Aetix Computer</a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <span>Permissions</span>
+            </div>
+            <h1>Permissions</h1>
+            <p class="doc-description">Aetix Computer uses a faction &rarr; role &rarr; permission hierarchy. Each faction defines its own roles and maps QBX job grades to those roles.</p>
+
+            <h2 id="how-it-works">How It Works</h2>
+            <ol>
+                <li><strong>Faction</strong> &mdash; A group of jobs that share the same MDT (e.g., LSPD). Defined in <code>config_factions.lua</code>.</li>
+                <li><strong>Role</strong> &mdash; A rank tier within a faction (PATROL, DETECTIVE, COMMAND). Each role maps to specific QBX job grades.</li>
+                <li><strong>Permission</strong> &mdash; A boolean flag (e.g., <code>canCreateReport</code>) that controls access to specific features.</li>
+            </ol>
+            <div class="info-box info">
+                <i class="fas fa-info-circle"></i>
+                <div>When a player opens the MDT, the system checks their QBX job + grade, finds the matching faction and role, then loads the permission set for that role.</div>
+            </div>
+
+            <h2 id="role-hierarchy">Role Hierarchy</h2>
+            <p>The default configuration uses a 3-tier role system for law enforcement factions:</p>
+            <table class="config-table">
+                <thead><tr><th>Role</th><th>Grades (Default)</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>PATROL</strong></td><td>0 - 6</td><td>Base-level officers. Can search, view profiles, issue citations, and create BOLOs. Cannot write reports, manage warrants, or flag persons.</td></tr>
+                    <tr><td><strong>DETECTIVE</strong></td><td>7 - 11</td><td>Investigative officers. Full search and write access. Can manage warrants, flag persons, create reports, manage gang intel and SMT. Cannot approve reports or manage units.</td></tr>
+                    <tr><td><strong>COMMAND</strong></td><td>12 - 15</td><td>Command staff. Full access to all features including report approval, unit management, and all administrative functions.</td></tr>
+                </tbody>
+            </table>
+
+            <h2 id="permissions-matrix">Permissions Matrix (Law Enforcement)</h2>
+            <p>The following table shows the default permission set for LSPD/BCSO/SASP/SASD/SAHP factions:</p>
+            <div style="overflow-x: auto;">
+            <table class="config-table">
+                <thead>
+                    <tr>
+                        <th>Permission</th>
+                        <th>PATROL</th>
+                        <th>DETECTIVE</th>
+                        <th>COMMAND</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>canSearch</td><td style="color:#22c55e;">&#10003;</td><td style="color:#22c55e;">&#10003;</td><td style="color:#22c55e;">&#10003;</td><td>Search persons, vehicles, warrants</td></tr>
+                    <tr><td>canViewProfiles</td><td style="color:#22c55e;">&#10003;</td><td style="color:#22c55e;">&#10003;</td><td style="color:#22c55e;">&#10003;</td><td>View person/vehicle detail profiles</td></tr>
+                    <tr><td>canAddNotes</td><td style="color:#22c55e;">&#10003;</td><td style="color:#22c55e;">&#10003;</td><td style="color:#22c55e;">&#10003;</td><td>Add notes to person profiles</td></tr>
+                    <tr><td>canCreateBolo</td><td style="color:#22c55e;">&#10003;</td><td style="color:#22c55e;">&#10003;</td><td style="color:#22c55e;">&#10003;</td><td>Create new BOLOs</td></tr>
+                    <tr><td>canCreateReport</td><td style="color:#ef4444;">&#10007;</td><td style="color:#22c55e;">&#10003;</td><td style="color:#22c55e;">&#10003;</td><td>Write incident/arrest reports</td></tr>
+                    <tr><td>canManageWarrants</td><td style="color:#ef4444;">&#10007;</td><td style="color:#22c55e;">&#10003;</td><td style="color:#22c55e;">&#10003;</td><td>Create, serve, and cancel warrants</td></tr>
+                    <tr><td>canFlagPerson</td><td style="color:#ef4444;">&#10007;</td><td style="color:#22c55e;">&#10003;</td><td style="color:#22c55e;">&#10003;</td><td>Add/remove flags on person profiles</td></tr>
+                    <tr><td>canFlagVehicle</td><td style="color:#22c55e;">&#10003;</td><td style="color:#22c55e;">&#10003;</td><td style="color:#22c55e;">&#10003;</td><td>Flag vehicles as stolen/BOLO</td></tr>
+                    <tr><td>canApproveReport</td><td style="color:#ef4444;">&#10007;</td><td style="color:#ef4444;">&#10007;</td><td style="color:#22c55e;">&#10003;</td><td>Approve/reject submitted reports</td></tr>
+                    <tr><td>canManageGangs</td><td style="color:#ef4444;">&#10007;</td><td style="color:#22c55e;">&#10003;</td><td style="color:#22c55e;">&#10003;</td><td>Manage gang intel profiles</td></tr>
+                    <tr><td>canManageUnits</td><td style="color:#ef4444;">&#10007;</td><td style="color:#ef4444;">&#10007;</td><td style="color:#22c55e;">&#10003;</td><td>Manage dispatch units</td></tr>
+                    <tr><td>canViewAllCalls</td><td style="color:#22c55e;">&#10003;</td><td style="color:#22c55e;">&#10003;</td><td style="color:#22c55e;">&#10003;</td><td>View all dispatch calls</td></tr>
+                    <tr><td>canIssueCitations</td><td style="color:#22c55e;">&#10003;</td><td style="color:#22c55e;">&#10003;</td><td style="color:#22c55e;">&#10003;</td><td>Issue citations using penal codes</td></tr>
+                    <tr><td>canSendMessages</td><td style="color:#22c55e;">&#10003;</td><td style="color:#22c55e;">&#10003;</td><td style="color:#22c55e;">&#10003;</td><td>Send real-time messages</td></tr>
+                    <tr><td>canViewIncidents</td><td style="color:#22c55e;">&#10003;</td><td style="color:#22c55e;">&#10003;</td><td style="color:#22c55e;">&#10003;</td><td>View incident history archive</td></tr>
+                    <tr><td>canManageSMT</td><td style="color:#ef4444;">&#10007;</td><td style="color:#22c55e;">&#10003;</td><td style="color:#22c55e;">&#10003;</td><td>Manage SMT (Supervised Management Team) data</td></tr>
+                </tbody>
+            </table>
+            </div>
+
+            <h2 id="special-factions">Special Factions</h2>
+            <p>DOC and SAFD have reduced module access compared to law enforcement:</p>
+
+            <h3>DOC (Department of Corrections)</h3>
+            <table class="config-table">
+                <thead><tr><th>Property</th><th>Value</th></tr></thead>
+                <tbody>
+                    <tr><td>Job</td><td>doc</td></tr>
+                    <tr><td>Modules</td><td>dashboard, dispatch, persons, vehicles, bolos, messages, units</td></tr>
+                    <tr><td>Missing Modules</td><td>warrants, reports, citations, gangintel, incidents</td></tr>
+                </tbody>
+            </table>
+
+            <h3>SAFD (San Andreas Fire Department)</h3>
+            <table class="config-table">
+                <thead><tr><th>Property</th><th>Value</th></tr></thead>
+                <tbody>
+                    <tr><td>Job</td><td>ambulance</td></tr>
+                    <tr><td>Modules</td><td>dashboard, dispatch, persons, vehicles, messages, units</td></tr>
+                    <tr><td>Missing Modules</td><td>warrants, bolos, reports, citations, gangintel, incidents</td></tr>
+                </tbody>
+            </table>
+
+            <h2 id="custom-faction">Adding a Custom Faction</h2>
+            <p>To add a new faction, add a new entry to <code>Config.Factions</code> in <code>config_factions.lua</code>:</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>Example: Custom Security Faction</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                </div>
+                <pre><code>{
+    id       = 'security',
+    label    = 'Private Security',
+    agency   = 'SEC',
+    jobs     = { 'security', 'bodyguard' },
+    modules  = { 'dashboard', 'dispatch', 'persons', 'vehicles', 'messages', 'units' },
+    roles = {
+        { id = 'GUARD',      label = 'Guard',      grades = { 0, 1, 2 } },
+        { id = 'SUPERVISOR', label = 'Supervisor',  grades = { 3, 4, 5 } },
+    },
+    permissions = {
+        GUARD = {
+            canSearch = true, canViewProfiles = true, canAddNotes = false,
+            canCreateBolo = false, canCreateReport = false, canManageWarrants = false,
+            canFlagPerson = false, canFlagVehicle = false, canApproveReport = false,
+            canManageGangs = false, canManageUnits = false, canViewAllCalls = true,
+            canIssueCitations = false, canSendMessages = true, canViewIncidents = false,
+            canManageSMT = false,
+        },
+        SUPERVISOR = {
+            canSearch = true, canViewProfiles = true, canAddNotes = true,
+            canCreateBolo = false, canCreateReport = false, canManageWarrants = false,
+            canFlagPerson = false, canFlagVehicle = false, canApproveReport = false,
+            canManageGangs = false, canManageUnits = true, canViewAllCalls = true,
+            canIssueCitations = false, canSendMessages = true, canViewIncidents = false,
+            canManageSMT = false,
+        },
+    },
+}</code></pre>
+            </div>
+
+            <div class="page-nav">
+                <a href="configuration.html" class="page-nav-link prev"><i class="fas fa-arrow-left"></i> Configuration</a>
+                <a href="modules.html" class="page-nav-link next">Modules <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <footer class="content-footer"><p>&copy; 2026 Aetech. All rights reserved.</p></footer>
+        </div>
+    </main>
+    <script src="../../assets/js/sidebar.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html>

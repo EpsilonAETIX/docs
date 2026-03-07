@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aetix Computer - Modules</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="mobile-header">
+        <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+        <span class="mobile-title">Aetech</span>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="main-content">
+        <div class="content-wrapper doc-content">
+            <div class="breadcrumb">
+                <a href="../../index.html">Home</a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <a href="index.html">Aetix Computer</a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <span>Modules</span>
+            </div>
+            <h1>Modules</h1>
+            <p class="doc-description">Aetix Computer consists of 12 modular components. Each module can be enabled or disabled per faction via <code>config_factions.lua</code>.</p>
+
+            <div class="info-box info">
+                <i class="fas fa-list"></i>
+                <div>
+                    <strong>Quick Navigation</strong><br>
+                    <a href="#dashboard">Dashboard</a> &bull;
+                    <a href="#dispatch">Dispatch / CAD</a> &bull;
+                    <a href="#persons">Persons</a> &bull;
+                    <a href="#vehicles">Vehicles</a> &bull;
+                    <a href="#warrants">Warrants</a> &bull;
+                    <a href="#bolos">BOLOs</a> &bull;
+                    <a href="#reports">Reports</a> &bull;
+                    <a href="#citations">Citations</a> &bull;
+                    <a href="#gangintel">Gang Intel</a> &bull;
+                    <a href="#messages">Messages</a> &bull;
+                    <a href="#incidents">Incident History</a> &bull;
+                    <a href="#units">Units</a>
+                </div>
+            </div>
+
+            <!-- DASHBOARD -->
+            <h2 id="dashboard"><i class="fas fa-gauge-high"></i> Dashboard</h2>
+            <p>The main landing page when opening the MDT. Provides an at-a-glance overview of current activity.</p>
+            <ul>
+                <li>Active dispatch calls count and recent calls list</li>
+                <li>Active warrants summary</li>
+                <li>Active BOLOs summary</li>
+                <li>Online units count per faction</li>
+                <li>Quick-access buttons to frequently used modules</li>
+                <li>Officer information (name, callsign, badge, faction, role)</li>
+            </ul>
+
+            <!-- DISPATCH -->
+            <h2 id="dispatch"><i class="fas fa-radio"></i> Dispatch / CAD</h2>
+            <p>Real-time Computer Aided Dispatch system for managing calls and unit assignments.</p>
+            <h3>Features</h3>
+            <ul>
+                <li><strong>Call Management</strong> &mdash; Create, update, and close dispatch calls with 10-codes, priority levels, and location data</li>
+                <li><strong>Status Workflow</strong> &mdash; Calls progress through: <code>PENDING</code> &rarr; <code>ACTIVE</code> &rarr; <code>CLOSED</code></li>
+                <li><strong>Unit Assignment</strong> &mdash; Assign/unassign officers to calls. Track who is responding</li>
+                <li><strong>Notes &amp; Timeline</strong> &mdash; Add notes to calls. Timeline auto-tracks: call created, units assigned/unassigned, status changes, notes added</li>
+                <li><strong>Location System</strong> &mdash; Automatic street name + area resolution via bridge system. GPS coordinates with map blips</li>
+                <li><strong>Real-time Updates</strong> &mdash; All changes sync instantly across all connected MDT clients</li>
+                <li><strong>30 Dispatch Codes</strong> &mdash; Pre-configured 10-codes with priority levels and map blip IDs (configurable)</li>
+                <li><strong>Map Blips</strong> &mdash; Configurable duration, color, and alpha for dispatch blips on the minimap</li>
+            </ul>
+            <div class="info-box info">
+                <i class="fas fa-info-circle"></i>
+                <div>Dispatch calls can also be created programmatically via the bridge system. See <a href="bridge.html">Bridge / API</a> for details.</div>
+            </div>
+
+            <!-- PERSONS -->
+            <h2 id="persons"><i class="fas fa-user"></i> Persons</h2>
+            <p>Search and view detailed profiles for all citizens (players) in the database.</p>
+            <h3>Features</h3>
+            <ul>
+                <li><strong>Search</strong> &mdash; Search by name, state ID, or date of birth</li>
+                <li><strong>Profile View</strong> &mdash; Full citizen profile with: name, DOB, gender, phone number, mugshot, physical description</li>
+                <li><strong>Flags</strong> &mdash; Attach/remove person flags (Wanted, Armed &amp; Dangerous, Gang Member, etc.). 10 built-in flags, fully customizable</li>
+                <li><strong>Notes</strong> &mdash; Add officer notes to person profiles with timestamps and author tracking</li>
+                <li><strong>SMT (Supervised Management Team)</strong> &mdash; Track individuals under supervision (parole, probation). Manage conditions and check-ins</li>
+                <li><strong>Linked Records</strong> &mdash; View all warrants, BOLOs, citations, and reports linked to this person</li>
+                <li><strong>Physical Description</strong> &mdash; Customizable via the bridge system (hair, tattoos, clothing, etc.)</li>
+            </ul>
+
+            <!-- VEHICLES -->
+            <h2 id="vehicles"><i class="fas fa-car"></i> Vehicles</h2>
+            <p>Search and manage vehicle records with flag and ALPR integration.</p>
+            <h3>Features</h3>
+            <ul>
+                <li><strong>Search</strong> &mdash; Search by plate number, owner name, or vehicle model</li>
+                <li><strong>Vehicle Profile</strong> &mdash; Full details: plate, model, color, class, owner information</li>
+                <li><strong>Vehicle Flags</strong> &mdash; Mark vehicles as Stolen, BOLO, Wanted, or custom flags</li>
+                <li><strong>Stolen Vehicle Management</strong> &mdash; Flag/clear stolen status. Stolen vehicles appear in dispatch notifications</li>
+                <li><strong>Owner Lookup</strong> &mdash; Click-through to owner's person profile</li>
+                <li><strong>ALPR / Radar Integration</strong> &mdash; wk_wars2x bridge automatically checks scanned plates against vehicle flags and active BOLOs. See <a href="bridge.html#radar">Bridge / Radar</a></li>
+            </ul>
+            <div class="info-box warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div>Vehicle MDT (in-vehicle access via F6) is only available to jobs listed in <code>Config.VehicleMDT.allowedJobs</code>.</div>
+            </div>
+
+            <!-- WARRANTS -->
+            <h2 id="warrants"><i class="fas fa-gavel"></i> Warrants</h2>
+            <p>Create and manage warrants with an optional judge approval workflow.</p>
+            <h3>Features</h3>
+            <ul>
+                <li><strong>5 Warrant Types</strong> &mdash; Arrest, Search, Bench, Wiretap, Seizure (configurable)</li>
+                <li><strong>Judge Approval</strong> &mdash; Warrants can require COMMAND-level approval before becoming active</li>
+                <li><strong>Status Workflow</strong> &mdash; <code>PENDING</code> &rarr; <code>APPROVED</code> &rarr; <code>ACTIVE</code> &rarr; <code>SERVED</code> / <code>CANCELLED</code></li>
+                <li><strong>Serve &amp; Cancel</strong> &mdash; Officers can mark warrants as served or cancel them with a reason</li>
+                <li><strong>Person Linked</strong> &mdash; Warrants are linked to person profiles via citizen ID</li>
+                <li><strong>Search &amp; Filter</strong> &mdash; Filter warrants by type, status, person name</li>
+            </ul>
+            <table class="config-table">
+                <thead><tr><th>Type</th><th>Requires Approval</th><th>Icon</th></tr></thead>
+                <tbody>
+                    <tr><td>Arrest Warrant</td><td>Yes</td><td><i class="fas fa-handcuffs"></i> handcuffs</td></tr>
+                    <tr><td>Search Warrant</td><td>Yes</td><td><i class="fas fa-magnifying-glass"></i> magnifying-glass</td></tr>
+                    <tr><td>Bench Warrant</td><td>No</td><td><i class="fas fa-gavel"></i> gavel</td></tr>
+                    <tr><td>Wiretap Warrant</td><td>Yes</td><td><i class="fas fa-phone"></i> phone</td></tr>
+                    <tr><td>Seizure Warrant</td><td>Yes</td><td><i class="fas fa-box-archive"></i> box-archive</td></tr>
+                </tbody>
+            </table>
+
+            <!-- BOLOS -->
+            <h2 id="bolos"><i class="fas fa-bullhorn"></i> BOLOs</h2>
+            <p>Be On the Lookout bulletins for persons, vehicles, or general alerts.</p>
+            <h3>Features</h3>
+            <ul>
+                <li><strong>Create BOLOs</strong> &mdash; Title, description, person info, vehicle plate/model/color</li>
+                <li><strong>Vehicle Plate BOLOs</strong> &mdash; When a BOLO includes a plate number, it integrates with the ALPR/radar system</li>
+                <li><strong>Auto-expire</strong> &mdash; BOLOs can have an expiration time</li>
+                <li><strong>Broadcast</strong> &mdash; New BOLOs are broadcast to all connected MDT clients in real-time</li>
+                <li><strong>Active/Expired Filtering</strong> &mdash; Filter view by active or expired BOLOs</li>
+            </ul>
+
+            <!-- REPORTS -->
+            <h2 id="reports"><i class="fas fa-file-lines"></i> Reports</h2>
+            <p>Comprehensive report writing system with 5 report types and an approval workflow.</p>
+            <h3>Features</h3>
+            <ul>
+                <li><strong>5 Report Types</strong> &mdash; Incident Report, Arrest Report, Use of Force, Traffic Collision, Field Interview</li>
+                <li><strong>Rich Text Editor</strong> &mdash; Full narrative editor for report body</li>
+                <li><strong>Linked Calls</strong> &mdash; Link reports to dispatch calls by selecting from active/recent calls</li>
+                <li><strong>Incident ID Linking</strong> &mdash; Each report can be linked to an incident ID for cross-referencing</li>
+                <li><strong>Approval Workflow</strong> &mdash; Reports go through: <code>DRAFT</code> &rarr; <code>SUBMITTED</code> &rarr; <code>APPROVED</code> / <code>REJECTED</code></li>
+                <li><strong>Command Approval</strong> &mdash; Only COMMAND-level officers can approve or reject reports</li>
+                <li><strong>Officer Attribution</strong> &mdash; Author, editor, and approver are all tracked</li>
+            </ul>
+
+            <!-- CITATIONS -->
+            <h2 id="citations"><i class="fas fa-ticket"></i> Citations</h2>
+            <p>Issue citations (tickets) using the penal code system.</p>
+            <h3>Features</h3>
+            <ul>
+                <li><strong>Penal Code Lookup</strong> &mdash; Search 73 charges across 8 categories</li>
+                <li><strong>Charge Selection</strong> &mdash; Select one or multiple charges per citation</li>
+                <li><strong>Auto-calculated Fines</strong> &mdash; Total fine amount calculated from selected charges</li>
+                <li><strong>Jail Time</strong> &mdash; Jail time (months) calculated from charge values</li>
+                <li><strong>Person Linked</strong> &mdash; Citations are linked to the offender's person profile</li>
+                <li><strong>Citation History</strong> &mdash; View all past citations for a person</li>
+            </ul>
+
+            <!-- GANG INTEL -->
+            <h2 id="gangintel"><i class="fas fa-users-line"></i> Gang Intel</h2>
+            <p>Gang intelligence database for tracking gang organizations and their members.</p>
+            <h3>Features</h3>
+            <ul>
+                <li><strong>Gang Profiles</strong> &mdash; Name, description, territory, threat level</li>
+                <li><strong>Member Management</strong> &mdash; Add/remove persons as gang members with rank info</li>
+                <li><strong>Activity Log</strong> &mdash; Track gang-related incidents and activity</li>
+                <li><strong>Linked Persons</strong> &mdash; Cross-reference with person profiles (auto-applies <code>gang_member</code> flag)</li>
+            </ul>
+
+            <!-- MESSAGES -->
+            <h2 id="messages"><i class="fas fa-envelope"></i> Messages</h2>
+            <p>Real-time internal messaging system between officers within the MDT.</p>
+            <h3>Features</h3>
+            <ul>
+                <li><strong>Real-time Chat</strong> &mdash; Instant messaging between online officers</li>
+                <li><strong>Faction-wide</strong> &mdash; Messages are scoped to your faction</li>
+                <li><strong>Message History</strong> &mdash; Persistent message history stored in database</li>
+                <li><strong>Timestamps</strong> &mdash; All messages include sender name, badge, and timestamp</li>
+                <li><strong>Live Updates</strong> &mdash; New messages appear instantly without refresh</li>
+            </ul>
+
+            <!-- INCIDENT HISTORY -->
+            <h2 id="incidents"><i class="fas fa-clock-rotate-left"></i> Incident History</h2>
+            <p>Archive of all closed dispatch calls with filtering and search capabilities.</p>
+            <h3>Features</h3>
+            <ul>
+                <li><strong>Call Archive</strong> &mdash; All closed calls are automatically archived</li>
+                <li><strong>Search &amp; Filter</strong> &mdash; Filter by date range, dispatch code, priority, keyword</li>
+                <li><strong>Full Timeline</strong> &mdash; View the complete timeline of events for any archived call</li>
+                <li><strong>Linked Reports</strong> &mdash; See all reports linked to an incident</li>
+                <li><strong>Read-only Access</strong> &mdash; Historical data cannot be modified</li>
+            </ul>
+
+            <!-- UNITS -->
+            <h2 id="units"><i class="fas fa-shield-halved"></i> Units</h2>
+            <p>Manage on-duty units and their status for dispatch coordination.</p>
+            <h3>Features</h3>
+            <ul>
+                <li><strong>Unit List</strong> &mdash; View all online units across your faction</li>
+                <li><strong>Status Tracking</strong> &mdash; Officers can set status: Available, Busy, En Route, On Scene, Off Duty</li>
+                <li><strong>Callsign System</strong> &mdash; Predefined callsigns or dynamic callsign generation</li>
+                <li><strong>Unit Management</strong> &mdash; COMMAND-level officers can manage unit assignments</li>
+                <li><strong>Dispatch Integration</strong> &mdash; Units can be assigned to calls directly from the dispatch module</li>
+            </ul>
+
+            <div class="page-nav">
+                <a href="permissions.html" class="page-nav-link prev"><i class="fas fa-arrow-left"></i> Permissions</a>
+                <a href="bridge.html" class="page-nav-link next">Bridge / API <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <footer class="content-footer"><p>&copy; 2026 Aetech. All rights reserved.</p></footer>
+        </div>
+    </main>
+    <script src="../../assets/js/sidebar.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html>

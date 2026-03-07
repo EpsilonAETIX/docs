@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aetix Computer - Overview</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="mobile-header">
+        <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+        <span class="mobile-title">Aetech</span>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <main class="main-content">
+        <div class="content-wrapper doc-content">
+            <div class="breadcrumb">
+                <a href="../../index.html">Home</a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <span>Aetix Computer</span>
+            </div>
+
+            <h1>Aetix Computer</h1>
+            <p class="doc-description">A multi-faction computer & MDT system for FiveM. Desktop OS experience for station computers, in-vehicle MDT for patrol units. Built on QBX with React, ox_lib, and oxmysql.</p>
+
+            <div class="info-box info">
+                <i class="fas fa-info-circle"></i>
+                <div>
+                    <strong>Version:</strong> 0.1-beta &nbsp;|&nbsp;
+                    <strong>Framework:</strong> QBX (Qbox) &nbsp;|&nbsp;
+                    <strong>UI:</strong> React + Vite &nbsp;|&nbsp;
+                    <strong>Price:</strong> Premium
+                </div>
+            </div>
+
+            <h2 id="features">Features</h2>
+            <ul>
+                <li><strong>Multi-faction support</strong> &mdash; LSPD, LSSD, SAHP, LSFD, SADCR, DOJ with per-faction module access</li>
+                <li><strong>Dual interface</strong> &mdash; Full desktop OS at station computers, streamlined MDT in vehicles</li>
+                <li><strong>CAD / Dispatch</strong> &mdash; Real-time 911 call management, unit tracking, status codes, notes, timeline</li>
+                <li><strong>Person lookup</strong> &mdash; Citizen search, flags (Armed & Dangerous, Warrant, etc.), notes, field interviews, SMT records</li>
+                <li><strong>Vehicle lookup</strong> &mdash; Plate search, stolen/BOLO/wanted flags, registration, insurance, ALPR integration</li>
+                <li><strong>Warrants</strong> &mdash; Arrest, Search, Bench, FISA, EPO with optional judge approval workflow</li>
+                <li><strong>BOLOs</strong> &mdash; Person & vehicle BOLOs with auto-expiration and real-time broadcast</li>
+                <li><strong>Reports</strong> &mdash; Incident, Arrest, Traffic, Investigative, Supplemental with linked charges, subjects, and 911 call association</li>
+                <li><strong>Citations</strong> &mdash; Traffic citations with penal code lookup, fine/points calculation</li>
+                <li><strong>Gang Intelligence</strong> &mdash; Gang profiles, member tracking, territory mapping, activity log</li>
+                <li><strong>Messaging</strong> &mdash; Real-time inter-officer CAD chat with desktop/vehicle source indicators</li>
+                <li><strong>Incident History</strong> &mdash; Advanced filtering, cleared call archive with detail panels</li>
+                <li><strong>Unit System</strong> &mdash; Predefined LAPD-style units (1-Adam-12) with claim/release, or callsign-based auto-register</li>
+                <li><strong>Radar / ALPR Bridge</strong> &mdash; wk_wars2x integration for automatic plate scanning against vehicle flags and BOLOs</li>
+                <li><strong>Audit Log</strong> &mdash; Comprehensive audit trail for all MDT actions</li>
+                <li><strong>Bridge Architecture</strong> &mdash; Open-source bridge layer for easy framework/radar customization</li>
+            </ul>
+
+            <h2 id="dependencies">Dependencies</h2>
+            <table>
+                <thead>
+                    <tr><th>Resource</th><th>Required</th><th>Description</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>qbx_core</code></td><td>Yes</td><td>Qbox Core framework</td></tr>
+                    <tr><td><code>ox_lib</code></td><td>Yes</td><td>Overextended library (callbacks, notifications, locale)</td></tr>
+                    <tr><td><code>ox_target</code></td><td>Yes</td><td>Targeting system for computer interaction</td></tr>
+                    <tr><td><code>oxmysql</code></td><td>Yes</td><td>MySQL database driver</td></tr>
+                    <tr><td><code>wk_wars2x</code></td><td>Optional</td><td>Wraith ARS 2X radar/plate reader for ALPR integration</td></tr>
+                </tbody>
+            </table>
+
+            <h2 id="architecture">Architecture</h2>
+            <div class="info-box warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div><strong>Bridge = Open Source:</strong> When purchased, only the <code>bridge/</code> folder is unobfuscated. This allows you to customize framework integrations, radar systems, and data providers without modifying core code.</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Layer</th><th>Technology</th><th>Location</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Frontend (NUI)</td><td>React + Vite + styled-components</td><td><code>web/</code></td></tr>
+                    <tr><td>Client Scripts</td><td>Lua 5.4 (FiveM)</td><td><code>client/</code></td></tr>
+                    <tr><td>Server Scripts</td><td>Lua 5.4 (FiveM)</td><td><code>server/</code></td></tr>
+                    <tr><td>Bridge Layer</td><td>Lua 5.4 (open-source)</td><td><code>bridge/</code></td></tr>
+                    <tr><td>Shared Config</td><td>Lua 5.4</td><td><code>shared/config/</code></td></tr>
+                    <tr><td>Database</td><td>MySQL (oxmysql)</td><td><code>aetix_computer.sql</code></td></tr>
+                </tbody>
+            </table>
+
+            <h2 id="pages">Documentation Pages</h2>
+            <div class="scripts-grid">
+                <a href="installation.html" class="script-card">
+                    <div class="script-icon"><i class="fas fa-download"></i></div>
+                    <div class="script-info">
+                        <h3>Installation</h3>
+                        <p>Step-by-step setup guide, SQL import, server.cfg, and frontend build.</p>
+                    </div>
+                    <i class="fas fa-chevron-right script-arrow"></i>
+                </a>
+                <a href="configuration.html" class="script-card">
+                    <div class="script-icon"><i class="fas fa-sliders-h"></i></div>
+                    <div class="script-info">
+                        <h3>Configuration</h3>
+                        <p>All config files explained &mdash; factions, dispatch, warrants, flags, vehicles, charges.</p>
+                    </div>
+                    <i class="fas fa-chevron-right script-arrow"></i>
+                </a>
+                <a href="permissions.html" class="script-card">
+                    <div class="script-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="script-info">
+                        <h3>Factions & Permissions</h3>
+                        <p>Job mappings, role hierarchy, per-action permission matrix.</p>
+                    </div>
+                    <i class="fas fa-chevron-right script-arrow"></i>
+                </a>
+                <a href="modules.html" class="script-card">
+                    <div class="script-icon"><i class="fas fa-layer-group"></i></div>
+                    <div class="script-info">
+                        <h3>Modules</h3>
+                        <p>CAD, Persons, Vehicles, Warrants, BOLOs, Reports, Citations, Gangs, Messages.</p>
+                    </div>
+                    <i class="fas fa-chevron-right script-arrow"></i>
+                </a>
+                <a href="bridge.html" class="script-card">
+                    <div class="script-icon"><i class="fas fa-plug"></i></div>
+                    <div class="script-info">
+                        <h3>Bridge / API</h3>
+                        <p>Bridge architecture, radar integration, overridable functions, exports.</p>
+                    </div>
+                    <i class="fas fa-chevron-right script-arrow"></i>
+                </a>
+                <a href="database.html" class="script-card">
+                    <div class="script-icon"><i class="fas fa-database"></i></div>
+                    <div class="script-info">
+                        <h3>Database Schema</h3>
+                        <p>All 18 tables, columns, indexes, and relationships.</p>
+                    </div>
+                    <i class="fas fa-chevron-right script-arrow"></i>
+                </a>
+            </div>
+
+            <footer class="content-footer">
+                <p>&copy; 2026 Aetech. All rights reserved.</p>
+            </footer>
+        </div>
+    </main>
+    <script src="../../assets/js/sidebar.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html>

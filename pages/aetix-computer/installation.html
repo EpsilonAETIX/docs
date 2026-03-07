@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aetix Computer - Installation</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="mobile-header">
+        <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+        <span class="mobile-title">Aetech</span>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="main-content">
+        <div class="content-wrapper doc-content">
+            <div class="breadcrumb">
+                <a href="../../index.html">Home</a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <a href="index.html">Aetix Computer</a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <span>Installation</span>
+            </div>
+            <h1>Installation</h1>
+            <p class="doc-description">Follow these steps to install Aetix Computer on your FiveM server.</p>
+            <h2 id="requirements">Requirements</h2>
+            <ul>
+                <li><strong>FiveM Server</strong> &mdash; Latest artifact (7000+)</li>
+                <li><strong>Framework</strong> &mdash; QBX (Qbox Core)</li>
+                <li><strong>ox_lib</strong> &mdash; Latest version</li>
+                <li><strong>ox_target</strong> &mdash; Latest version</li>
+                <li><strong>oxmysql</strong> &mdash; Latest version</li>
+                <li><strong>Node.js</strong> &mdash; v18+ (only if you need to rebuild the frontend)</li>
+            </ul>
+            <h2 id="step1">Step 1: Download &amp; Extract</h2>
+            <ol>
+                <li>Download the latest release from Tebex or GitHub</li>
+                <li>Extract the <code>aetix_computer</code> folder into your <code>resources/[aetix]</code> directory</li>
+            </ol>
+            <div class="code-block">
+                <div class="code-header"><span>Folder Structure</span></div>
+                <pre><code>resources/
+  [aetix]/
+    aetix_computer/
+      bridge/           -- Open-source bridge layer
+      client/           -- Client scripts
+      server/           -- Server scripts
+      shared/           -- Shared configs
+      web/              -- React frontend (pre-built in web/dist/)
+      aetix_computer.sql
+      fxmanifest.lua</code></pre>
+            </div>
+            <h2 id="step2">Step 2: Import Database</h2>
+            <p>Import the SQL schema into your MySQL database. This creates all 18 tables needed by the system.</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>MySQL</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                </div>
+                <pre><code>-- Import via command line:
+mysql -u root -p your_database < aetix_computer.sql
+
+-- Or import through phpMyAdmin / HeidiSQL
+-- File: aetix_computer/aetix_computer.sql</code></pre>
+            </div>
+            <div class="info-box info">
+                <i class="fas fa-info-circle"></i>
+                <div>All tables use <code>CREATE TABLE IF NOT EXISTS</code>, so it is safe to run multiple times without losing data.</div>
+            </div>
+            <h2 id="step3">Step 3: server.cfg</h2>
+            <p>Add the resource to your server configuration. Make sure dependencies start before aetix_computer.</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>server.cfg</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                </div>
+                <pre><code># Dependencies (must start before aetix_computer)
+ensure oxmysql
+ensure ox_lib
+ensure ox_target
+ensure qbx_core
+
+# Optional: Radar/ALPR integration
+ensure wk_wars2x
+
+# Aetix Computer
+ensure aetix_computer</code></pre>
+            </div>
+            <h2 id="step4">Step 4: Configure</h2>
+            <p>Edit the configuration files in <code>shared/config/</code> to match your server:</p>
+            <ul>
+                <li><code>config.lua</code> &mdash; General settings (debug, locale, NUI behavior)</li>
+                <li><code>config_factions.lua</code> &mdash; Job-to-faction mappings, roles, permissions</li>
+                <li><code>config_computers.lua</code> &mdash; Physical computer locations in the world</li>
+                <li><code>config_dispatch.lua</code> &mdash; Dispatch codes, blips, sounds</li>
+                <li><code>config_warrants.lua</code> &mdash; Warrant types, judge approval requirements</li>
+                <li><code>config_flags.lua</code> &mdash; Person flags (custom flags can be added here)</li>
+                <li><code>config_charges.lua</code> &mdash; Penal codes and charge definitions</li>
+                <li><code>config_vehicles.lua</code> &mdash; Vehicle MDT keybind, allowed jobs, vehicle classes</li>
+            </ul>
+            <div class="info-box warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div><strong>Important:</strong> See the <a href="configuration.html">Configuration</a> page for detailed explanations of every setting.</div>
+            </div>
+            <h2 id="step5">Step 5: Frontend Build (Optional)</h2>
+            <p>The frontend comes pre-built in <code>web/dist/</code>. You only need to rebuild if you modify the React source code.</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>Terminal</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                </div>
+                <pre><code>cd resources/[aetix]/aetix_computer/web
+npm install
+npm run build</code></pre>
+            </div>
+            <h2 id="step6">Step 6: Verify</h2>
+            <p>Restart your server and check the console for startup messages:</p>
+            <div class="code-block">
+                <div class="code-header"><span>Console</span></div>
+                <pre><code>[aetix_computer] Main Server Bridge loaded (defaults)
+[aetix_computer] QBX Server Bridge loaded
+[aetix_computer] Vehicles module loaded
+[aetix_computer] Warrants module loaded
+[aetix_computer] BOLOs module loaded
+[aetix_computer] Calls module loaded
+...</code></pre>
+            </div>
+            <div class="info-box success">
+                <i class="fas fa-check-circle"></i>
+                <div>Installation complete! Proceed to <a href="configuration.html">Configuration</a> to customize the system for your server.</div>
+            </div>
+            <div class="page-nav">
+                <a href="index.html" class="page-nav-link prev"><i class="fas fa-arrow-left"></i> Overview</a>
+                <a href="configuration.html" class="page-nav-link next">Configuration <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <footer class="content-footer"><p>&copy; 2026 Aetech. All rights reserved.</p></footer>
+        </div>
+    </main>
+    <script src="../../assets/js/sidebar.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html>

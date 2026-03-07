@@ -1,0 +1,409 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aetix Computer - Database</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="mobile-header">
+        <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+        <span class="mobile-title">Aetech</span>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="main-content">
+        <div class="content-wrapper doc-content">
+            <div class="breadcrumb">
+                <a href="../../index.html">Home</a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <a href="index.html">Aetix Computer</a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <span>Database</span>
+            </div>
+            <h1>Database Schema</h1>
+            <p class="doc-description">Aetix Computer uses 18 MySQL tables. All tables are created via <code>aetix_computer.sql</code> using <code>CREATE TABLE IF NOT EXISTS</code>.</p>
+
+            <div class="info-box info">
+                <i class="fas fa-database"></i>
+                <div>
+                    <strong>Quick Navigation</strong><br>
+                    <a href="#calls">Calls</a> &bull;
+                    <a href="#call-notes">Call Notes</a> &bull;
+                    <a href="#call-units">Call Units</a> &bull;
+                    <a href="#call-timeline">Call Timeline</a> &bull;
+                    <a href="#warrants">Warrants</a> &bull;
+                    <a href="#bolos">BOLOs</a> &bull;
+                    <a href="#reports">Reports</a> &bull;
+                    <a href="#citations">Citations</a> &bull;
+                    <a href="#citation-charges">Citation Charges</a> &bull;
+                    <a href="#person-flags">Person Flags</a> &bull;
+                    <a href="#person-notes">Person Notes</a> &bull;
+                    <a href="#vehicle-flags">Vehicle Flags</a> &bull;
+                    <a href="#gangs">Gangs</a> &bull;
+                    <a href="#gang-members">Gang Members</a> &bull;
+                    <a href="#gang-activity">Gang Activity</a> &bull;
+                    <a href="#messages">Messages</a> &bull;
+                    <a href="#smt">SMT</a> &bull;
+                    <a href="#mugshots">Mugshots</a>
+                </div>
+            </div>
+
+            <!-- CALLS -->
+            <h2 id="calls">computer_calls</h2>
+            <p>Active and closed dispatch calls.</p>
+            <table class="config-table">
+                <thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>PK</td><td>Unique call ID</td></tr>
+                    <tr><td>code</td><td>VARCHAR(20)</td><td></td><td>Dispatch code (e.g., '10-31')</td></tr>
+                    <tr><td>title</td><td>VARCHAR(255)</td><td></td><td>Call title / description</td></tr>
+                    <tr><td>description</td><td>TEXT</td><td></td><td>Detailed description</td></tr>
+                    <tr><td>priority</td><td>TINYINT</td><td></td><td>Priority level (1=Low, 2=Medium, 3=High)</td></tr>
+                    <tr><td>status</td><td>VARCHAR(20)</td><td>IDX</td><td>PENDING, ACTIVE, CLOSED</td></tr>
+                    <tr><td>location</td><td>VARCHAR(255)</td><td></td><td>Street name + area</td></tr>
+                    <tr><td>coords</td><td>JSON</td><td></td><td>{x, y, z} coordinates</td></tr>
+                    <tr><td>blip</td><td>INT</td><td></td><td>Map blip sprite ID</td></tr>
+                    <tr><td>faction</td><td>VARCHAR(50)</td><td>IDX</td><td>Faction that owns this call</td></tr>
+                    <tr><td>created_by</td><td>VARCHAR(50)</td><td></td><td>Officer citizenid who created</td></tr>
+                    <tr><td>created_by_name</td><td>VARCHAR(100)</td><td></td><td>Officer name</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td></td><td>Creation timestamp</td></tr>
+                    <tr><td>updated_at</td><td>TIMESTAMP</td><td></td><td>Last update timestamp</td></tr>
+                    <tr><td>closed_at</td><td>TIMESTAMP</td><td></td><td>When the call was closed</td></tr>
+                </tbody>
+            </table>
+
+            <!-- CALL NOTES -->
+            <h2 id="call-notes">computer_call_notes</h2>
+            <p>Notes attached to dispatch calls.</p>
+            <table class="config-table">
+                <thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>PK</td><td>Note ID</td></tr>
+                    <tr><td>call_id</td><td>INT</td><td>FK &rarr; computer_calls.id</td><td>Parent call</td></tr>
+                    <tr><td>content</td><td>TEXT</td><td></td><td>Note content</td></tr>
+                    <tr><td>author_id</td><td>VARCHAR(50)</td><td></td><td>Author citizenid</td></tr>
+                    <tr><td>author_name</td><td>VARCHAR(100)</td><td></td><td>Author display name</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td></td><td>Timestamp</td></tr>
+                </tbody>
+            </table>
+
+            <!-- CALL UNITS -->
+            <h2 id="call-units">computer_call_units</h2>
+            <p>Officers/units assigned to dispatch calls.</p>
+            <table class="config-table">
+                <thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>PK</td><td>Assignment ID</td></tr>
+                    <tr><td>call_id</td><td>INT</td><td>FK &rarr; computer_calls.id</td><td>Parent call</td></tr>
+                    <tr><td>citizenid</td><td>VARCHAR(50)</td><td></td><td>Assigned officer</td></tr>
+                    <tr><td>name</td><td>VARCHAR(100)</td><td></td><td>Officer name</td></tr>
+                    <tr><td>callsign</td><td>VARCHAR(20)</td><td></td><td>Unit callsign</td></tr>
+                    <tr><td>assigned_at</td><td>TIMESTAMP</td><td></td><td>When assigned</td></tr>
+                </tbody>
+            </table>
+
+            <!-- CALL TIMELINE -->
+            <h2 id="call-timeline">computer_call_timeline</h2>
+            <p>Automatic timeline entries for call events.</p>
+            <table class="config-table">
+                <thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>PK</td><td>Timeline entry ID</td></tr>
+                    <tr><td>call_id</td><td>INT</td><td>FK &rarr; computer_calls.id</td><td>Parent call</td></tr>
+                    <tr><td>type</td><td>VARCHAR(50)</td><td></td><td>Event type: created, status_change, unit_assigned, unit_unassigned, note_added</td></tr>
+                    <tr><td>content</td><td>TEXT</td><td></td><td>Event description</td></tr>
+                    <tr><td>author_name</td><td>VARCHAR(100)</td><td></td><td>Who triggered the event</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td></td><td>Event timestamp</td></tr>
+                </tbody>
+            </table>
+
+            <!-- WARRANTS -->
+            <h2 id="warrants">computer_warrants</h2>
+            <p>Arrest, search, bench, wiretap, and seizure warrants.</p>
+            <table class="config-table">
+                <thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>PK</td><td>Warrant ID</td></tr>
+                    <tr><td>type</td><td>VARCHAR(30)</td><td>IDX</td><td>Warrant type ID (arrest, search, bench, wiretap, seizure)</td></tr>
+                    <tr><td>status</td><td>VARCHAR(20)</td><td>IDX</td><td>PENDING, APPROVED, ACTIVE, SERVED, CANCELLED</td></tr>
+                    <tr><td>citizenid</td><td>VARCHAR(50)</td><td>IDX</td><td>Target person</td></tr>
+                    <tr><td>citizen_name</td><td>VARCHAR(100)</td><td></td><td>Target name</td></tr>
+                    <tr><td>reason</td><td>TEXT</td><td></td><td>Reason / justification</td></tr>
+                    <tr><td>faction</td><td>VARCHAR(50)</td><td></td><td>Issuing faction</td></tr>
+                    <tr><td>issued_by</td><td>VARCHAR(50)</td><td></td><td>Issuing officer citizenid</td></tr>
+                    <tr><td>issued_by_name</td><td>VARCHAR(100)</td><td></td><td>Issuing officer name</td></tr>
+                    <tr><td>approved_by</td><td>VARCHAR(50)</td><td></td><td>Approving judge citizenid</td></tr>
+                    <tr><td>approved_by_name</td><td>VARCHAR(100)</td><td></td><td>Judge name</td></tr>
+                    <tr><td>served_by</td><td>VARCHAR(50)</td><td></td><td>Serving officer citizenid</td></tr>
+                    <tr><td>served_by_name</td><td>VARCHAR(100)</td><td></td><td>Serving officer name</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td></td><td>Created</td></tr>
+                    <tr><td>updated_at</td><td>TIMESTAMP</td><td></td><td>Last updated</td></tr>
+                    <tr><td>expires_at</td><td>TIMESTAMP</td><td></td><td>Expiration (nullable)</td></tr>
+                </tbody>
+            </table>
+
+            <!-- BOLOS -->
+            <h2 id="bolos">computer_bolos</h2>
+            <p>Be On the Lookout bulletins.</p>
+            <table class="config-table">
+                <thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>PK</td><td>BOLO ID</td></tr>
+                    <tr><td>title</td><td>VARCHAR(255)</td><td></td><td>BOLO title</td></tr>
+                    <tr><td>description</td><td>TEXT</td><td></td><td>Full description</td></tr>
+                    <tr><td>status</td><td>VARCHAR(20)</td><td>IDX</td><td>active, expired, cancelled</td></tr>
+                    <tr><td>person_name</td><td>VARCHAR(100)</td><td></td><td>Suspect name (if applicable)</td></tr>
+                    <tr><td>person_description</td><td>TEXT</td><td></td><td>Physical description</td></tr>
+                    <tr><td>vehicle_plate</td><td>VARCHAR(20)</td><td>IDX</td><td>Vehicle plate (used for ALPR matching)</td></tr>
+                    <tr><td>vehicle_model</td><td>VARCHAR(100)</td><td></td><td>Vehicle model</td></tr>
+                    <tr><td>vehicle_color</td><td>VARCHAR(50)</td><td></td><td>Vehicle color</td></tr>
+                    <tr><td>faction</td><td>VARCHAR(50)</td><td></td><td>Issuing faction</td></tr>
+                    <tr><td>created_by</td><td>VARCHAR(50)</td><td></td><td>Creator citizenid</td></tr>
+                    <tr><td>created_by_name</td><td>VARCHAR(100)</td><td></td><td>Creator name</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td></td><td>Created</td></tr>
+                    <tr><td>expires_at</td><td>TIMESTAMP</td><td></td><td>Expiration (nullable)</td></tr>
+                </tbody>
+            </table>
+
+            <!-- REPORTS -->
+            <h2 id="reports">computer_reports</h2>
+            <p>Incident, arrest, use-of-force, traffic, and field interview reports.</p>
+            <table class="config-table">
+                <thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>PK</td><td>Report ID</td></tr>
+                    <tr><td>type</td><td>VARCHAR(30)</td><td>IDX</td><td>Report type</td></tr>
+                    <tr><td>title</td><td>VARCHAR(255)</td><td></td><td>Report title</td></tr>
+                    <tr><td>body</td><td>LONGTEXT</td><td></td><td>Report narrative (rich text)</td></tr>
+                    <tr><td>status</td><td>VARCHAR(20)</td><td>IDX</td><td>DRAFT, SUBMITTED, APPROVED, REJECTED</td></tr>
+                    <tr><td>call_id</td><td>INT</td><td>FK &rarr; computer_calls.id</td><td>Linked dispatch call (nullable)</td></tr>
+                    <tr><td>incident_id</td><td>VARCHAR(50)</td><td>IDX</td><td>External incident ID for cross-referencing</td></tr>
+                    <tr><td>faction</td><td>VARCHAR(50)</td><td></td><td>Author's faction</td></tr>
+                    <tr><td>author_id</td><td>VARCHAR(50)</td><td></td><td>Author citizenid</td></tr>
+                    <tr><td>author_name</td><td>VARCHAR(100)</td><td></td><td>Author name</td></tr>
+                    <tr><td>approved_by</td><td>VARCHAR(50)</td><td></td><td>Approver citizenid</td></tr>
+                    <tr><td>approved_by_name</td><td>VARCHAR(100)</td><td></td><td>Approver name</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td></td><td>Created</td></tr>
+                    <tr><td>updated_at</td><td>TIMESTAMP</td><td></td><td>Last updated</td></tr>
+                </tbody>
+            </table>
+
+            <!-- CITATIONS -->
+            <h2 id="citations">computer_citations</h2>
+            <p>Issued citations (tickets).</p>
+            <table class="config-table">
+                <thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>PK</td><td>Citation ID</td></tr>
+                    <tr><td>citizenid</td><td>VARCHAR(50)</td><td>IDX</td><td>Offender citizenid</td></tr>
+                    <tr><td>citizen_name</td><td>VARCHAR(100)</td><td></td><td>Offender name</td></tr>
+                    <tr><td>total_fine</td><td>INT</td><td></td><td>Total fine amount ($)</td></tr>
+                    <tr><td>total_time</td><td>INT</td><td></td><td>Total jail time (months)</td></tr>
+                    <tr><td>notes</td><td>TEXT</td><td></td><td>Officer notes</td></tr>
+                    <tr><td>faction</td><td>VARCHAR(50)</td><td></td><td>Issuing faction</td></tr>
+                    <tr><td>issued_by</td><td>VARCHAR(50)</td><td></td><td>Issuing officer</td></tr>
+                    <tr><td>issued_by_name</td><td>VARCHAR(100)</td><td></td><td>Officer name</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td></td><td>Issued date</td></tr>
+                </tbody>
+            </table>
+
+            <!-- CITATION CHARGES -->
+            <h2 id="citation-charges">computer_citation_charges</h2>
+            <p>Individual charges on a citation.</p>
+            <table class="config-table">
+                <thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>PK</td><td>Charge entry ID</td></tr>
+                    <tr><td>citation_id</td><td>INT</td><td>FK &rarr; computer_citations.id</td><td>Parent citation</td></tr>
+                    <tr><td>charge_id</td><td>INT</td><td></td><td>Charge ID from config</td></tr>
+                    <tr><td>title</td><td>VARCHAR(255)</td><td></td><td>Charge title</td></tr>
+                    <tr><td>type</td><td>VARCHAR(30)</td><td></td><td>Infraction / Misdemeanor / Felony</td></tr>
+                    <tr><td>fine</td><td>INT</td><td></td><td>Fine amount for this charge</td></tr>
+                    <tr><td>time</td><td>INT</td><td></td><td>Jail time for this charge</td></tr>
+                    <tr><td>count</td><td>INT DEFAULT 1</td><td></td><td>Number of counts</td></tr>
+                </tbody>
+            </table>
+
+            <!-- PERSON FLAGS -->
+            <h2 id="person-flags">computer_person_flags</h2>
+            <p>Active flags on person profiles.</p>
+            <table class="config-table">
+                <thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>PK</td><td>Flag entry ID</td></tr>
+                    <tr><td>citizenid</td><td>VARCHAR(50)</td><td>IDX</td><td>Target person</td></tr>
+                    <tr><td>flag_id</td><td>VARCHAR(50)</td><td></td><td>Flag identifier from config</td></tr>
+                    <tr><td>added_by</td><td>VARCHAR(50)</td><td></td><td>Officer who added</td></tr>
+                    <tr><td>added_by_name</td><td>VARCHAR(100)</td><td></td><td>Officer name</td></tr>
+                    <tr><td>reason</td><td>TEXT</td><td></td><td>Reason for flag</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td></td><td>When added</td></tr>
+                </tbody>
+            </table>
+
+            <!-- PERSON NOTES -->
+            <h2 id="person-notes">computer_person_notes</h2>
+            <p>Officer notes on person profiles.</p>
+            <table class="config-table">
+                <thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>PK</td><td>Note ID</td></tr>
+                    <tr><td>citizenid</td><td>VARCHAR(50)</td><td>IDX</td><td>Target person</td></tr>
+                    <tr><td>content</td><td>TEXT</td><td></td><td>Note content</td></tr>
+                    <tr><td>author_id</td><td>VARCHAR(50)</td><td></td><td>Author citizenid</td></tr>
+                    <tr><td>author_name</td><td>VARCHAR(100)</td><td></td><td>Author name</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td></td><td>Timestamp</td></tr>
+                </tbody>
+            </table>
+
+            <!-- VEHICLE FLAGS -->
+            <h2 id="vehicle-flags">computer_vehicle_flags</h2>
+            <p>Flags on vehicle records (stolen, BOLO, wanted). Used by ALPR/radar integration.</p>
+            <table class="config-table">
+                <thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>PK</td><td>Flag entry ID</td></tr>
+                    <tr><td>plate</td><td>VARCHAR(20)</td><td>IDX</td><td>Vehicle plate (uppercase, trimmed)</td></tr>
+                    <tr><td>flag_type</td><td>VARCHAR(50)</td><td></td><td>Flag type: stolen, bolo, wanted, custom</td></tr>
+                    <tr><td>status</td><td>VARCHAR(20)</td><td>IDX</td><td>active, cleared</td></tr>
+                    <tr><td>added_by</td><td>VARCHAR(50)</td><td></td><td>Officer citizenid</td></tr>
+                    <tr><td>added_by_name</td><td>VARCHAR(100)</td><td></td><td>Officer name</td></tr>
+                    <tr><td>reason</td><td>TEXT</td><td></td><td>Reason</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td></td><td>When flagged</td></tr>
+                    <tr><td>cleared_at</td><td>TIMESTAMP</td><td></td><td>When cleared (nullable)</td></tr>
+                </tbody>
+            </table>
+
+            <!-- GANGS -->
+            <h2 id="gangs">computer_gangs</h2>
+            <table class="config-table">
+                <thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>PK</td><td>Gang ID</td></tr>
+                    <tr><td>name</td><td>VARCHAR(100)</td><td>UNIQUE</td><td>Gang name</td></tr>
+                    <tr><td>description</td><td>TEXT</td><td></td><td>Description / notes</td></tr>
+                    <tr><td>territory</td><td>VARCHAR(255)</td><td></td><td>Known territory</td></tr>
+                    <tr><td>threat_level</td><td>TINYINT</td><td></td><td>1-5 threat level</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td></td><td>Created</td></tr>
+                    <tr><td>updated_at</td><td>TIMESTAMP</td><td></td><td>Updated</td></tr>
+                </tbody>
+            </table>
+
+            <!-- GANG MEMBERS -->
+            <h2 id="gang-members">computer_gang_members</h2>
+            <table class="config-table">
+                <thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>PK</td><td>Membership ID</td></tr>
+                    <tr><td>gang_id</td><td>INT</td><td>FK &rarr; computer_gangs.id</td><td>Parent gang</td></tr>
+                    <tr><td>citizenid</td><td>VARCHAR(50)</td><td></td><td>Member citizenid</td></tr>
+                    <tr><td>citizen_name</td><td>VARCHAR(100)</td><td></td><td>Member name</td></tr>
+                    <tr><td>rank</td><td>VARCHAR(50)</td><td></td><td>Rank within gang</td></tr>
+                    <tr><td>added_at</td><td>TIMESTAMP</td><td></td><td>When added</td></tr>
+                </tbody>
+            </table>
+
+            <!-- GANG ACTIVITY -->
+            <h2 id="gang-activity">computer_gang_activity</h2>
+            <table class="config-table">
+                <thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>PK</td><td>Activity ID</td></tr>
+                    <tr><td>gang_id</td><td>INT</td><td>FK &rarr; computer_gangs.id</td><td>Parent gang</td></tr>
+                    <tr><td>description</td><td>TEXT</td><td></td><td>Activity description</td></tr>
+                    <tr><td>author_name</td><td>VARCHAR(100)</td><td></td><td>Reporting officer</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td></td><td>When logged</td></tr>
+                </tbody>
+            </table>
+
+            <!-- MESSAGES -->
+            <h2 id="messages">computer_messages</h2>
+            <table class="config-table">
+                <thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>PK</td><td>Message ID</td></tr>
+                    <tr><td>faction</td><td>VARCHAR(50)</td><td>IDX</td><td>Faction scope</td></tr>
+                    <tr><td>sender_id</td><td>VARCHAR(50)</td><td></td><td>Sender citizenid</td></tr>
+                    <tr><td>sender_name</td><td>VARCHAR(100)</td><td></td><td>Sender name</td></tr>
+                    <tr><td>sender_badge</td><td>VARCHAR(20)</td><td></td><td>Badge number</td></tr>
+                    <tr><td>content</td><td>TEXT</td><td></td><td>Message text</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td></td><td>Sent at</td></tr>
+                </tbody>
+            </table>
+
+            <!-- SMT -->
+            <h2 id="smt">computer_smt</h2>
+            <p>Supervised Management Team (probation/parole tracking).</p>
+            <table class="config-table">
+                <thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>PK</td><td>SMT entry ID</td></tr>
+                    <tr><td>citizenid</td><td>VARCHAR(50)</td><td>IDX</td><td>Supervised person</td></tr>
+                    <tr><td>type</td><td>VARCHAR(30)</td><td></td><td>parole, probation, etc.</td></tr>
+                    <tr><td>conditions</td><td>TEXT</td><td></td><td>Supervision conditions</td></tr>
+                    <tr><td>assigned_by</td><td>VARCHAR(50)</td><td></td><td>Assigning officer</td></tr>
+                    <tr><td>assigned_by_name</td><td>VARCHAR(100)</td><td></td><td>Officer name</td></tr>
+                    <tr><td>status</td><td>VARCHAR(20)</td><td></td><td>active, completed, revoked</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td></td><td>Start date</td></tr>
+                    <tr><td>expires_at</td><td>TIMESTAMP</td><td></td><td>End date (nullable)</td></tr>
+                </tbody>
+            </table>
+
+            <!-- MUGSHOTS -->
+            <h2 id="mugshots">computer_mugshots</h2>
+            <table class="config-table">
+                <thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>PK</td><td>Mugshot ID</td></tr>
+                    <tr><td>citizenid</td><td>VARCHAR(50)</td><td>IDX</td><td>Person</td></tr>
+                    <tr><td>url</td><td>TEXT</td><td></td><td>Image URL (base64 or hosted)</td></tr>
+                    <tr><td>taken_by</td><td>VARCHAR(50)</td><td></td><td>Officer who took the photo</td></tr>
+                    <tr><td>taken_by_name</td><td>VARCHAR(100)</td><td></td><td>Officer name</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td></td><td>When taken</td></tr>
+                </tbody>
+            </table>
+
+            <h2 id="er-diagram">Entity Relationships</h2>
+            <div class="code-block">
+                <div class="code-header"><span>Key Relationships</span></div>
+                <pre><code>computer_calls
+  +-- computer_call_notes      (call_id -> calls.id)
+  +-- computer_call_units      (call_id -> calls.id)
+  +-- computer_call_timeline   (call_id -> calls.id)
+  +-- computer_reports         (call_id -> calls.id)
+
+computer_citations
+  +-- computer_citation_charges (citation_id -> citations.id)
+
+computer_gangs
+  +-- computer_gang_members    (gang_id -> gangs.id)
+  +-- computer_gang_activity   (gang_id -> gangs.id)
+
+Person (citizenid) links across:
+  - computer_warrants.citizenid
+  - computer_person_flags.citizenid
+  - computer_person_notes.citizenid
+  - computer_citations.citizenid
+  - computer_gang_members.citizenid
+  - computer_smt.citizenid
+  - computer_mugshots.citizenid
+
+Vehicle (plate) links:
+  - computer_vehicle_flags.plate
+  - computer_bolos.vehicle_plate</code></pre>
+            </div>
+
+            <div class="page-nav">
+                <a href="bridge.html" class="page-nav-link prev"><i class="fas fa-arrow-left"></i> Bridge / API</a>
+                <a href="index.html" class="page-nav-link next">Back to Overview <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <footer class="content-footer"><p>&copy; 2026 Aetech. All rights reserved.</p></footer>
+        </div>
+    </main>
+    <script src="../../assets/js/sidebar.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html>

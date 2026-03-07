@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aetix Computer - Bridge / API</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="mobile-header">
+        <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+        <span class="mobile-title">Aetech</span>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="main-content">
+        <div class="content-wrapper doc-content">
+            <div class="breadcrumb">
+                <a href="../../index.html">Home</a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <a href="index.html">Aetix Computer</a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <span>Bridge / API</span>
+            </div>
+            <h1>Bridge / API</h1>
+            <p class="doc-description">The bridge layer is an open-source abstraction that lets server owners customize data providers, hooks, and third-party integrations without modifying core code.</p>
+
+            <div class="info-box info">
+                <i class="fas fa-code-branch"></i>
+                <div>
+                    <strong>Open Source:</strong> The <code>bridge/</code> folder is fully open-source and editable. The rest of the resource (client/, server/, web/) is obfuscated.
+                </div>
+            </div>
+
+            <h2 id="architecture">Architecture</h2>
+            <p>The bridge system uses two global Lua tables:</p>
+            <table class="config-table">
+                <thead><tr><th>Table</th><th>Side</th><th>File</th><th>Purpose</th></tr></thead>
+                <tbody>
+                    <tr><td><code>Bridge</code></td><td>Client</td><td>bridge/client.lua</td><td>Location system, plate hit handler, NUI interaction hooks</td></tr>
+                    <tr><td><code>BridgeServer</code></td><td>Server</td><td>bridge/server.lua</td><td>Data providers, dispatch hooks, radar integration</td></tr>
+                </tbody>
+            </table>
+            <p>The core system calls bridge functions at specific points. If a bridge function returns data, the core uses it. If it returns <code>nil</code>, the core falls back to default behavior.</p>
+
+            <h2 id="server-functions">Server Bridge Functions</h2>
+            <p>Override these functions in <code>bridge/server.lua</code> to customize server-side behavior.</p>
+
+            <h3>Data Provider Hooks</h3>
+            <table class="config-table">
+                <thead><tr><th>Function</th><th>Parameters</th><th>Returns</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td><code>BridgeServer.GetPersonProfileExtras(citizenid)</code></td>
+                        <td>citizenid: string</td>
+                        <td>table or nil</td>
+                        <td>Add extra fields to person profiles (e.g., mugshot URL, physical description)</td>
+                    </tr>
+                    <tr>
+                        <td><code>BridgeServer.GetPhysicalDescription(citizenid)</code></td>
+                        <td>citizenid: string</td>
+                        <td>string or nil</td>
+                        <td>Return a text description of the person's appearance</td>
+                    </tr>
+                    <tr>
+                        <td><code>BridgeServer.GetVehicleExtras(plate)</code></td>
+                        <td>plate: string</td>
+                        <td>table or nil</td>
+                        <td>Add extra fields to vehicle profiles (e.g., insurance status, mods)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Dispatch Hooks</h3>
+            <table class="config-table">
+                <thead><tr><th>Function</th><th>Parameters</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td><code>BridgeServer.OnCallCreated(callData)</code></td>
+                        <td>callData: table</td>
+                        <td>Called when a new dispatch call is created. Use for external integrations (Discord webhooks, etc.)</td>
+                    </tr>
+                    <tr>
+                        <td><code>BridgeServer.OnUnitAssigned(callId, unitData)</code></td>
+                        <td>callId: number, unitData: table</td>
+                        <td>Called when a unit is assigned to a call</td>
+                    </tr>
+                    <tr>
+                        <td><code>BridgeServer.OnCallClosed(callData)</code></td>
+                        <td>callData: table</td>
+                        <td>Called when a dispatch call is closed</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span>Example: Discord Webhook on Call Created</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                </div>
+                <pre><code>function BridgeServer.OnCallCreated(callData)
+    -- Send a Discord webhook when a new dispatch call is created
+    local embed = {
+        title = callData.code .. ' - ' .. callData.title,
+        description = callData.description or 'No description',
+        color = callData.priority == 3 and 16711680 or 16776960,
+        fields = {
+            { name = 'Location', value = callData.location or 'Unknown', inline = true },
+            { name = 'Priority', value = tostring(callData.priority), inline = true },
+        },
+    }
+    -- PerformHttpRequest(webhookUrl, function() end, 'POST', json.encode({embeds = {embed}}), {['Content-Type'] = 'application/json'})
+end</code></pre>
+            </div>
+
+            <!-- RADAR SECTION -->
+            <h2 id="radar"><i class="fas fa-satellite-dish"></i> Radar / ALPR Integration (wk_wars2x)</h2>
+            <p>The bridge includes built-in integration with <strong>wk_wars2x</strong> (Wraith ARS 2X) for automatic plate scanning and alert generation.</p>
+
+            <div class="info-box warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div><strong>Optional:</strong> This integration only activates if <code>wk_wars2x</code> is running on your server. The MDT works fine without it.</div>
+            </div>
+
+            <h3>How It Works</h3>
+            <ol>
+                <li>Officer activates the radar/ALPR in their vehicle (wk_wars2x)</li>
+                <li>When a plate is scanned, wk_wars2x fires the <code>wk:onPlateScanned</code> event</li>
+                <li>The bridge intercepts this event and calls <code>BridgeServer.OnPlateScanned()</code></li>
+                <li>The server checks the plate against:
+                    <ul>
+                        <li><strong>Vehicle Flags</strong> &mdash; Active flags in <code>computer_vehicle_flags</code> table (stolen, BOLO, wanted, etc.)</li>
+                        <li><strong>Active BOLOs</strong> &mdash; Any active BOLO in <code>computer_bolos</code> that matches the plate</li>
+                    </ul>
+                </li>
+                <li>If a hit is found, the server sends an alert to the scanning officer</li>
+                <li>The plate reader automatically locks onto the flagged plate</li>
+                <li>The client shows a notification and optionally forwards the hit to the MDT UI</li>
+            </ol>
+
+            <h3>Server-side Functions</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>bridge/server.lua - Radar Functions</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                </div>
+                <pre><code>--- Called when wk_wars2x scans a plate
+--- @param source number Player server ID
+--- @param cam string Camera name ('front' or 'rear')
+--- @param plate string The scanned plate (trimmed, uppercase)
+--- @param index number Plate reader index
+function BridgeServer.OnPlateScanned(source, cam, plate, index)
+    -- Checks plate against vehicle flags + active BOLOs
+    -- Sends hit to officer if found
+    -- Auto-locks the plate reader
+end
+
+--- Lock/unlock the plate reader on a specific camera
+--- @param source number Player server ID
+--- @param cam string Camera name
+function BridgeServer.LockPlateReader(source, cam)
+    -- Uses wk_wars2x TogglePlateLock export
+end</code></pre>
+            </div>
+
+            <h3>Client-side Functions</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>bridge/client.lua - Plate Hit Handler</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                </div>
+                <pre><code>--- Called when a plate hit is received from the server
+--- @param hit table { plate, flags, bolos }
+function Bridge.OnPlateHit(hit)
+    -- Default behavior:
+    -- 1. Show lib.notify with plate and flag/BOLO details
+    -- 2. Forward hit data to MDT NUI (plateHit message)
+    -- 3. Play alert sound
+end</code></pre>
+            </div>
+
+            <h3>Customizing Radar Behavior</h3>
+            <p>You can override the default radar functions to customize alerts:</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>Example: Custom Alert with Sound</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                </div>
+                <pre><code>-- In bridge/client.lua, override OnPlateHit:
+function Bridge.OnPlateHit(hit)
+    -- Custom notification
+    lib.notify({
+        title = 'ALPR HIT',
+        description = ('Plate: %s | Flags: %d | BOLOs: %d'):format(
+            hit.plate,
+            #(hit.flags or {}),
+            #(hit.bolos or {})
+        ),
+        type = 'error',
+        duration = 10000,
+    })
+
+    -- Forward to MDT
+    SendNUIMessage({ action = 'plateHit', data = hit })
+
+    -- Custom sound
+    PlaySoundFrontend(-1, 'CONFIRM_BEEP', 'HUD_MINI_GAME_SOUNDSET', true)
+end</code></pre>
+            </div>
+
+            <!-- CLIENT BRIDGE -->
+            <h2 id="client-functions">Client Bridge Functions</h2>
+
+            <h3>Location System</h3>
+            <table class="config-table">
+                <thead><tr><th>Function</th><th>Parameters</th><th>Returns</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td><code>Bridge.GetCurrentLocationData()</code></td>
+                        <td>none</td>
+                        <td>table { street, area, coords }</td>
+                        <td>Returns the player's current location data for dispatch calls. Uses GTA native street/zone names by default.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>Example: Custom Location Provider</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                </div>
+                <pre><code>-- Override in bridge/client.lua
+function Bridge.GetCurrentLocationData()
+    local coords = GetEntityCoords(cache.ped)
+    local streetHash, crossHash = GetStreetNameAtCoord(coords.x, coords.y, coords.z)
+    local street = GetStreetNameFromHashKey(streetHash)
+    local zone = GetNameOfZone(coords.x, coords.y, coords.z)
+    local area = GetLabelText(zone)
+
+    return {
+        street = street,
+        area = area,
+        coords = { x = coords.x, y = coords.y, z = coords.z },
+    }
+end</code></pre>
+            </div>
+
+            <h2 id="file-loading">File Loading Order</h2>
+            <p>The bridge files load in a specific order defined in <code>fxmanifest.lua</code>:</p>
+            <div class="code-block">
+                <div class="code-header"><span>Loading Order</span></div>
+                <pre><code>1. shared/config/*.lua          -- All config files
+2. bridge/server.lua            -- Server bridge (BridgeServer table)
+3. bridge/client.lua            -- Client bridge (Bridge table)
+4. server/modules/*.lua         -- Core server modules
+5. server/*.lua                 -- Core server scripts
+6. client/*.lua                 -- Core client scripts</code></pre>
+            </div>
+            <div class="info-box info">
+                <i class="fas fa-info-circle"></i>
+                <div>Bridge files load <strong>before</strong> core scripts, so all bridge functions are available when the core initializes.</div>
+            </div>
+
+            <div class="page-nav">
+                <a href="modules.html" class="page-nav-link prev"><i class="fas fa-arrow-left"></i> Modules</a>
+                <a href="database.html" class="page-nav-link next">Database <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <footer class="content-footer"><p>&copy; 2026 Aetech. All rights reserved.</p></footer>
+        </div>
+    </main>
+    <script src="../../assets/js/sidebar.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html>
